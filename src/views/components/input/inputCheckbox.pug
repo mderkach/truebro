@@ -1,0 +1,5 @@
+mixin inputCheckbox(name)
+  label(for=name).input-checkbox
+    input(type='checkbox', name=name, id=name)
+    .input-checkbox-box
+    +icon('input-checkbox-icon', 'check-icon-input')
