@@ -1,0 +1,33 @@
+/* Vars:
+   ========================================================================== */
+
+// Font
+$mainFont: 'Rubick', sans-serif;
+$mainFontSize: 16px;
+$mainLineHeight: 1.5;
+$mainFontWeight: normal;
+$mainFontColor: #3f4756;
+
+//colors
+$primary: #fdd835;
+$secondary: #fff;
+$fontAlt: #3b3c3c;
+//hamburger
+
+// grid
+$grid-desktop: 12;
+$grid-desktop-gap-col: 30px;
+$grid-desktop-gap-row: 30px;
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1170px,
+);

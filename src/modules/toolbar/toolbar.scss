@@ -1,0 +1,223 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+@import 'node_modules/hamburgers/_sass/hamburgers/hamburgers';
+
+.toolbar {
+  @include media-breakpoint-between(0, xs) {
+    padding-right: rem(10);
+    padding-left: rem(10);
+  }
+
+  position: relative;
+  z-index: 2;
+  background-color: #f9f9f9;
+
+  &__container {
+    @include make-grid-container-max-widths();
+    @include make-container();
+    @include media-breakpoint-between(0, xs) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-top: 0;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(10) 0;
+    transition: all 0.5s ease;
+    transform-origin: top;
+  }
+
+  &__item {
+    @include media-breakpoint-up(sm) {
+      &:hover {
+        cursor: pointer;
+
+        .toolbar__item {
+          &-dropdown {
+            display: flex;
+          }
+
+          &-descr {
+            color: $red;
+          }
+        }
+
+        .icon {
+          fill: $red;
+        }
+      }
+    }
+    @include media-breakpoint-between(0, xs) {
+      &:hover {
+        cursor: pointer;
+
+        .toolbar__item {
+          &-descr {
+            color: $red;
+          }
+        }
+
+        .icon {
+          fill: $red;
+        }
+      }
+    }
+
+    position: relative;
+
+    .icon {
+      fill: $black;
+    }
+
+    &.is-active {
+      @include media-breakpoint-between(0, xs) {
+        .toolbar__item-dropdown {
+          height: 100%;
+          padding: rem(10);
+          transform: scaleY(1);
+        }
+      }
+
+      .toolbar__item-descr {
+        color: $red;
+      }
+
+      .icon {
+        fill: $red;
+      }
+    }
+
+    &-descr {
+      @include font-size(20);
+
+      color: $black;
+    }
+
+    &-dropdown {
+      @include media-breakpoint-down(md) {
+        flex-direction: column;
+      }
+      @include media-breakpoint-between(0, xs) {
+        position: relative;
+        z-index: 0;
+        display: flex;
+        height: 0;
+        padding: 0;
+        white-space: normal;
+        transform: scaleY(0);
+        transform-origin: top;
+      }
+
+      position: absolute;
+      left: 0;
+      z-index: 99;
+      display: none;
+      padding: rem(34) rem(32);
+      background-color: $grayBg;
+      white-space: nowrap;
+      transition: all 0.5s ease;
+
+      &-header {
+        @include font-size(20);
+      }
+
+      &-block {
+        &:first-child {
+          @include media-breakpoint-between(sm, md) {
+            margin-bottom: rem(40);
+            padding-right: 0;
+            border-right: 0;
+          }
+          @include media-breakpoint-between(0, xs) {
+            margin-bottom: rem(10);
+          }
+
+          padding-right: rem(50);
+          border-right: 1px solid #e8e9eb;
+        }
+
+        &:last-child {
+          @include media-breakpoint-down(md) {
+            margin-bottom: 0;
+          }
+
+          padding-right: 0;
+          border: 0;
+        }
+
+        ~ div {
+          @include media-breakpoint-down(md) {
+            padding-left: 0;
+          }
+
+          padding-left: rem(50);
+
+          .toolbar__item-dropdown-menu ~ .toolbar__item-dropdown-header {
+            @include media-breakpoint-between(0, xs) {
+              margin-top: rem(10);
+            }
+
+            margin-top: rem(40);
+          }
+        }
+      }
+
+      &-menu {
+        @include media-breakpoint-between(0, xs) {
+          padding-left: rem(10);
+        }
+
+        display: flex;
+        flex-direction: column;
+        padding-top: rem(8);
+      }
+
+      &-link {
+        @include font-size(12);
+
+        display: block;
+        margin-bottom: rem(12);
+        color: #313638;
+
+        &:hover {
+          color: $red;
+        }
+      }
+    }
+  }
+
+  &__mobile {
+    &-trigger {
+      @include media-breakpoint-up(sm) {
+        display: none;
+
+        ~ .container {
+          height: 100%;
+          transform: scaleY(1);
+        }
+      }
+      @include media-breakpoint-between(0, xs) {
+        &:hover,
+        &:focus {
+          outline: 0;
+        }
+
+        ~ .container {
+          height: 0;
+          padding: 0;
+          transform: scaleY(0);
+        }
+
+        &.is-active {
+          ~ .container {
+            height: 100%;
+            transform: scaleY(1);
+          }
+        }
+      }
+    }
+  }
+}

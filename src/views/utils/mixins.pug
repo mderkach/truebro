@@ -1,0 +1,24 @@
+mixin wrapper(classname)
+  - classname = classname || null
+  if classname
+    div(class=classname + '__container container')
+      if block
+        block
+  else
+    div(class='container')
+      if block
+        block
+
+mixin pic(classname, srcset, alt)
+  - classname = classname || '';
+  - alt = alt || '';
+  - srcset = srcset || '';
+  - picname = srcset.substring(srcset.lastIndexOf("/") + 1, srcset.lastIndexOf("."));
+  picture(class=classname)
+    source(srcset=srcset)
+    img(src="./assets/img/" + picname + ".webp", alt=alt)
+
+mixin icon(classname, name)
+  - classname = classname || ''
+  svg(class=classname)
+    use(xlink:href="./assets/img/svg/sprite.svg#" + name)

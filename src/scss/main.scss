@@ -1,0 +1,30 @@
+// global uils
+
+@use './utils/vars' as *;
+@use './utils/mixins' as *;
+@use './utils/reset' as *;
+@use './utils/fonts' as *;
+@use './utils/typography' as *;
+
+// global rules
+button {
+  padding: 0;
+  background-color: transparent;
+}
+
+.is-modal-open {
+  overflow-y: hidden;
+}
+
+.icon {
+  @include size(rem(30));
+
+  &-big {
+    @include size(rem(42));
+  }
+}
+
+.container {
+  @include make-container();
+  @include make-grid-container-max-widths();
+}
