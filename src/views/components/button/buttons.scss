@@ -1,0 +1,51 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+%button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: rem(12) 0;
+  border: 1px solid;
+  border-radius: rem(24);
+  color: #3f4756;
+  line-height: 1.7;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.button {
+  &-primary {
+    @extend %button;
+
+    border-color: $primary;
+    background-color: $primary;
+
+    &:hover {
+      border-color: #f3d035;
+      background-color: #f3d035;
+    }
+
+    &:active {
+      border-color: #f3d035;
+      background-color: #eecb30;
+    }
+  }
+
+  &-secondary {
+    @extend %button;
+
+    border-color: #fdd835;
+    background-color: transparent;
+
+    &:hover {
+      background-color: rgba(253, 216, 53, 0.3);
+    }
+
+    &:active {
+      background-color: #eecb30;
+    }
+  }
+}

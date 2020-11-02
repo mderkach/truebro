@@ -5,7 +5,7 @@ module.exports = {
     'stylelint-config-sass-guidelines',
     'stylelint-config-hudochenkov/full',
   ],
-  plugins: ['stylelint-prettier', 'stylelint-scss', 'stylelint-order'],
+  plugins: ['stylelint-scss', 'stylelint-prettier', 'stylelint-order'],
   rules: {
     'at-rule-no-unknown': null,
     linebreaks: 'windows',
@@ -34,12 +34,20 @@ module.exports = {
     'at-rule-empty-line-before': [
       'always',
       {
-        except: ['after-same-name', 'inside-block', 'first-nested'],
+        except: ['after-same-name', 'inside-block', 'first-nested', 'blockless-after-blockless'],
+      },
+      {
+        ignore: [
+          'after-comment',
+          'first-nested',
+          'inside-block',
+          'blockless-after-same-name-blockless',
+          'blockless-after-blockless',
+        ],
       },
       {
         ignoreAtRules: ['if', 'else'],
       },
-      { ignore: 'after-comment' },
     ],
   },
 };

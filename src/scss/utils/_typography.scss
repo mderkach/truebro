@@ -3,50 +3,44 @@
 @use 'mixins' as *;
 
 .h1 {
-  @include font-size(60);
+  @include font-size(48);
   @include media-breakpoint-between(0, md) {
     @include font-size(40);
+
+    line-height: 1.2;
   }
+
+  line-height: 1.17;
 }
 
 .h2 {
-  @include font-size(30);
+  @include font-size(32);
   @include media-breakpoint-between(0, md) {
-    @include font-size(24);
+    @include font-size(28);
+
+    line-height: 1.29;
   }
+
+  line-height: 1.25;
 }
 
 .h3 {
-  @include font-size(18);
-  @include media-breakpoint-between(0, md) {
-    @include font-size(16);
-  }
+  @include font-size(20);
+
+  line-height: 1.4;
 }
 
 .text {
-  &-big {
-    @include font-size(20);
-    @include media-breakpoint-between(0, md) {
-      @include font-size(18);
-    }
-  }
-
   &-regular {
-    @include font-size(18);
-    @include media-breakpoint-between(0, md) {
-      @include font-size(16);
-    }
+    @include font-size(16);
   }
 
   &-small {
-    @include font-size(12);
-    @include media-breakpoint-between(0, md) {
-      @include font-size(10);
-    }
+    @include font-size(14);
   }
 
-  &-center {
-    text-align: center;
+  &-extrasmall {
+    @include font-size(12);
   }
 }
 
@@ -54,12 +48,8 @@
   font-weight: 500;
 }
 
-.light {
-  font-weight: 300;
-}
-
 .bold {
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .inherit {

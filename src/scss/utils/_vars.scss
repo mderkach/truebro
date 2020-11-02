@@ -21,13 +21,13 @@ $grid-desktop-gap-row: 30px;
 $grid-breakpoints: (
   xs: 0,
   sm: 576px,
-  md: 768px,
-  lg: 992px,
-  xl: 1200px,
+  lg: 768px,
+  xl: 1366px,
+  xxl: 1680px,
 );
 $container-max-widths: (
   sm: 540px,
-  md: 720px,
-  lg: 960px,
-  xl: 1170px,
+  lg: 720px,
+  xl: 975px,
+  xxl: 1460px,
 );

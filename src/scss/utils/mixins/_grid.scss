@@ -136,7 +136,7 @@
     }
   }
 }
-@mixin make-grid-container($cols, $col-gap, $row-gap: 0, $context: $mainFontSize) {
+@mixin make-grid-container($cols, $col-gap: 0, $row-gap: 0, $context: $mainFontSize) {
   // implicity of rem function
   $row: 0;
   $col: 0;
