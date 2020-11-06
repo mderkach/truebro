@@ -1,0 +1,8 @@
+mixin inputSearch(expanded, name='search')
+  if (expanded)
+    - expanded = 'is-expanded'
+  .input-search-wrapper(class=expanded)
+    +buttonPrimary('#', false, 'input-search-button')
+      +icon('input-search-icon', 'loupe-icon')
+    form.input-search-form
+      input.input-search.text-regular(type="text", name=name)

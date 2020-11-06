@@ -5,6 +5,11 @@
   &-grid {
     @include make-grid-container(3, 30px, 30px);
     @include make-grid-container-max-widths();
+
+    .col {
+      display: grid;
+      gap: 24px;
+    }
   }
 
   &-fluid {

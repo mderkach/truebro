@@ -17,10 +17,10 @@ button {
 }
 
 .icon {
-  @include size(rem(30));
+  @include size(rem(24));
 
   &-big {
-    @include size(rem(42));
+    @include size(rem(40));
   }
 }
 

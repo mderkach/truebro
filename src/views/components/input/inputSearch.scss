@@ -1,0 +1,63 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.input-search {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  color: $fontAlt;
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    width: rem(40);
+    height: rem(40);
+    border-radius: rem(100);
+    background-color: $primary;
+    transition: width 0.5s ease;
+
+    &.is-expanded {
+      width: 100%;
+      padding-right: rem(10);
+
+      .input-search-form {
+        width: 100%;
+      }
+    }
+
+    &.is-loading {
+      .input-search-icon {
+        animation: rotate 1.5s linear infinite;
+      }
+    }
+  }
+
+  &-icon {
+    @include size(rem(20));
+  }
+
+  &-button {
+    @include size(rem(40));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(10);
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &-form {
+    display: block;
+    width: 0;
+  }
+}
+
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
