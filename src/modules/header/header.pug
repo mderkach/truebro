@@ -1,1 +1,21 @@
 header.header
+  +wrapper('header')
+    a(href="/").header__brand
+      +icon('header__brand-logo', 'logo')
+    .header__nav-wrapper
+      +buttonPrimary('#', false, 'header__nav-trigger')
+        +icon('input-search-icon', 'hamburger-icon')
+      nav.header__nav
+        a(href="#").h3.header__nav-link.is-active Рейтинг брокеров
+        a(href="#").h3.header__nav-link Котировки
+        a(href="#").h3.header__nav-link Прогнозы
+    .header__socials-wrapper
+      +inputSearch(false, 'search-header')
+      a(href="#").header__socials-item
+        +icon('header__socials-icon', 'vk')
+      a(href="#").header__socials-item
+        +icon('header__socials-icon', 'fb')
+      a(href="#").header__socials-item
+        +icon('header__socials-icon', 'tg')
+
+nav.header__nav-mobile

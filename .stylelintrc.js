@@ -49,5 +49,6 @@ module.exports = {
         ignoreAtRules: ['if', 'else'],
       },
     ],
+    'declaration-no-important': null,
   },
 };

@@ -1,2 +1,146 @@
 @use 'src/scss/utils/vars' as *;
 @use 'src/scss/utils/mixins' as *;
+
+%after {
+  content: '';
+  position: absolute;
+  bottom: rem(-3);
+  display: block;
+  width: 100%;
+  height: rem(3);
+  border-radius: 28px;
+  background-color: $primary;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: rem(16) 0;
+  background-color: #fff;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+
+  &__container {
+    @include make-grid-container(3, 20px);
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: auto 1fr auto;
+    }
+
+    position: relative;
+  }
+
+  &__brand {
+    @include make-col-position(1, 1);
+
+    display: block;
+    justify-self: start;
+
+    &-logo {
+      width: 100%;
+      max-width: rem(116);
+      max-height: rem(40);
+    }
+  }
+
+  &__nav {
+    @include media-breakpoint-down(xl) {
+      display: none;
+    }
+
+    display: flex;
+    align-items: center;
+
+    &-wrapper {
+      @include media-breakpoint-down(xl) {
+        @include make-col-position(3, 3);
+
+        justify-self: end;
+      }
+    }
+
+    &-backdrop {
+      @include media-breakpoint-up(xl) {
+        display: none;
+      }
+
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 998;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(63, 71, 86, 0.4);
+    }
+
+    &-link {
+      position: relative;
+      display: block;
+      height: 100%;
+      margin: 0 rem(16);
+      padding: rem(6) 0;
+      cursor: pointer;
+      transition: color 0.5s ease;
+
+      &:hover {
+        color: #4989e0;
+      }
+
+      &.is-active {
+        &::after {
+          @extend %after;
+        }
+      }
+    }
+
+    &-trigger {
+      @include size(rem(40));
+      @include media-breakpoint-up(xl) {
+        display: none !important;
+      }
+    }
+  }
+
+  &__socials {
+    &-wrapper {
+      @include media-breakpoint-down(xl) {
+        @include make-col-position(2, 2);
+
+        grid-row: 1/1;
+        justify-content: center;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      justify-self: end;
+      width: 100%;
+      transition: justify-content 0.5s ease;
+
+      .input-search-wrapper {
+        margin: 0 rem(12);
+      }
+    }
+
+    &-item {
+      @include size(rem(40));
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 rem(12);
+      padding: rem(12);
+      border-radius: 50%;
+      background-color: rgba(63, 71, 86, 0.12);
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    &-icon {
+      display: block;
+      width: auto;
+      height: 100%;
+    }
+  }
+}

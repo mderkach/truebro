@@ -28,3 +28,8 @@ button {
   @include make-container();
   @include make-grid-container-max-widths();
 }
+
+.compensate-header {
+  width: 100%;
+  padding-top: rem(72 + 16);
+}
