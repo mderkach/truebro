@@ -34,7 +34,7 @@ const inputSearch = {
       setTimeout(() => {
         inputSearch.setLoading(false, elm);
         elm.classList.remove('is-expanded');
-        elm.querySelector('.input-search').setAttribute('value', false);
+        elm.querySelector('.input-search').setAttribute('value', '');
         elm.querySelector('.input-search').blur();
       }, 2500);
     } else {
