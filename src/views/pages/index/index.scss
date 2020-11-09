@@ -13,4 +13,43 @@
       max-width: rem(1145);
     }
   }
+
+  &-table {
+    &__outer {
+      display: grid;
+      grid-template-columns: 1fr minmax(auto, rem(276));
+      gap: 0 rem(40);
+    }
+
+    &__filter {
+      grid-row: 1 / 3;
+    }
+
+    &__header {
+      grid-row: 1 / 1;
+    }
+
+    &__rows {
+      grid-row: 2 / 2;
+    }
+
+    &__row {
+      display: grid;
+      grid-template-columns: 96px 90px 64px 104px 100px 116px 72px 78px 111px 77px;
+      gap: 0 rem(26);
+    }
+
+    &__cell {
+      display: flex;
+      color: rgba(59, 60, 60, 0.6);
+      text-align: center;
+      cursor: pointer;
+    }
+
+    &__sort {
+      @include size(rem(16));
+
+      align-self: center;
+    }
+  }
 }
