@@ -9,10 +9,13 @@
   color: $fontAlt;
 
   &-wrapper {
+    @include size(rem(40));
+    @include media-breakpoint-down(sm) {
+      @include size(rem(32));
+    }
+
     display: flex;
     align-items: center;
-    width: rem(40);
-    height: rem(40);
     border-radius: rem(100);
     background-color: $primary;
     transition: width 0.5s ease;
@@ -47,6 +50,9 @@
 
   &-button {
     @include size(rem(40));
+    @include media-breakpoint-down(sm) {
+      @include size(rem(32));
+    }
 
     display: flex;
     align-items: center;

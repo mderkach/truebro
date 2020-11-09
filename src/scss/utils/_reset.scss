@@ -98,7 +98,6 @@ video {
 
 //core
 html {
-  overflow-x: hidden;
   height: 100%;
   scroll-behavior: smooth;
   text-size-adjust: 100%; // 4
@@ -107,6 +106,7 @@ html {
 
 body {
   position: relative;
+  overflow-x: hidden;
   min-width: 320px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

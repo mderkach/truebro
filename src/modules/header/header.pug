@@ -18,4 +18,29 @@ header.header
       a(href="#").header__socials-item
         +icon('header__socials-icon', 'tg')
 
-nav.header__nav-mobile
+header.header__mobile
+  .header__mobile-backdrop
+  .header__mobile-menu-wrapper
+    .header__mobile-menu-controls
+      +inputSearch(false, 'search-header-mobile')
+      a(href="#").header__mobile-menu-close
+        +icon('header__mobile-menu-close-icon', 'cross-icon')
+    nav.header__mobile-menu
+      a(href="#").text-regular.header__mobile-menu-link
+        | Рейтинг брокеров
+        +icon('header__mobile-menu-icon', 'chevron-right-icon')
+      a(href="#").text-regular.header__mobile-menu-link
+        | Котировки
+        +icon('header__mobile-menu-icon', 'chevron-right-icon')
+      a(href="#").text-regular.header__mobile-menu-link
+        | Прогнозы
+        +icon('header__mobile-menu-icon', 'chevron-right-icon')
+    .header__mobile-menu-bottom
+      .header__socials-wrapper
+        a(href="#").header__socials-item
+          +icon('header__socials-icon', 'vk')
+        a(href="#").header__socials-item
+          +icon('header__socials-icon', 'fb')
+        a(href="#").header__socials-item
+          +icon('header__socials-icon', 'tg')
+      p.text-extrasmall.header__mobile-menu-bottom-text Присоединяйтесь!

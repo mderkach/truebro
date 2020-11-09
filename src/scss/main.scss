@@ -13,7 +13,7 @@ button {
 }
 
 .is-modal-open {
-  overflow-y: hidden;
+  overflow: hidden;
 }
 
 .icon {
@@ -27,6 +27,10 @@ button {
 .container {
   @include make-container();
   @include make-grid-container-max-widths();
+  @include media-breakpoint-down(sm) {
+    padding-right: rem(16);
+    padding-left: rem(16);
+  }
 }
 
 .compensate-header {
