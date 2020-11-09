@@ -22,12 +22,18 @@
 
   &__container {
     @include make-grid-container(3, 20px);
+    @include media-breakpoint-down(xl) {
+      grid-template-columns: auto 1fr minmax(245px, 340px);
+    }
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: 116px 1fr 116px;
+    }
     @include media-breakpoint-down(sm) {
       gap: rem(10);
     }
 
     position: relative;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 30% 1fr 30%;
   }
 
   &__brand {
