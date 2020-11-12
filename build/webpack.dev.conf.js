@@ -11,7 +11,6 @@ const devWebpackConfig = merge(BaseWebpackConfig, {
     compress: true,
     contentBase: BaseWebpackConfig.externals.paths.dist,
     port: 8080,
-    openPage: '/uikit.html',
     overlay: {
       warnings: true,
       errors: true,
