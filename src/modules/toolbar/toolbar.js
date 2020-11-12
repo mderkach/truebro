@@ -3,9 +3,14 @@ import './toolbar.scss';
 
 const toolbar = {
   trigger: document.querySelector('.hamburger'),
-  submenuTrigger: document.querySelector('.toolbar').querySelectorAll('.toolbar__item-descr'),
+  submenuTrigger: document
+    .querySelector('.toolbar')
+    .querySelectorAll('.toolbar__item-descr'),
   enableMobileMenu() {
-    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+    const vw = Math.max(
+      document.documentElement.clientWidth || 0,
+      window.innerWidth || 0,
+    );
 
     if (vw <= 576) {
       this.submenuTrigger.forEach((link) => {

@@ -3,8 +3,8 @@ module.exports = {
     browser: true,
     es6: true,
   },
-  extends: ['airbnb', 'plugin:react/recommended', 'prettier'],
-  plugins: ['babel', 'import', 'react', 'prettier'],
+  extends: ['standard', 'airbnb', 'plugin:react/recommended', 'prettier'],
+  plugins: ['standard', 'babel', 'import', 'react', 'prettier'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -27,6 +27,7 @@ module.exports = {
         config: './build/webpack.base.conf.js',
       },
     },
+    'import/extensions': ['.js', '.jsx', '.scss'],
   },
   rules: {
     'prettier/prettier': 'error',
@@ -47,11 +48,23 @@ module.exports = {
     'jsx-a11y/no-noninteractive-element-interactions': 'off',
     'global-require': 'off',
     'react/jsx-max-props-per-line': [
-      1,
+      0,
       {
-        maximum: 1,
+        maximum: 0,
       },
     ],
     'jsx-a11y/tabindex-no-positive': 'off',
+    'react/jsx-wrap-multilines': [
+      'error',
+      {
+        declaration: 'parens-new-line',
+        assignment: 'parens-new-line',
+        return: 'parens-new-line',
+        arrow: 'parens-new-line',
+        condition: 'parens-new-line',
+        logical: 'parens-new-line',
+        prop: 'parens-new-line',
+      },
+    ],
   },
 };

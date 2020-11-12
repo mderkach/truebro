@@ -10,6 +10,7 @@ const CssNano = require('cssnano');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const Dotenv = require('dotenv-webpack');
 
 const isProd = function () {
   if (process.argv.includes('production')) {
@@ -58,6 +59,7 @@ const entryPoints = { ...MAIN_ENTRY, ...DYNAMIC_ENTRY };
 
 // plugins
 const plugins = [
+  new Dotenv(),
   // Automatic creation any html pages (Don't forget to RERUN dev server)
   ...PAGES.map(
     (page) =>

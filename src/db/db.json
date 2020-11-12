@@ -1,0 +1,31 @@
+{
+  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
+  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
+  "profile": { "name": "typicode" },
+  "table": [
+    {
+      "name": "alpari",
+      "brand": "./assets/img/alpari.png",
+      "age": 34,
+      "forNovice": true,
+      "claim": "65%",
+      "positive": "12%",
+      "comfort": 10,
+      "deposit": "10$",
+      "bonus": "100%",
+      "recognizability": 6
+    },
+    {
+      "name": "forex",
+      "brand": "./assets/img/forex.png",
+      "age": 20,
+      "forNovice": true,
+      "claim": "65%",
+      "positive": "56%",
+      "comfort": 4,
+      "deposit": "1$",
+      "bonus": "10%",
+      "recognizability": 10
+    }
+  ]
+}

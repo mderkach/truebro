@@ -1,0 +1,56 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.table {
+  &__outer {
+    @include media-breakpoint-down(xl) {
+      grid-template-columns: 100%;
+    }
+
+    display: grid;
+    grid-template-columns: 1fr minmax(80px, rem(276));
+    gap: 0 rem(40);
+  }
+
+  &__filter {
+    @include media-breakpoint-down(xl) {
+      grid-row: 1 / 1;
+    }
+
+    grid-row: 1 / 3;
+  }
+
+  &__header {
+    @include media-breakpoint-down(xl) {
+      grid-row: 2 / 2;
+    }
+
+    grid-row: 1 / 1;
+    padding: 0;
+    border-bottom: 0;
+  }
+
+  &__rows {
+    @include media-breakpoint-down(xl) {
+      grid-row: 3 / 3;
+    }
+
+    grid-row: 2 / 2;
+  }
+
+  &__sort {
+    @include size(rem(16));
+
+    align-self: center;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.5s ease;
+
+    &.up {
+      transform: rotate(180deg);
+    }
+
+    &.down {
+      transform: rotate(0deg);
+    }
+  }
+}

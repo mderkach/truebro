@@ -1,3 +1,5 @@
+import API from '~/js/API';
+
 import './inputSearch.scss';
 
 const inputSearch = {
@@ -6,10 +8,16 @@ const inputSearch = {
   setLoading(bool, elm) {
     if (bool) {
       elm.classList.add('is-loading');
-      inputSearch.setLoadingIcon(true, elm.querySelector('.input-search-button'));
+      inputSearch.setLoadingIcon(
+        true,
+        elm.querySelector('.input-search-button'),
+      );
     } else {
       elm.classList.remove('is-loading');
-      inputSearch.setLoadingIcon(false, elm.querySelector('.input-search-button'));
+      inputSearch.setLoadingIcon(
+        false,
+        elm.querySelector('.input-search-button'),
+      );
     }
   },
   setLoadingIcon(bool, btn) {
@@ -20,14 +28,25 @@ const inputSearch = {
     const targetIconEl = btn.querySelector('svg').querySelector('use');
 
     if (bool) {
-      targetIconEl.setAttributeNS(svgXlink, 'xlink:href', `${xlinkHref}${loadIcon}`);
+      targetIconEl.setAttributeNS(
+        svgXlink,
+        'xlink:href',
+        `${xlinkHref}${loadIcon}`,
+      );
     } else {
-      targetIconEl.setAttributeNS(svgXlink, 'xlink:href', `${xlinkHref}${searchIcon}`);
+      targetIconEl.setAttributeNS(
+        svgXlink,
+        'xlink:href',
+        `${xlinkHref}${searchIcon}`,
+      );
     }
   },
   expandForm(elm) {
     if (elm.classList.contains('is-expanded')) {
       // submit logic here
+      //
+      // API.post().then(res => console.log(res.data)).catch(err => console.log(err))
+      //
       // while searching set loading icon
       inputSearch.setLoading(true, elm);
       // after submit remove settimeout and move nested function to upper scope
