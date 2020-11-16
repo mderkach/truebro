@@ -6,6 +6,7 @@ import './table.scss';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import Filter from '../filter/filter';
+// eslint-disable-next-line no-unused-vars
 import inputCheckbox from '../input/inputCheckbox';
 
 const reactNode = document.querySelector('.table__container');

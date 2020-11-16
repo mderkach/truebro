@@ -17,10 +17,7 @@ const header = {
     }
   },
   isMobile() {
-    const vw = Math.max(
-      document.documentElement.clientWidth || 0,
-      window.innerWidth || 0,
-    );
+    const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
     if (vw <= 1366) return true;
     return false;
   },
