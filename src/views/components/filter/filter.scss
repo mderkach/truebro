@@ -1,0 +1,28 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.filter {
+  &-header {
+    margin-bottom: rem(8);
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: rem(16);
+
+    &-outer {
+      padding-top: rem(32);
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+    }
+
+    &-wrapper {
+      margin-bottom: rem(16);
+    }
+
+    .text-regular {
+      margin-left: rem(16);
+    }
+  }
+}

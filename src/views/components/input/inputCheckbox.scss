@@ -4,9 +4,9 @@
 .input-checkbox {
   position: relative;
   z-index: 1;
-  display: block;
-  width: rem(24);
-  height: rem(24);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 
   &:hover {
     div {
@@ -41,8 +41,8 @@
 
   &-box {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: rem(24);
+    height: rem(24);
     border: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: rem(3);
     background: #fff;
@@ -54,7 +54,7 @@
   &-icon {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: rem(6);
     z-index: 0;
     width: rem(12);
     height: rem(8);
@@ -62,6 +62,6 @@
     pointer-events: none;
     user-select: none;
     transition: opacity 0.3s ease;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
   }
 }

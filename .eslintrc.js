@@ -1,10 +1,15 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true,
+    es2021: true,
   },
-  extends: ['standard', 'airbnb', 'plugin:react/recommended', 'prettier'],
-  plugins: ['standard', 'babel', 'import', 'react', 'prettier'],
+  extends: [
+    'airbnb',
+    'plugin:prettier/recommended',
+    'plugin:react/recommended',
+    'plugin:react-hooks/recommended',
+  ],
+  plugins: ['babel', 'import', 'prettier', 'react'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
@@ -14,7 +19,6 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2021,
     sourceType: 'module',
   },
   settings: {
@@ -50,21 +54,9 @@ module.exports = {
     'react/jsx-max-props-per-line': [
       0,
       {
-        maximum: 0,
+        maximum: 1,
       },
     ],
     'jsx-a11y/tabindex-no-positive': 'off',
-    'react/jsx-wrap-multilines': [
-      'error',
-      {
-        declaration: 'parens-new-line',
-        assignment: 'parens-new-line',
-        return: 'parens-new-line',
-        arrow: 'parens-new-line',
-        condition: 'parens-new-line',
-        logical: 'parens-new-line',
-        prop: 'parens-new-line',
-      },
-    ],
   },
 };

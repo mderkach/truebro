@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import { useMediaQuery } from 'react-responsive';
 import API from '~/js/API';
 import './table.scss';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
+import Filter from '../filter/filter';
+import inputCheckbox from '../input/inputCheckbox';
 
 const reactNode = document.querySelector('.table__container');
 
@@ -72,31 +74,35 @@ const headers = [
 ];
 
 const excludeTablet = ['forNovice', 'claim', 'positive', 'recognizability'];
-const excludeMobile = [
-  'forNovice',
-  'claim',
-  'positive',
-  'recognizability',
-  'bonus',
-  'comfort',
-];
+const excludeMobile = ['forNovice', 'claim', 'positive', 'recognizability', 'bonus', 'comfort'];
 
 const mobileDeviceHeaders = (headersList, excludeList, include) =>
   !include
     ? headersList.filter((item) => !excludeList.includes(item.label))
     : headersList.filter((item) => excludeList.includes(item.label));
+
 const Table = () => {
   const [tableRows, setTableRows] = useState();
-  const [loading, setLoading] = useState();
+  const [filter, setFilter] = useState();
+  const [loading, setLoading] = useState(true);
   const [sortDirection, setSortDirection] = useState('down');
 
-  useEffect(() => {
-    setLoading(true);
-    API.get('/table').then((res) => {
-      setTableRows(res.data);
-      setLoading(false);
-    });
+  const getTable = useCallback(() => {
+    return API.get('/table');
   }, []);
+  const getFilter = useCallback(() => {
+    return API.get('/filter');
+  }, []);
+
+  useEffect(() => {
+    if (loading) {
+      Promise.all([getTable(), getFilter()]).then((...responses) => {
+        setTableRows(responses[0][0].data);
+        setFilter(responses[0][1].data);
+        setLoading(false);
+      });
+    }
+  }, [getTable, getFilter, loading]);
 
   const compareBy = (key) => {
     return function (a, b) {
@@ -134,14 +140,10 @@ const Table = () => {
   return (
     <>
       {!loading && (
-        <div className="table__outer">
+        <main className="table__outer">
           <div className="table__header table__row">
             {isDesktop && (
-              <TableHeader
-                headers={headers}
-                sortDirection={sortDirection}
-                sortBy={sortBy}
-              />
+              <TableHeader headers={headers} sortDirection={sortDirection} sortBy={sortBy} />
             )}
             {isTablet && (
               <TableHeader
@@ -158,7 +160,7 @@ const Table = () => {
               />
             )}
           </div>
-          <div className="table__filter">filter</div>
+          <aside className="table__filter">{filter && <Filter items={filter} />}</aside>
           <div className="table__rows">
             {isDesktop && tableRows && (
               <TableRow headers={headers} rows={tableRows} mobile="false" />
@@ -180,7 +182,7 @@ const Table = () => {
               />
             )}
           </div>
-        </div>
+        </main>
       )}
     </>
   );

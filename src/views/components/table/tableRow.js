@@ -4,18 +4,22 @@ import './tableRow.scss';
 const TableRow = (props) => {
   const { headers, rows, mobile, dropdown } = props;
 
-  const filteredHeaders = headers.filter(
-    (header) => header.label !== 'compare',
-  );
+  const filteredHeaders = headers.filter((header) => header.label !== 'compare');
 
   const refs = useRef([React.createRef(), React.createRef()]);
 
-  const toggleDropdown = (index) => {
-    refs.current[index].current.classList.toggle('is-expanded');
+  const toggleDropdown = (index, e) => {
+    if (!e.target.classList.contains('input-checkbox-box')) {
+      refs.current[index].current.classList.toggle('is-expanded');
 
-    refs.current.forEach((child, i) => {
-      if (i !== index) child.current.classList.remove('is-expanded');
-    });
+      refs.current.forEach((child, i) => {
+        if (i !== index) child.current.classList.remove('is-expanded');
+      });
+    } else {
+      e.preventDefault();
+      const target = refs.current[index].current.querySelector('input');
+      target.checked = !target.checked;
+    }
   };
 
   return (
@@ -26,8 +30,8 @@ const TableRow = (props) => {
           key={row.name}
           className="table__row"
           ref={refs.current[rowIndex]}
-          onClick={() => {
-            if (mobile) toggleDropdown(rowIndex);
+          onClick={(e) => {
+            if (mobile) toggleDropdown(rowIndex, e);
           }}
         >
           {filteredHeaders.map((header) => (
@@ -37,11 +41,7 @@ const TableRow = (props) => {
               className="table__row-data text-regular"
             >
               {header.label === 'brand' && (
-                <img
-                  className="table__row-logo"
-                  src={row.brand}
-                  alt={row.brand}
-                />
+                <img className="table__row-logo" src={row.brand} alt={row.brand} />
               )}
               {header.label === 'forNovice' && (
                 <svg className="table__row-check">

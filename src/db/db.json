@@ -1,7 +1,4 @@
 {
-  "posts": [{ "id": 1, "title": "json-server", "author": "typicode" }],
-  "comments": [{ "id": 1, "body": "some comment", "postId": 1 }],
-  "profile": { "name": "typicode" },
   "table": [
     {
       "name": "alpari",
@@ -26,6 +23,45 @@
       "deposit": "1$",
       "bonus": "10%",
       "recognizability": 10
+    }
+  ],
+  "filter": [
+    {
+      "header": "Мин. депозит:",
+      "items": [
+        {
+          "label": "0-50 USD",
+          "name": "desposit"
+        },
+        {
+          "label": "50-100 USD",
+          "name": "desposit"
+        },
+        {
+          "label": "100-500 USD",
+          "name": "desposit"
+        },
+        {
+          "label": "500-1000 USD",
+          "name": "desposit"
+        },
+        {
+          "label": "1000-5000 USD",
+          "name": "desposit"
+        }
+      ]
+    }, {
+      "header": "Тип спреда:",
+      "items": [
+        {
+          "label":"Фиксированный",
+          "name":"spread"
+        },
+        {
+          "label":"Плавающий",
+          "name":"spread"
+        }
+      ]
     }
   ]
 }
