@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import Store from '~/js/Store';
 import './tableRow.scss';
 
 const TableRow = (props) => {
@@ -6,9 +7,15 @@ const TableRow = (props) => {
 
   const filteredHeaders = headers.filter((header) => header.label !== 'compare');
 
-  const refs = useRef([React.createRef(), React.createRef()]);
+  const refsArray = [];
 
-  const toggleDropdown = (index, e) => {
+  rows.forEach(() => {
+    refsArray.push(React.createRef());
+  });
+
+  const refs = useRef(refsArray);
+
+  const toggleDropdown = (index, e, item) => {
     if (!e.target.classList.contains('input-checkbox-box')) {
       refs.current[index].current.classList.toggle('is-expanded');
 
@@ -19,6 +26,7 @@ const TableRow = (props) => {
       e.preventDefault();
       const target = refs.current[index].current.querySelector('input');
       target.checked = !target.checked;
+      Store.setCompare(item, target.checked);
     }
   };
 
@@ -31,7 +39,7 @@ const TableRow = (props) => {
           className="table__row"
           ref={refs.current[rowIndex]}
           onClick={(e) => {
-            if (mobile) toggleDropdown(rowIndex, e);
+            if (mobile) toggleDropdown(rowIndex, e, row);
           }}
         >
           {filteredHeaders.map((header) => (
@@ -43,11 +51,12 @@ const TableRow = (props) => {
               {header.label === 'brand' && (
                 <img className="table__row-logo" src={row.brand} alt={row.brand} />
               )}
-              {header.label === 'forNovice' && (
+              {header.label === 'forNovice' && row[header.label] && (
                 <svg className="table__row-check">
                   <use xlinkHref="./assets/img/svg/sprite.svg#table-check-icon" />
                 </svg>
               )}
+              {header.label === 'forNovice' && row[header.label] === false && <span>-</span>}
               {header.label !== 'brand' && header.label !== 'forNovice' && (
                 <span>{row[header.label]}</span>
               )}

@@ -77,6 +77,11 @@
     }
 
     &-data {
+      @include media-breakpoint-up(xl) {
+        &:first-child {
+          justify-self: start;
+        }
+      }
       @include media-breakpoint-down(xl) {
         justify-content: center;
 
@@ -100,7 +105,7 @@
       display: flex;
       align-items: center;
       justify-content: flex-end;
-      color: #3f4756;
+      color: $mainFontColor;
       text-align: right;
 
       &:nth-child(3) {

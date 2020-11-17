@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
+import { observer } from 'mobx-react';
+import { toJS } from 'mobx';
 import { useMediaQuery } from 'react-responsive';
-import API from '~/js/API';
 import './table.scss';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import Filter from '../filter/filter';
 // eslint-disable-next-line no-unused-vars
 import inputCheckbox from '../input/inputCheckbox';
+import Store from '~/js/Store';
 
 const reactNode = document.querySelector('.table__container');
 
@@ -82,28 +84,14 @@ const mobileDeviceHeaders = (headersList, excludeList, include) =>
     ? headersList.filter((item) => !excludeList.includes(item.label))
     : headersList.filter((item) => excludeList.includes(item.label));
 
-const Table = () => {
-  const [tableRows, setTableRows] = useState();
-  const [filter, setFilter] = useState();
-  const [loading, setLoading] = useState(true);
+const Table = observer(() => {
   const [sortDirection, setSortDirection] = useState('down');
 
-  const getTable = useCallback(() => {
-    return API.get('/table');
-  }, []);
-  const getFilter = useCallback(() => {
-    return API.get('/filter');
-  }, []);
-
   useEffect(() => {
-    if (loading) {
-      Promise.all([getTable(), getFilter()]).then((...responses) => {
-        setTableRows(responses[0][0].data);
-        setFilter(responses[0][1].data);
-        setLoading(false);
-      });
+    if (Store.tableLoading) {
+      Store.fetchData(Store.tableLoading);
     }
-  }, [getTable, getFilter, loading]);
+  }, []);
 
   const compareBy = (key) => {
     return function (a, b) {
@@ -118,11 +106,11 @@ const Table = () => {
   };
 
   const sortBy = (key, sortable) => {
-    const sortArray = [...tableRows];
+    const sortArray = [...Store.tableRows];
 
     if (sortable) {
       sortArray.sort(compareBy(key));
-      setTableRows(sortArray);
+      Store.updateRows(sortArray);
     }
   };
 
@@ -140,7 +128,7 @@ const Table = () => {
 
   return (
     <>
-      {!loading && (
+      {!Store.tableLoading && (
         <main className="table__outer">
           <div className="table__header table__row">
             {isDesktop && (
@@ -161,23 +149,25 @@ const Table = () => {
               />
             )}
           </div>
-          <aside className="table__filter">{filter && <Filter items={filter} />}</aside>
+          <aside className="table__filter">
+            {Store.filter && <Filter items={Store.filter} compare={Store.compared} />}
+          </aside>
           <div className="table__rows">
-            {isDesktop && tableRows && (
-              <TableRow headers={headers} rows={tableRows} mobile="false" />
+            {isDesktop && Store.tableRows && (
+              <TableRow headers={headers} rows={Store.tableRows} mobile="false" />
             )}
-            {isTablet && tableRows && (
+            {isTablet && Store.tableRows && (
               <TableRow
                 headers={mobileDeviceHeaders(headers, excludeTablet, false)}
-                rows={tableRows}
+                rows={Store.tableRows}
                 dropdown={mobileDeviceHeaders(headers, excludeTablet, true)}
                 mobile
               />
             )}
-            {isMobile && tableRows && (
+            {isMobile && Store.tableRows && (
               <TableRow
                 headers={mobileDeviceHeaders(headers, excludeMobile, false)}
-                rows={tableRows}
+                rows={Store.tableRows}
                 dropdown={mobileDeviceHeaders(headers, excludeMobile, true)}
                 mobile
               />
@@ -187,7 +177,7 @@ const Table = () => {
       )}
     </>
   );
-};
+});
 
 if (reactNode) {
   ReactDOM.render(<Table />, reactNode);

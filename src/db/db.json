@@ -23,6 +23,18 @@
       "deposit": "1$",
       "bonus": "10%",
       "recognizability": 10
+    },
+    {
+      "name": "bcs",
+      "brand": "./assets/img/bcs.png",
+      "age": 20,
+      "forNovice": false,
+      "claim": "65%",
+      "positive": "40%",
+      "comfort": 2,
+      "deposit": "1$",
+      "bonus": "50%",
+      "recognizability": 8
     }
   ],
   "filter": [

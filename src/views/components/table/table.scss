@@ -3,6 +3,9 @@
 
 .table {
   &__outer {
+    @include media-breakpoint-up(xl) {
+      grid-template-rows: rem(88) auto;
+    }
     @include media-breakpoint-down(xl) {
       grid-template-columns: 100%;
     }
