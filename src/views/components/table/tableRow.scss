@@ -50,17 +50,24 @@
       gap: 0 rem(16);
     }
 
-    position: relative;
+    position: sticky;
+    top: rem(72);
+    z-index: 1;
     display: grid;
     grid-template-columns: 96px 90px 64px 104px 100px 116px 72px 78px 111px 77px;
     gap: 0 rem(26);
+    margin-bottom: rem(-72);
     padding: rem(16) 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
+    background-color: #fff;
     transition: all 0.5s ease;
 
     &:not(.table__header) {
+      position: relative;
+      z-index: 0;
       align-items: center;
+      margin-bottom: 0;
 
       &:hover {
         background-color: #fafafa;
@@ -69,16 +76,20 @@
 
     &-logo {
       display: block;
-      object-fit: contain;
       width: rem(80);
       height: rem(56);
       background-color: #fff;
-      object-position: center;
+
+      img {
+        width: auto;
+        height: auto;
+      }
     }
 
     &-data {
       @include media-breakpoint-up(xl) {
         &:first-child {
+          justify-content: center;
           justify-self: start;
         }
       }

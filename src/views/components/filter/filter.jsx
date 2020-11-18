@@ -42,14 +42,14 @@ const Filter = observer((props) => {
           <>
             {isDesktop && (
               <>
-                <a
-                  className="button-primary text-small medium filter-button"
-                  href="javascript(void:0);"
-                >
-                  <span>к сравнению</span>
-                  <span className="filter-counter">{compare.length}</span>
-                </a>
                 <div className="filter-comparsion">
+                  <a
+                    className="button-primary text-small medium filter-button"
+                    href="javascript(void:0);"
+                  >
+                    <span>к сравнению</span>
+                    <span className="filter-counter">{compare.length}</span>
+                  </a>
                   {compare.map((item) => (
                     <picture key={item.name} className="filter-logo">
                       <source src={item.brand} />

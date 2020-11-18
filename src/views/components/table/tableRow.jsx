@@ -46,11 +46,11 @@ const TableRow = (props) => {
             <div
               key={header.label}
               data-key={header.label}
-              className="table__row-data text-regular"
+              className={`table__row-data text-regular ${
+                header.label === 'brand' ? 'table__row-logo' : ''
+              }`}
             >
-              {header.label === 'brand' && (
-                <img className="table__row-logo" src={row.brand} alt={row.brand} />
-              )}
+              {header.label === 'brand' && <img src={row.brand} alt={row.brand} />}
               {header.label === 'forNovice' && row[header.label] && (
                 <svg className="table__row-check">
                   <use xlinkHref="./assets/img/svg/sprite.svg#table-check-icon" />

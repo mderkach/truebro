@@ -12,13 +12,21 @@
       gap: rem(16);
       align-items: center;
       justify-content: flex-end;
+      height: auto;
       padding-bottom: rem(16);
     }
+
+    height: 100%;
   }
 
   &-button {
     justify-content: space-between;
     padding: rem(8) rem(10) rem(8) rem(20);
+
+    &.button-primary {
+      grid-column: 1/-1;
+      margin-top: rem(16);
+    }
 
     &.button-secondary {
       width: auto;
@@ -112,6 +120,9 @@
   }
 
   &-comparsion {
+    position: sticky;
+    top: rem(72); // header height
+    z-index: 2;
     display: grid;
     grid-template-columns: repeat(3, 80px);
     gap: rem(8);
@@ -120,6 +131,7 @@
     padding-bottom: rem(32);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
+    background-color: #fff;
   }
 
   &-logo {
