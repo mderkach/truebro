@@ -10,7 +10,7 @@
   border-radius: rem(24);
   color: $mainFontColor;
   line-height: 1.7;
-  letter-spacing: 0.6px;
+  letter-spacing: rem(0.6);
   text-transform: uppercase;
   cursor: pointer;
   transition: background 0.3s ease, border 0.3s ease;

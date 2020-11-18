@@ -120,6 +120,11 @@ module.exports = {
         exclude: '/node_modules/',
       },
       {
+        test: /\.jsx$/,
+        loader: 'babel-loader',
+        exclude: '/node_modules/',
+      },
+      {
         test: /\.svg(\?.*)?$/,
         use: [
           {
@@ -279,6 +284,7 @@ module.exports = {
     alias: {
       '~': PATHS.src,
     },
+    extensions: ['.js', '.jsx', '.mjs', '.es6', '.scss']
   },
   plugins: plugins,
 };

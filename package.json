@@ -5,8 +5,8 @@
   "main": "./src/main.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.conf.js --mode development",
-    "server": "json-server --port 4000 --watch ./src/db/db.json",
-    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.build.conf.js --mode production",
+    "server": "json-server --port 4000 --host 192.168.0.18 --watch ./src/db/db.json",
+    "build": "cross-env NODE_ENV=production webpack --config ./build/webpack.prod.conf.js --mode production",
     "lint": "eslint --debug src/",
     "lint:write": "eslint --debug src/ --fix",
     "stylelint": "stylelint ./src/**/*.scss",
