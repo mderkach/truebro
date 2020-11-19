@@ -5,7 +5,7 @@ const BaseWebpackConfig = require('./webpack.base.conf');
 
 const devWebpackConfig = merge(BaseWebpackConfig, {
   // DEV config
-  devtool: 'eval',
+  devtool: 'cheap-module-eval-source-map',
   devServer: {
     historyApiFallback: true,
     compress: true,

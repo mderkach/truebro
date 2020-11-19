@@ -9,12 +9,28 @@ import button from '../button/button';
 // styles
 import './filter.scss';
 
+const FilterInput = (props) => {
+  const { name, label, index } = props;
+
+  return (
+    <label className="input-checkbox" htmlFor={name + index}>
+      <input type="checkbox" name={name} id={name + index} />
+      <div className="input-checkbox-box" />
+      <svg className="input-checkbox-icon">
+        <use xlinkHref="./assets/img/svg/sprite.svg#check-icon-input" />
+      </svg>
+      <p className="text-regular">{label}</p>
+    </label>
+  );
+};
+
 const Filter = observer((props) => {
   const { items, compare } = props;
 
   const ref = createRef();
 
   const [expanded, setExpanded] = useState(false);
+  const [text, setText] = useState();
 
   const toggleFilter = (e) => {
     e.preventDefault();
@@ -24,6 +40,22 @@ const Filter = observer((props) => {
       disableBodyScroll(ref.current);
     } else {
       enableBodyScroll(ref.current);
+    }
+  };
+
+  const toggleHidden = (e) => {
+    e.preventDefault();
+    const { target } = e;
+    const textTarget = target.querySelector('span');
+
+    target.previousElementSibling.classList.toggle('is-expanded');
+    target.classList.toggle('is-expanded');
+
+    if (target.classList.contains('is-expanded')) {
+      setText(textTarget.textContent);
+      textTarget.textContent = 'Свернуть';
+    } else {
+      textTarget.textContent = text;
     }
   };
 
@@ -88,17 +120,39 @@ const Filter = observer((props) => {
             <div key={item.header} className="filter-item-wrapper">
               <p className="filter-header text-regular medium">{item.header}</p>
               {item.items.map((input, subindex) => (
-                <div key={input.label} className="filter-item">
-                  <label className="input-checkbox" htmlFor={input.name + subindex}>
-                    <input type="checkbox" name={input.name} id={input.name + subindex} />
-                    <div className="input-checkbox-box" />
-                    <svg className="input-checkbox-icon">
-                      <use xlinkHref="./assets/img/svg/sprite.svg#check-icon-input" />
-                    </svg>
-                    <p className="text-regular">{input.label}</p>
-                  </label>
-                </div>
+                <>
+                  {subindex < 8 && (
+                    <div key={input.label} className="filter-item">
+                      <FilterInput name={input.name} label={input.label} index={subindex} />
+                    </div>
+                  )}
+                </>
               ))}
+              {item.items.length > 8 && (
+                <>
+                  <div className="filter-item-wrapper-hidden">
+                    {item.items.map((input, subindex) => (
+                      <>
+                        {subindex > 8 && (
+                          <div key={input.label} className="filter-item">
+                            <FilterInput name={input.name} label={input.label} index={subindex} />
+                          </div>
+                        )}
+                      </>
+                    ))}
+                  </div>
+                  <button
+                    type="button"
+                    className="text-small medium filter-hidden-trigger"
+                    onClick={(e) => toggleHidden(e)}
+                  >
+                    <span>{`показать еще ${items.length}`}</span>
+                    <svg className="filter-hidden-trigger-icon">
+                      <use xlinkHref="./assets/img/svg/sprite.svg#chevron-down-icon" />
+                    </svg>
+                  </button>
+                </>
+              )}
             </div>
           ))}
         </div>

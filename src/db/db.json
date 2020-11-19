@@ -230,16 +230,203 @@
           "name": "desposit"
         }
       ]
-    }, {
+    },
+    {
       "header": "Тип спреда:",
       "items": [
         {
-          "label":"Фиксированный",
-          "name":"spread"
+          "label": "Фиксированный",
+          "name": "spread"
         },
         {
-          "label":"Плавающий",
-          "name":"spread"
+          "label": "Плавающий",
+          "name": "spread"
+        }
+      ]
+    },
+    {
+      "header": "Макс. кредитное плечо:",
+      "items": [
+        {
+          "label": "1:2000",
+          "name": "shoulder"
+        },
+        {
+          "label": "1:1000",
+          "name": "shoulder"
+        },
+        {
+          "label": "1:500",
+          "name": "shoulder"
+        },
+        {
+          "label": "1:200",
+          "name": "shoulder"
+        },
+        {
+          "label": "1:100",
+          "name": "shoulder"
+        },
+        {
+          "label": "1:50",
+          "name": "shoulder"
+        }
+      ]
+    },
+    {
+      "header": "Валюта депозита:",
+      "items": [
+        {
+          "label": "USD",
+          "name": "deposit"
+        },
+        {
+          "label": "EUR",
+          "name": "deposit"
+        },
+        {
+          "label": "GPB",
+          "name": "deposit"
+        },
+        {
+          "label": "JPY",
+          "name": "deposit"
+        },
+        {
+          "label": "NZD",
+          "name": "deposit"
+        },
+        {
+          "label": "CNY",
+          "name": "deposit"
+        },
+        {
+          "label": "BTC",
+          "name": "deposit"
+        },
+        {
+          "label": "RUB",
+          "name": "deposit"
+        },
+        {
+          "label": "z",
+          "name": "deposit"
+        },
+        {
+          "label": "a",
+          "name": "deposit"
+        },
+        {
+          "label": "c",
+          "name": "deposit"
+        },
+        {
+          "label": "b",
+          "name": "deposit"
+        },
+        {
+          "label": "q",
+          "name": "deposit"
+        },
+        {
+          "label": "w",
+          "name": "deposit"
+        },
+        {
+          "label": "e",
+          "name": "deposit"
+        },
+        {
+          "label": "t",
+          "name": "deposit"
+        }
+      ]
+    },
+    {
+      "header": "Тип брокера:",
+      "items": [
+        {
+          "label": "ECN",
+          "name": "broker"
+        },
+        {
+          "label": "DMA",
+          "name": "broker"
+        },
+        {
+          "label": "MM",
+          "name": "broker"
+        },
+        {
+          "label": "NDD",
+          "name": "broker"
+        },
+        {
+          "label": "STP",
+          "name": "broker"
+        }
+      ]
+    },
+    {
+      "header": "Торговые инструменты:",
+      "items": [
+        {
+          "label": "CFD’s",
+          "name": "tools"
+        },
+        {
+          "label": "Бинарные опционы",
+          "name": "tools"
+        },
+        {
+          "label": "Валютные пары",
+          "name": "tools"
+        },
+        {
+          "label": "Криптовалюты",
+          "name": "tools"
+        }
+      ]
+    },
+    {
+      "header": "Мобильная торговля:",
+      "items": [
+        {
+          "label": "Android",
+          "name": "mobile"
+        },
+        {
+          "label": "iOS",
+          "name": "mobile"
+        }
+      ]
+    },
+    {
+      "header": "Платежные системы:",
+      "items": [
+        {
+          "label": "Visa",
+          "name": "pay"
+        },
+        {
+          "label": "MasterCard",
+          "name": "pay"
+        },
+        {
+          "label": "BitPay",
+          "name": "pay"
+        },
+        {
+          "label": "Neteller",
+          "name": "pay"
+        },
+        {
+          "label": "WebMoney",
+          "name": "pay"
+        },
+        {
+          "label": "Skrill",
+          "name": "pay"
         }
       ]
     }

@@ -18,8 +18,9 @@
   z-index: 997;
   width: 100%;
   padding: rem(16) 0;
+  // box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #fff;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
 
   &__container {
     @include make-grid-container(3, 20px);

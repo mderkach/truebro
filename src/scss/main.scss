@@ -28,8 +28,8 @@ button {
   @include make-container();
   @include make-grid-container-max-widths();
   @include media-breakpoint-down(sm) {
-    padding-right: rem(16);
-    padding-left: rem(16);
+    padding-right: rem(12);
+    padding-left: rem(12);
   }
 }
 

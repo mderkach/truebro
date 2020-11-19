@@ -17,6 +17,7 @@
     }
 
     height: 100%;
+    background-color: #fff;
   }
 
   &-button {
@@ -24,6 +25,10 @@
     padding: rem(8) rem(10) rem(8) rem(20);
 
     &.button-primary {
+      @include media-breakpoint-down(xl) {
+        margin-top: 0;
+      }
+
       grid-column: 1/-1;
       margin-top: rem(16);
     }
@@ -76,6 +81,16 @@
 
     &-wrapper {
       margin-bottom: rem(16);
+
+      &-hidden {
+        height: 0;
+        transform: scaleY(0);
+
+        &.is-expanded {
+          height: auto;
+          transform: scaleY(1);
+        }
+      }
     }
 
     &-outer {
@@ -159,6 +174,36 @@
 
     &.is-expanded {
       right: rem(16);
+    }
+  }
+
+  &-hidden {
+    &-trigger {
+      display: flex;
+      align-items: center;
+      margin-left: rem(40);
+      color: #4989e0;
+      text-transform: uppercase;
+
+      &.is-expanded {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      span {
+        pointer-events: none;
+      }
+
+      &-icon {
+        @include size(rem(24));
+
+        pointer-events: none;
+      }
     }
   }
 }

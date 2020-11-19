@@ -9,13 +9,34 @@
     }
 
     display: grid;
+    // grid-template-areas: 'header filter body';
+    grid-template-rows: rem(89) 1fr;
     grid-template-columns: 1fr minmax(80px, rem(276));
+    grid-auto-rows: auto;
     gap: 0 rem(40);
   }
 
   &__filter {
     @include media-breakpoint-down(xl) {
+      position: sticky;
+      top: rem(73); // header height
+      z-index: 998;
       grid-row: 1 / 1;
+      grid-row: 1 / 1;
+      padding-top: rem(16);
+
+      &::before {
+        // hide background, hack for fixed positions z-indexex
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        pointer-events: none;
+      }
     }
 
     grid-row: 1 / 3;
@@ -23,9 +44,13 @@
 
   &__header {
     @include media-breakpoint-down(xl) {
+      top: rem(72 + 61 + 16);
       grid-row: 2 / 2;
     }
 
+    position: sticky;
+    top: rem(72);
+    z-index: 1;
     grid-row: 1 / 1;
     padding: 0;
     border-bottom: 0;
@@ -34,9 +59,11 @@
   &__rows {
     @include media-breakpoint-down(xl) {
       grid-row: 3 / 3;
+      margin-top: 0;
     }
 
     grid-row: 2 / 2;
+    margin-top: rem(-72); // pos fixed compensation
   }
 
   &__sort {
@@ -44,6 +71,7 @@
 
     align-self: center;
     opacity: 0;
+    fill: #3f4756;
     transition: opacity 0.2s ease, transform 0.5s ease;
 
     &.up {
