@@ -5,12 +5,12 @@
   &__screen {
     padding: rem(56 - 16) 0 rem(64);
 
-    .h1 {
-      margin-bottom: rem(40);
+    &-outer {
+      max-width: rem(1145);
     }
 
-    .text-regular {
-      max-width: rem(1145);
+    .h1 {
+      margin-bottom: rem(40);
     }
   }
 }

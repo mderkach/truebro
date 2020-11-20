@@ -6,5 +6,6 @@ import './js/svg';
 import './scss/main.scss';
 // components
 import header from './modules/header/header';
+import screenBroker from './views/components/screen/screenBroker';
 // init components
 header.init();
