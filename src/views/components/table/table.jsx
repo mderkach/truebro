@@ -10,6 +10,7 @@ import Filter from '../filter/filter';
 // eslint-disable-next-line no-unused-vars
 import inputCheckbox from '../input/inputCheckbox';
 import Store from '~/js/Store';
+import API from '../../../js/API';
 
 const reactNode = document.querySelector('.table__container');
 
@@ -93,6 +94,23 @@ const Table = observer(() => {
     }
   }, []);
 
+  const retryFetch = (e) => {
+    e.preventDefault();
+
+    Store.toggleTableLoading(true);
+    Store.toggleFetchError(false);
+    Store.fetchData(Store.tableLoading);
+  };
+
+  const fetchAdditionRows = (e) => {
+    e.preventDefault();
+
+    // API запрос
+    // пример:
+    // API.get(query-string).then((res) => Store.tableRows = res.data )
+    // Лучше создать @action в Store по типу fetchData и сохранить результат запроса в tableRows
+  };
+
   const compareBy = (key) => {
     return function (a, b) {
       if (parseInt(a[key], 10) < parseInt(b[key], 10)) {
@@ -128,7 +146,27 @@ const Table = observer(() => {
 
   return (
     <>
-      {!Store.tableLoading && (
+      {Store.tableLoading && (
+        <div className="table__placeholder">
+          <svg className="table__placeholder-icon">
+            <use xlinkHref="./assets/img/svg/sprite.svg#loading-icon" />
+          </svg>
+          <span>Загрузка...</span>
+        </div>
+      )}
+      {!Store.tableLoading && Store.fetchFailed && (
+        <div className="table__placeholder">
+          <span>Произошла ошибка! Попробуйте снова</span>
+          <a
+            className="button-secondary text-small medium table__button"
+            href="javascript(void:0);"
+            onClick={(e) => retryFetch(e)}
+          >
+            Повторить
+          </a>
+        </div>
+      )}
+      {!Store.tableLoading && !Store.fetchFailed && (
         <main className="table__outer">
           <div className="table__header table__row">
             {isDesktop && (
@@ -150,7 +188,9 @@ const Table = observer(() => {
             )}
           </div>
           <aside className="table__filter">
-            {Store.filter && <Filter items={Store.filter} compare={Store.compared} />}
+            <div className="table__filter-outer">
+              {Store.filter && <Filter items={Store.filter} compare={Store.compared} />}
+            </div>
           </aside>
           <div className="table__rows">
             {isDesktop && Store.tableRows && (
@@ -173,6 +213,13 @@ const Table = observer(() => {
               />
             )}
           </div>
+          <a
+            className="button-secondary text-small medium table__button"
+            href="javascript(void:0);"
+            onClick={(e) => fetchAdditionRows(e)}
+          >
+            Показать еще
+          </a>
         </main>
       )}
     </>

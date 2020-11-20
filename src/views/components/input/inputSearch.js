@@ -30,17 +30,21 @@ const inputSearch = {
   },
   expandForm(elm) {
     if (elm.classList.contains('is-expanded')) {
-      // submit logic here
-      //
+      // логика запроса ответа
+      // пример:
       // API.post().then(res => console.log(res.data)).catch(err => console.log(err))
       //
-      // while searching set loading icon
+      // пока идет запрос, устанавливаем иконку загрузки
       inputSearch.setLoading(true, elm);
-      // after submit remove settimeout and move nested function to upper scope
+      // после ответа удалите таймаут и перенесите вложенную функцию в область выше таймаута
       setTimeout(() => {
+        // ставим обычную иконку поиска в кнопку
         inputSearch.setLoading(false, elm);
+        // сворачиваем инпут
         elm.classList.remove('is-expanded');
+        // очищаем значение инпута
         elm.querySelector('.input-search').setAttribute('value', '');
+        // снимаем фокус с инпута во избежание багов
         elm.querySelector('.input-search').blur();
       }, 2500);
     } else {

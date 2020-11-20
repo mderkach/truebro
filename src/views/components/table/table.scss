@@ -39,7 +39,19 @@
       }
     }
 
+    position: relative;
     grid-row: 1 / 3;
+
+    &-outer {
+      @include media-breakpoint-down(xl) {
+        position: relative;
+      }
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
   }
 
   &__header {
@@ -59,11 +71,9 @@
   &__rows {
     @include media-breakpoint-down(xl) {
       grid-row: 3 / 3;
-      margin-top: 0;
     }
 
     grid-row: 2 / 2;
-    margin-top: rem(-72); // pos fixed compensation
   }
 
   &__sort {
@@ -81,5 +91,25 @@
     &.down {
       transform: rotate(0deg);
     }
+  }
+
+  &__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: rem(490);
+    background: #fafafa;
+
+    &-icon {
+      @include size(rem(40));
+      @include infinity-rotation();
+    }
+  }
+
+  &__button {
+    min-width: rem(165);
+    margin: rem(32) 0 rem(16);
   }
 }

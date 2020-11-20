@@ -31,7 +31,7 @@
 
     &.is-loading {
       .input-search-icon {
-        animation: rotate 1.5s linear infinite;
+        @include infinity-rotation();
       }
     }
   }
@@ -67,11 +67,5 @@
   &-form {
     display: block;
     width: 0;
-  }
-}
-
-@keyframes rotate {
-  to {
-    transform: rotate(360deg);
   }
 }

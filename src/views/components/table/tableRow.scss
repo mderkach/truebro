@@ -28,12 +28,9 @@
             padding-top: rem(8);
 
             &-item {
+              @include slide-down(0.3s, 'fordwards');
+
               display: flex;
-              transform-origin: top center;
-              animation-name: slidedown;
-              animation-duration: 300ms;
-              animation-timing-function: ease-in-out;
-              animation-fill-mode: forwards;
             }
           }
         }
@@ -177,17 +174,5 @@
         opacity: 1;
       }
     }
-  }
-}
-
-@keyframes slidedown {
-  0% {
-    opacity: 0;
-    transform: translateY(-60px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

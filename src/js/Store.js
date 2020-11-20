@@ -11,17 +11,25 @@ class StoreProto {
 
   @observable tableLoading = true;
 
+  @observable fetchFailed = false;
+
   @observable tableRows = [];
 
   @observable filter = [];
 
   @observable compared = [];
 
-  @action toggleTableLoading = () => {
-    this.tableLoading = !this.tableLoading;
+  @action toggleTableLoading = (bool) => {
+    if (bool) this.tableLoading = bool;
+    else this.tableLoading = !this.tableLoading;
+  };
+
+  @action toggleFetchError = (bool) => {
+    this.fetchFailed = bool;
   };
 
   @action fetchData() {
+    this.toggleFetchError(false);
     const table = () => API.get('/table');
     const filter = () => API.get('/filter');
     Promise.all([table(), filter()])
@@ -30,7 +38,11 @@ class StoreProto {
         this.filter = res[1].data;
         this.toggleTableLoading();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        this.toggleFetchError(true);
+        this.toggleTableLoading(false);
+        console.log(err);
+      });
   }
 
   @action updateRows(data) {
