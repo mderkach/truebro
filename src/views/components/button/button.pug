@@ -1,4 +1,4 @@
-mixin buttonPrimary(href, text, modifier)
+mixin buttonPrimary(href, text, modifier, isSubmit)
   if (!text)
     a(
       href=href
@@ -6,13 +6,18 @@ mixin buttonPrimary(href, text, modifier)
       ).button-primary
         if block
           block
+  else if (isSubmit)
+    button(
+        href=href
+        class=modifier
+      ).button-primary.text-small.medium !{text}
   else
     a(
       href=href
       class=modifier
       ).button-primary.text-small.medium !{text}
 
-mixin buttonSecondary(href, text, modifier)
+mixin buttonSecondary(href, text, modifier, isSubmit)
   if (!text)
     a(
       href=href
@@ -20,6 +25,11 @@ mixin buttonSecondary(href, text, modifier)
       ).button-secondary
         if block
           block
+  else if (isSubmit)
+    button(
+        href=href
+        class=modifier
+      ).button-primary.text-small.medium !{text}
   else
     a(
       href=href
