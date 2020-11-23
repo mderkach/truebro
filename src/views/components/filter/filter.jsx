@@ -4,8 +4,6 @@ import { observer } from 'mobx-react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // eslint-disable-next-line no-unused-vars
 import inputCheckbox from '../input/inputCheckbox';
-// eslint-disable-next-line no-unused-vars
-import button from '../button/button';
 // styles
 import './filter.scss';
 

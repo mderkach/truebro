@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
-import { toJS } from 'mobx';
 import { useMediaQuery } from 'react-responsive';
 import './table.scss';
 import TableHeader from './tableHeader';
