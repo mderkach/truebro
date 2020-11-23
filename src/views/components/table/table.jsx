@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
+import { toJS } from 'mobx';
 import './table.scss';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
@@ -110,24 +111,38 @@ const Table = observer(() => {
     // Лучше создать @action в Store по типу fetchData и сохранить результат запроса в tableRows
   };
 
-  const compareBy = (key) => {
+  const compareItems = (key, direction) => {
     return function (a, b) {
-      if (parseInt(a[key], 10) < parseInt(b[key], 10)) {
-        setSortDirection('up');
-      } else {
-        setSortDirection('down');
+      let aI = parseInt(a[key], 10);
+      let bI = parseInt(b[key], 10);
+
+      if (Number.isNaN(aI)) aI = 0;
+      if (Number.isNaN(bI)) bI = 0;
+
+      if (direction === 'up') {
+        return aI - bI;
       }
 
-      return -1;
+      return bI - aI;
     };
   };
 
-  const sortBy = (key, sortable) => {
+  const sortItems = (key, sortable) => {
     const sortArray = [...Store.tableRows];
 
+    const reverseArray = (arr) => arr.reverse();
+
     if (sortable) {
-      sortArray.sort(compareBy(key));
-      Store.updateRows(sortArray);
+      if (key !== Store.sortKey) {
+        setSortDirection('up');
+        sortArray.sort(compareItems(key, sortDirection));
+        Store.updateRows(sortArray);
+        Store.sortKey = key;
+      } else {
+        Store.updateRows(reverseArray(sortArray));
+      }
+
+      setSortDirection((dir) => (dir === 'down' ? 'up' : 'down'));
     }
   };
 
@@ -169,20 +184,20 @@ const Table = observer(() => {
         <main className="table__outer">
           <div className="table__header table__row">
             {isDesktop && (
-              <TableHeader headers={headers} sortDirection={sortDirection} sortBy={sortBy} />
+              <TableHeader headers={headers} sortDirection={sortDirection} sortBy={sortItems} />
             )}
             {isTablet && (
               <TableHeader
                 headers={mobileDeviceHeaders(headers, excludeTablet, false)}
                 sortDirection={sortDirection}
-                sortBy={sortBy}
+                sortBy={sortItems}
               />
             )}
             {isMobile && (
               <TableHeader
                 headers={mobileDeviceHeaders(headers, excludeMobile, false)}
                 sortDirection={sortDirection}
-                sortBy={sortBy}
+                sortBy={sortItems}
               />
             )}
           </div>

@@ -15,6 +15,8 @@ class StoreProto {
 
   @observable tableRows = [];
 
+  @observable sortKey = '';
+
   @observable filter = [];
 
   @observable compared = [];
