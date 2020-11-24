@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import { observable, makeAutoObservable, action, toJS } from 'mobx';
+import { observable, makeAutoObservable, action } from 'mobx';
 
 import API from './API';
 // utils
