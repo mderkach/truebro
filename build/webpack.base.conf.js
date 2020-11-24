@@ -81,7 +81,6 @@ const plugins = [
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       // { from: `${PATHS.src}/${PATHS.assets}css`, to: `${PATHS.assets}css` },
       { from: `${PATHS.src}/static`, to: '' },
-      { from: `${PATHS.src}/db`, to: `${PATHS.assets}../db` },
     ],
   }),
 ];
