@@ -284,7 +284,7 @@ module.exports = {
     alias: {
       '~': PATHS.src,
     },
-    extensions: ['.js', '.jsx', '.mjs', '.es6', '.scss']
+    extensions: ['.js', '.jsx', '.mjs', '.es6', '.scss'],
   },
   plugins: plugins,
 };
