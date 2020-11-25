@@ -45,12 +45,16 @@ const TableRow = (props) => {
           {filteredHeaders.map((header) => (
             <div
               key={header.label}
-              data-key={header.label}
+              // data-key={header.label}
               className={`table__row-data text-regular ${
                 header.label === 'brand' ? 'table__row-logo' : ''
               }`}
             >
-              {header.label === 'brand' && <img src={row.brand} alt={row.brand} />}
+              {header.label === 'brand' && (
+                <a href={row.link}>
+                  <img src={row.brand} alt={row.brand} />
+                </a>
+              )}
               {header.label === 'forNovice' && row[header.label] && (
                 <svg className="table__row-check">
                   <use xlinkHref="./assets/img/svg/sprite.svg#table-check-icon" />

@@ -1,0 +1,20 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 100%;
+  margin: rem(16) 0 rem(24);
+
+  &-item {
+    color: #6680bb;
+    text-decoration: none;
+
+    &:last-child {
+      color: $mainFontColor;
+      pointer-events: none;
+    }
+  }
+}

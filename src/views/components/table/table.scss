@@ -1,19 +1,23 @@
 @use 'src/scss/utils/vars' as *;
 @use 'src/scss/utils/mixins' as *;
 
+%outer {
+  @include media-breakpoint-down(xl) {
+    grid-template-rows: auto;
+    grid-template-columns: 100%;
+  }
+
+  display: grid;
+  // grid-template-areas: 'header filter body';
+  grid-template-rows: rem(89) 1fr;
+  grid-template-columns: 1fr minmax(80px, rem(276));
+  grid-auto-rows: auto;
+  gap: 0 rem(40);
+}
+
 .table {
   &__outer {
-    @include media-breakpoint-down(xl) {
-      grid-template-rows: auto;
-      grid-template-columns: 100%;
-    }
-
-    display: grid;
-    // grid-template-areas: 'header filter body';
-    grid-template-rows: rem(89) 1fr;
-    grid-template-columns: 1fr minmax(80px, rem(276));
-    grid-auto-rows: auto;
-    gap: 0 rem(40);
+    @extend %outer;
   }
 
   &__filter {

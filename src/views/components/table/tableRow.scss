@@ -67,10 +67,13 @@
     }
 
     &-logo {
-      display: block;
-      width: rem(80);
-      height: rem(56);
-      background-color: #fff;
+      a {
+        display: flex;
+        align-items: center;
+        width: rem(80);
+        height: rem(56);
+        background-color: #fff;
+      }
 
       img {
         width: auto;

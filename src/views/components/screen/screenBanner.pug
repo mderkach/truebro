@@ -1,0 +1,7 @@
+mixin screenBanner(slug, title, descr)
+  - slug = slug || ''
+  section.screen-banner
+    +wrapper(slug)
+      .screen-banner-outer
+        h1.h1.bold !{ title }
+        p.text-regular !{ descr }

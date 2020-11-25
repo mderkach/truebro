@@ -57,6 +57,12 @@ const Filter = observer((props) => {
     }
   };
 
+  const toCompare = (e) => {
+    e.preventDefault();
+
+    window.location.href = e.target.getAttribute('href');
+  };
+
   const isDesktop = useMediaQuery({
     query: '(min-width: 1680px)',
   });
@@ -75,7 +81,10 @@ const Filter = observer((props) => {
                 <div className="filter-comparsion">
                   <a
                     className="button-primary text-small medium filter-button"
-                    href="javascript(void:0);"
+                    href="/compare.html"
+                    onClick={(e) => {
+                      toCompare(e);
+                    }}
                   >
                     <span>к сравнению</span>
                     <span className="filter-counter">{compare.length}</span>
@@ -94,7 +103,13 @@ const Filter = observer((props) => {
         {isMobile && (
           <>
             {compare.length > 0 && (
-              <a className="button-primary text-small medium filter-button" href="#a">
+              <a
+                className="button-primary text-small medium filter-button"
+                href="/compare.html"
+                onClick={(e) => {
+                  toCompare(e);
+                }}
+              >
                 <span>к сравнению</span>
                 <span className="filter-counter">{compare.length}</span>
               </a>
