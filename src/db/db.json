@@ -11,7 +11,18 @@
       "deposit": "10$",
       "bonus": "100%",
       "recognizability": 6,
-      "link": "#"
+      "link": "#",
+      "loyality": true,
+      "partnership": true,
+      "shoulder": 1000,
+      "spread": true,
+      "pairs": 60,
+      "cfd": 45,
+      "type": "ECN",
+      "paymentSystems": 38,
+      "mobile": "Android, IOS",
+      "trustManagment": "PAMM",
+      "support": true
     },
     {
       "name": "forex",
@@ -24,7 +35,18 @@
       "deposit": "1$",
       "bonus": "10%",
       "recognizability": 10,
-      "link": "#"
+      "link": "#",
+      "loyality": false,
+      "partnership": true,
+      "shoulder": 100,
+      "spread": false,
+      "pairs": 45,
+      "cfd": 30,
+      "type": "NDD",
+      "paymentSystems": 12,
+      "mobile": "Android, IOS",
+      "trustManagment": false,
+      "support": false
     },
     {
       "name": "bcs",
@@ -37,7 +59,18 @@
       "deposit": "1$",
       "bonus": "50%",
       "recognizability": 8,
-      "link": "#"
+      "link": "#",
+      "loyality": false,
+      "partnership": false,
+      "shoulder": 50,
+      "spread": false,
+      "pairs": 30,
+      "cfd": 48,
+      "type": "NDD, ECN, STP, MM",
+      "paymentSystems": 8,
+      "mobile": "Android, IOS",
+      "trustManagment": "LAMM, MAM",
+      "support": true
     },
     {
       "name": "xm",
