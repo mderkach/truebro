@@ -102,7 +102,20 @@ const TableComparsion = observer(() => {
     <>
       <main className="table__comparsion-outer">
         <div className="table__comparsion">
-          <div className="table__comparsion-tabs">tabs</div>
+          <div className="table__comparsion-tabs">
+            <a className="table__comparsion-tabs-btn text-small is-active" href="/compare.html">
+              <span>Всё</span>
+            </a>
+            <a className="table__comparsion-tabs-btn text-small" href="/compare.html">
+              <span>Главное</span>
+            </a>
+            <a className="table__comparsion-tabs-btn text-small" href="/compare.html">
+              <span>Торговля</span>
+            </a>
+            <a className="table__comparsion-tabs-btn text-small" href="/compare.html">
+              <span>Платежи</span>
+            </a>
+          </div>
           <div className="table__comparsion-body">
             {cols &&
               rows.map((row) => (

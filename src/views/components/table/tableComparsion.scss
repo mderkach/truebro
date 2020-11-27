@@ -9,9 +9,48 @@
     @extend %outer;
 
     grid-template-rows: 1fr;
+    padding-bottom: rem(24);
+  }
+
+  &-tabs {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    &-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 rem(8);
+      padding: rem(4) rem(16);
+      border-radius: 4px;
+      background-color: rgba(63, 71, 86, 0.12);
+
+      &.is-active {
+        background-color: $primary;
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   &-row {
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: rem(160);
+      gap: 0 rem(44);
+    }
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: rem(86);
+      grid-auto-columns: rem(70);
+      gap: 0 rem(16);
+    }
+
     position: relative;
     display: grid;
     grid-template-columns: rem(200);
