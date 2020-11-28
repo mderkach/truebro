@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from '~cmp/Icon/Icon';
 import '../TableRow/TableRow.scss';
 
 const TableHeader = (props) => {
@@ -15,11 +16,7 @@ const TableHeader = (props) => {
           onClick={() => sortBy(elem.label, elem.sortable)}
         >
           {elem.name}
-          {elem.sortable && (
-            <svg className={`table__sort ${sortDirection}`}>
-              <use xlinkHref="./assets/img/svg/sprite.svg#sort-icon" />
-            </svg>
-          )}
+          {elem.sortable && <Icon cls={`table__sort ${sortDirection}`} name="sort-icon" />}
         </div>
       ))}
     </>

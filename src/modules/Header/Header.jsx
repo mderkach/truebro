@@ -9,38 +9,8 @@ import InputSearch from '~cmp/Input/InputSearch/InputSearch';
 // styles
 import styles from './header.local';
 
-const Header = (props) => {
-  const { nav, socials } = props;
-  const [expanded, setExpanded] = useState(false);
-
-  const history = useHistory();
-
-  const redirectInternal = (e) => {
-    e.preventDefault();
-
-    const target = e.target.getAttribute('href');
-    history.push(target);
-  };
-
-  const redirectExternal = (e, ...args) => {
-    e.preventDefault();
-    const target = e.target.getAttribute('href');
-    window.open(target, '_blank', args);
-  };
-
-  const mobileMenu = createRef();
-
-  const ToggleMenu = (e) => {
-    e.preventDefault();
-
-    setExpanded(!expanded);
-
-    if (expanded) {
-      disableBodyScroll(mobileMenu.current);
-    } else {
-      enableBodyScroll(mobileMenu.current);
-    }
-  };
+const HeaderDesktop = (props) => {
+  const { nav, socials, ToggleMenu, redirectInternal, redirectExternal } = props;
 
   return (
     <>
@@ -88,6 +58,23 @@ const Header = (props) => {
           </div>
         </Wrapper>
       </header>
+    </>
+  );
+};
+
+const HeaderMobile = (props) => {
+  const {
+    nav,
+    socials,
+    ToggleMenu,
+    redirectInternal,
+    redirectExternal,
+    expanded,
+    mobileMenu,
+  } = props;
+
+  return (
+    <>
       <header className={styles.HeaderMobile}>
         <div data-expanded={expanded} className={styles.HeaderMobileBackdrop} />
         <div data-expanded={expanded} ref={mobileMenu} className={styles.HeaderMobileMenuWrapper}>
@@ -129,6 +116,61 @@ const Header = (props) => {
           </div>
         </div>
       </header>
+    </>
+  );
+};
+
+const Header = (props) => {
+  const { nav, socials } = props;
+  const [expanded, setExpanded] = useState(false);
+
+  const history = useHistory();
+
+  const redirectInternal = (e) => {
+    e.preventDefault();
+
+    const target = e.target.getAttribute('href');
+    history.push(target);
+  };
+
+  const redirectExternal = (e, ...args) => {
+    e.preventDefault();
+    const target = e.target.getAttribute('href');
+    window.open(target, '_blank', args);
+  };
+
+  const mobileMenu = createRef();
+
+  const ToggleMenu = (e) => {
+    e.preventDefault();
+
+    setExpanded(!expanded);
+
+    if (expanded) {
+      disableBodyScroll(mobileMenu.current);
+    } else {
+      enableBodyScroll(mobileMenu.current);
+    }
+  };
+
+  return (
+    <>
+      <HeaderDesktop
+        nav={nav}
+        socials={socials}
+        ToggleMenu={ToggleMenu}
+        redirectExternal={redirectExternal}
+        redirectInternal={redirectInternal}
+      />
+      <HeaderMobile
+        nav={nav}
+        socials={socials}
+        ToggleMenu={ToggleMenu}
+        redirectExternal={redirectExternal}
+        redirectInternal={redirectInternal}
+        expanded={expanded}
+        mobileMenu={mobileMenu}
+      />
     </>
   );
 };

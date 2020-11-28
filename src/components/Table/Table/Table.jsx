@@ -83,6 +83,64 @@ const mobileDeviceHeaders = (headersList, excludeList, include) =>
     ? headersList.filter((item) => !excludeList.includes(item.label))
     : headersList.filter((item) => excludeList.includes(item.label));
 
+const retryFetch = (e) => {
+  e.preventDefault();
+
+  Store.toggleTableLoading(true);
+  Store.toggleFetchError(false);
+  Store.fetchData(Store.tableLoading);
+};
+
+const fetchAdditionRows = (e) => {
+  e.preventDefault();
+
+  // API запрос
+  // пример:
+  // API.get(query-string).then((res) => Store.tableRows = res.data )
+  // Лучше создать @action в Store по типу fetchData и сохранить результат запроса в tableRows
+};
+
+const compareItems = (key, direction) => {
+  return function (a, b) {
+    let aI = parseInt(a[key], 10);
+    let bI = parseInt(b[key], 10);
+
+    if (Number.isNaN(aI)) aI = 0;
+    if (Number.isNaN(bI)) bI = 0;
+
+    if (direction === 'up') {
+      return aI - bI;
+    }
+
+    return bI - aI;
+  };
+};
+
+const LoaderPlaceholder = () => {
+  return (
+    <div className="table__placeholder">
+      <Icon cls="table__placeholder-icon" name="loading-icon" />
+      <span>Загрузка...</span>
+    </div>
+  );
+};
+
+const LoaderErrorPlaceholder = () => {
+  return (
+    <div className="table__placeholder">
+      <span>Произошла ошибка! Попробуйте снова</span>
+      <Button
+        onClick={(e) => retryFetch(e)}
+        variant="secondary"
+        type="button"
+        cls="text-small medium table__button"
+      >
+        Повторить
+      </Button>
+    </div>
+  );
+};
+
 const Table = observer(() => {
   const [sortDirection, setSortDirection] = useState('down');
 
@@ -91,39 +149,6 @@ const Table = observer(() => {
       Store.fetchData(Store.tableLoading);
     }
   }, []);
-
-  const retryFetch = (e) => {
-    e.preventDefault();
-
-    Store.toggleTableLoading(true);
-    Store.toggleFetchError(false);
-    Store.fetchData(Store.tableLoading);
-  };
-
-  const fetchAdditionRows = (e) => {
-    e.preventDefault();
-
-    // API запрос
-    // пример:
-    // API.get(query-string).then((res) => Store.tableRows = res.data )
-    // Лучше создать @action в Store по типу fetchData и сохранить результат запроса в tableRows
-  };
-
-  const compareItems = (key, direction) => {
-    return function (a, b) {
-      let aI = parseInt(a[key], 10);
-      let bI = parseInt(b[key], 10);
-
-      if (Number.isNaN(aI)) aI = 0;
-      if (Number.isNaN(bI)) bI = 0;
-
-      if (direction === 'up') {
-        return aI - bI;
-      }
-
-      return bI - aI;
-    };
-  };
 
   const sortItems = (key, sortable) => {
     const sortArray = [...Store.tableRows];
@@ -158,25 +183,8 @@ const Table = observer(() => {
 
   return (
     <>
-      {Store.tableLoading && (
-        <div className="table__placeholder">
-          <Icon cls="table__placeholder-icon" name="loading-icon" />
-          <span>Загрузка...</span>
-        </div>
-      )}
-      {!Store.tableLoading && Store.fetchFailed && (
-        <div className="table__placeholder">
-          <span>Произошла ошибка! Попробуйте снова</span>
-          <Button
-            onClick={(e) => retryFetch(e)}
-            variant="secondary"
-            type="button"
-            cls="text-small medium table__button"
-          >
-            Повторить
-          </Button>
-        </div>
-      )}
+      {Store.tableLoading && <LoaderPlaceholder />}
+      {!Store.tableLoading && Store.fetchFailed && <LoaderErrorPlaceholder />}
       {!Store.tableLoading && !Store.fetchFailed && (
         <main className="table__outer">
           <div className="table__header table__row">
@@ -230,7 +238,7 @@ const Table = observer(() => {
             type="button"
             cls="text-small medium table__button"
           >
-            Повторить
+            Загрузить еще
           </Button>
         </main>
       )}
