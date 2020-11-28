@@ -1,0 +1,11 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.container {
+  @include make-container();
+  @include make-grid-container-max-widths();
+  @include media-breakpoint-down(sm) {
+    padding-right: rem(12);
+    padding-left: rem(12);
+  }
+}

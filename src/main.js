@@ -1,14 +1,16 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable import/extensions */
-// JS
-import './js/svg';
-// SCSS
-import './scss/main.scss';
+// core
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'mobx-react';
+import '~u/svg';
 // components
-import header from './modules/header/header';
-import footer from './modules/footer/footer';
-import screenBroker from './views/components/screen/screenBroker';
-import button from './views/components/button/button';
+import App from '~m/App/App';
 
-// init components
-header.init();
+ReactDOM.render(
+  <>
+    <Provider>
+      <App />
+    </Provider>
+  </>,
+  document.querySelector('#root'),
+);

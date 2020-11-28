@@ -29,33 +29,9 @@ const PATHS = {
   assets: 'assets/',
 };
 
-// Pages const for HtmlWebpackPlugin
-// fetch directories
-const getDirectories = (source) =>
-  Fs.readdirSync(source, { withFileTypes: true })
-    .filter((dirent) => dirent.isDirectory())
-    .map((dirent) => dirent.name);
-const PAGES_DIR = getDirectories(PATHS.pages);
-// push directories to array based on .pug in derectories
-const PAGES = [];
-PAGES_DIR.forEach((dir) => {
-  PAGES.push(
-    ...Fs.readdirSync(`${PATHS.pages}/${dir}`).filter((fileName) => fileName.endsWith('.pug')),
-  );
-});
+const PAGES_DIR = `${PATHS.src}/views/`;
+const PAGES = Fs.readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.html'));
 
-// entry points
-const MAIN_ENTRY = {
-  app: `${PATHS.src}/main.js`,
-};
-
-const DYNAMIC_ENTRY = Glob.sync(`${PATHS.pages}/**/*.js`).reduce((acc, path) => {
-  const entry = path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
-  acc[entry] = path;
-  return acc;
-}, {});
-
-const entryPoints = { ...MAIN_ENTRY, ...DYNAMIC_ENTRY };
 // plugins
 const plugins = [
   new Dotenv({
@@ -65,9 +41,8 @@ const plugins = [
   ...PAGES.map(
     (page) =>
       new HtmlWebpackPlugin({
-        template: `${PATHS.pages}/${page.replace(/\.pug/, '')}/${page}`,
-        filename: `./${page.replace(/\.pug/, '.html')}`,
-        chunks: ['app', `${page.replace(/\.pug/, '')}`],
+        template: `${PAGES_DIR}/${page}`,
+        filename: `./${page}`,
       }),
   ),
   // load svg sprite
@@ -79,7 +54,6 @@ const plugins = [
     patterns: [
       { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
       { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
-      // { from: `${PATHS.src}/${PATHS.assets}css`, to: `${PATHS.assets}css` },
       { from: `${PATHS.src}/static`, to: '' },
     ],
   }),
@@ -103,7 +77,7 @@ module.exports = {
   externals: {
     paths: PATHS,
   },
-  entry: entryPoints,
+  entry: `${PATHS.src}/main.js`,
   output: {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
@@ -203,7 +177,16 @@ module.exports = {
             : 'style-loader',
           {
             loader: 'css-loader',
-            options: { sourceMap: true },
+            options: {
+              importLoaders: 3,
+              sourceMap: true,
+              modules: {
+                mode: 'local',
+                exportLocalsConvention: 'asIs',
+                auto: resourcePath => resourcePath.endsWith('.local.scss'),
+                localIdentName: '[local]___[hash:base64:5]',
+              },
+            },
           },
           {
             loader: 'postcss-loader',
@@ -283,7 +266,11 @@ module.exports = {
   },
   resolve: {
     alias: {
-      '~': PATHS.src,
+      '~s': PATHS.src,
+      '~v': `${PATHS.src}/views`,
+      '~u': `${PATHS.src}/utils`,
+      '~cmp': `${PATHS.src}/components`,
+      '~m': `${PATHS.src}/modules`,
     },
     extensions: ['.js', '.jsx', '.mjs', '.es6', '.scss'],
   },

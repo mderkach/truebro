@@ -1,4 +1,4 @@
-@mixin slide-down($duration: 0.3s, $fill: 'forwards') {
+@mixin slide-down($duration: 0.3s, $fill: forwards) {
   @keyframes slidedown {
     0% {
       opacity: 0;
