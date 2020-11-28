@@ -25,9 +25,9 @@
     "babel",
     "babel7",
     "scss",
-    "pug",
     "dart-sass",
-    "es6"
+    "es6",
+    "react"
   ],
   "license": "ISC",
   "husky": {
@@ -101,8 +101,6 @@
     "postcss-scss": "^3.0.4",
     "prettier": "^2.2.0",
     "prettier-eslint": "^12.0.0",
-    "pug": "^3.0.0",
-    "pug-loader": "^2.4.0",
     "sass": "^1.29.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
