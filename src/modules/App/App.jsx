@@ -32,7 +32,7 @@ const NavMenu = [
 const NavSocials = [
   {
     icon: 'vk',
-    path: '/',
+    path: 'https://vk.com',
   },
   {
     icon: 'fb',

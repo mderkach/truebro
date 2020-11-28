@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 // components
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Icon from '~cmp/Icon/Icon';
@@ -8,20 +8,6 @@ import styles from './Footer.local';
 
 const Footer = (props) => {
   const { nav, socials } = props;
-  const history = useHistory();
-
-  const redirectInternal = (e) => {
-    e.preventDefault();
-
-    const target = e.target.getAttribute('href');
-    history.push(target);
-  };
-
-  const redirectExternal = (e, ...args) => {
-    e.preventDefault();
-    const target = e.target.getAttribute('href');
-    window.open(target, '_blank', args);
-  };
 
   return (
     <footer className={styles.Footer}>
@@ -29,15 +15,10 @@ const Footer = (props) => {
         <div className={styles.FooterTop}>
           <nav className={styles.FooterNav}>
             {nav.map((item) => (
-              <a
-                key={item.label}
-                onClick={(e) => redirectInternal(e)}
-                href={item.path}
-                className={`h3 ${styles.FooterNavLink}`}
-              >
+              <Link key={item.label} to={item.path} className={`h3 ${styles.FooterNavLink}`}>
                 <span>{item.label}</span>
                 <Icon cls={styles.FooterNavIcon} name="chevron-right-icon" />
-              </a>
+              </Link>
             ))}
           </nav>
           <div className={styles.FooterSocialsWrapper}>
@@ -45,14 +26,14 @@ const Footer = (props) => {
               Присоединяйтесь!
             </p>
             {socials.map((item) => (
-              <a
+              <Link
                 key={item.icon}
-                onClick={(e) => redirectExternal(e)}
-                href={item.path}
+                to={item.path}
+                target="_blank"
                 className={`h3 ${styles.FooterSocialsItem}`}
               >
                 <Icon cls={styles.FooterSocialsIcon} name={item.icon} />
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -64,9 +45,9 @@ const Footer = (props) => {
           спреды. Если вы планируете сделку с долгосрочной перспективой высокий спред может
           потратить значительную часть депозита.
         </p>
-        <a href="/" className={styles.FooterBrand}>
+        <Link to="/" className={styles.FooterBrand}>
           <Icon cls={styles.FooterBrandLogo} name="logo" />
-        </a>
+        </Link>
       </Wrapper>
     </footer>
   );

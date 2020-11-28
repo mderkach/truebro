@@ -1,16 +1,17 @@
 import React, { createRef, useState } from 'react';
-import { useHistory, Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Icon from '~cmp/Icon/Icon';
 import Button from '~cmp/Button/Button';
 import InputSearch from '~cmp/Input/InputSearch/InputSearch';
+// utils
 // styles
 import styles from './header.local';
 
 const HeaderDesktop = (props) => {
-  const { nav, socials, ToggleMenu, redirectInternal, redirectExternal } = props;
+  const { nav, socials, ToggleMenu } = props;
 
   return (
     <>
@@ -32,7 +33,6 @@ const HeaderDesktop = (props) => {
               {nav.map((item) => (
                 <NavLink
                   key={item.label}
-                  onClick={(e) => redirectInternal(e)}
                   className={`h3 ${styles.HeaderNavLink}`}
                   activeClassName={styles.HeaderNavLinkActive}
                   to={item.path}
@@ -46,14 +46,14 @@ const HeaderDesktop = (props) => {
           <div className={styles.HeaderSocialsWrapper}>
             <InputSearch name="search-header" />
             {socials.map((item) => (
-              <a
+              <Link
                 key={item.icon}
-                onClick={(e) => redirectExternal(e)}
                 className={styles.HeaderSocialsItem}
-                href={item.path}
+                to={item.path}
+                target="_blank"
               >
                 <Icon cls={styles.HeaderSocialsIcon} name={item.icon} />
-              </a>
+              </Link>
             ))}
           </div>
         </Wrapper>
@@ -63,15 +63,7 @@ const HeaderDesktop = (props) => {
 };
 
 const HeaderMobile = (props) => {
-  const {
-    nav,
-    socials,
-    ToggleMenu,
-    redirectInternal,
-    redirectExternal,
-    expanded,
-    mobileMenu,
-  } = props;
+  const { nav, socials, ToggleMenu, expanded, mobileMenu } = props;
 
   return (
     <>
@@ -86,28 +78,22 @@ const HeaderMobile = (props) => {
           </div>
           <nav className={styles.HeaderMobileMenu}>
             {nav.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                onClick={(e) => redirectInternal(e)}
-                href={item.path}
+                to={item.path}
                 className={`text-regular ${styles.HeaderMobileMenuLink}`}
               >
                 <span>{item.label}</span>
                 <Icon cls={styles.HeaderSocialsIcon} name="chevron-right-icon" />
-              </a>
+              </Link>
             ))}
           </nav>
           <div className={styles.HeaderMobileMenuBottom}>
             <div className={styles.HeaderSocialsWrapper}>
               {socials.map((item) => (
-                <a
-                  key={item.icon}
-                  onClick={(e) => redirectExternal(e)}
-                  className={styles.HeaderSocialsItem}
-                  href={item.path}
-                >
+                <Link key={item.icon} className={styles.HeaderSocialsItem} to={item.path}>
                   <Icon cls={styles.HeaderSocialsIcon} name={item.icon} />
-                </a>
+                </Link>
               ))}
             </div>
             <p className={`text-extrasmall ${styles.HeaderMobileMenuBottomText}`}>
@@ -123,21 +109,6 @@ const HeaderMobile = (props) => {
 const Header = (props) => {
   const { nav, socials } = props;
   const [expanded, setExpanded] = useState(false);
-
-  const history = useHistory();
-
-  const redirectInternal = (e) => {
-    e.preventDefault();
-
-    const target = e.target.getAttribute('href');
-    history.push(target);
-  };
-
-  const redirectExternal = (e, ...args) => {
-    e.preventDefault();
-    const target = e.target.getAttribute('href');
-    window.open(target, '_blank', args);
-  };
 
   const mobileMenu = createRef();
 
@@ -155,19 +126,11 @@ const Header = (props) => {
 
   return (
     <>
-      <HeaderDesktop
-        nav={nav}
-        socials={socials}
-        ToggleMenu={ToggleMenu}
-        redirectExternal={redirectExternal}
-        redirectInternal={redirectInternal}
-      />
+      <HeaderDesktop nav={nav} socials={socials} ToggleMenu={ToggleMenu} />
       <HeaderMobile
         nav={nav}
         socials={socials}
         ToggleMenu={ToggleMenu}
-        redirectExternal={redirectExternal}
-        redirectInternal={redirectInternal}
         expanded={expanded}
         mobileMenu={mobileMenu}
       />
