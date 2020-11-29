@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import Store from '~u/Store';
-
+import { Link } from 'react-router-dom';
+// components
 import Icon from '~cmp/Icon/Icon';
 import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
+// utils
+import Store from '~u/Store';
 
 import './TableRow.scss';
 
@@ -64,9 +66,9 @@ const TableRow = (props) => {
               }`}
             >
               {header.label === 'brand' && (
-                <a href={row.link}>
+                <Link to={row.link}>
                   <img src={row.brand} alt={row.brand} />
-                </a>
+                </Link>
               )}
               {header.label === 'forNovice' && row[header.label] && (
                 <Icon cls="table__row-check" name="table-check-icon" />

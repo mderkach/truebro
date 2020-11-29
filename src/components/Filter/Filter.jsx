@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react';
@@ -9,7 +9,26 @@ import Picture from '~cmp/Picture/Picture';
 import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
 // styles
-import './Filter.scss';
+import styles from './Filter.local';
+
+const CompareBtn = observer(({ action, length }) => (
+  <Button
+    onClick={(e) => {
+      action(e);
+    }}
+    type="button"
+    cls={`text-small medium ${styles.FilterButton}`}
+  >
+    <span>к сравнению</span>
+    <span className={styles.FilterCounter}>{length}</span>
+  </Button>
+));
+
+const FilterItem = observer(({ label, name, index }) => (
+  <div key={label} className={styles.FilterItem}>
+    <InputCheckbox name={name} description={label} mapIndex={index} />
+  </div>
+));
 
 const Filter = observer((props) => {
   const { items, compare } = props;
@@ -51,7 +70,7 @@ const Filter = observer((props) => {
   const toCompare = (e) => {
     e.preventDefault();
 
-    history.replace('/compare');
+    history.push('/compare');
   };
 
   const isDesktop = useMediaQuery({
@@ -64,24 +83,15 @@ const Filter = observer((props) => {
 
   return (
     <>
-      <div className="filter-wrapper">
+      <div className={styles.FilterWrapper}>
         {compare.length > 0 && (
           <>
             {isDesktop && (
               <>
-                <div className="filter-comparsion">
-                  <Button
-                    onClick={(e) => {
-                      toCompare(e);
-                    }}
-                    type="button"
-                    cls="text-small medium filter-button"
-                  >
-                    <span>к сравнению</span>
-                    <span className="filter-counter">{compare.length}</span>
-                  </Button>
+                <div className={styles.FilterComparsion}>
+                  <CompareBtn action={toCompare} length={compare.length} />
                   {compare.map((item) => (
-                    <Picture key={item.name} cls="filter-logo" src={item.brand} />
+                    <Picture key={item.name} cls={styles.FilterLogo} src={item.brand} />
                   ))}
                 </div>
               </>
@@ -90,72 +100,52 @@ const Filter = observer((props) => {
         )}
         {isMobile && (
           <>
-            {compare.length > 0 && (
-              <Button
-                onClick={(e) => {
-                  toCompare(e);
-                }}
-                type="button"
-                cls="text-small medium filter-button"
-              >
-                <span>к сравнению</span>
-                <span className="filter-counter">{compare.length}</span>
-              </Button>
-            )}
+            {compare.length > 0 && <CompareBtn action={toCompare} length={compare.length} />}
             <Button
               variant="secondary"
               onClick={(e) => {
                 toggleFilter(e);
               }}
               type="button"
-              cls="text-small medium filter-button"
+              cls={`text-small medium ${styles.FilterButton}`}
             >
-              <Icon cls="filter-button-icon" name="chevron-right-icon" />
+              <Icon cls={styles.FilterButtonIcon} name="chevron-right-icon" />
               <span>Фильтр</span>
             </Button>
           </>
         )}
-        <div ref={ref} className={`filter-item-outer ${isMobile && expanded ? 'is-expanded' : ''}`}>
+        <div
+          ref={ref}
+          className={`${styles.FilterItemOuter} ${isMobile && expanded ? 'is-expanded' : ''}`}
+        >
           {items.map((item) => (
-            <div key={item.header} className="filter-item-wrapper">
-              <p className="filter-header text-regular medium">{item.header}</p>
+            <div data-key={item.header} key={item.header} className={styles.FilterItemWrapper}>
+              <p className={`text-regular medium ${styles.FilterHeader}`}>{item.header}</p>
               {item.items.map((input, subindex) => (
-                <>
+                <Fragment key={input.label}>
                   {subindex < 8 && (
-                    <div key={input.label} className="filter-item">
-                      <InputCheckbox
-                        name={input.name}
-                        description={input.label}
-                        mapIndex={subindex}
-                      />
-                    </div>
+                    <FilterItem label={input.label} name={input.name} index={subindex} />
                   )}
-                </>
+                </Fragment>
               ))}
               {item.items.length > 8 && (
                 <>
-                  <div className="filter-item-wrapper-hidden">
+                  <div className={styles.FilterItemWrapperHidden}>
                     {item.items.map((input, subindex) => (
-                      <>
+                      <Fragment key={input.label}>
                         {subindex > 8 && (
-                          <div key={input.label} className="filter-item">
-                            <InputCheckbox
-                              name={input.name}
-                              description={input.label}
-                              mapIndex={subindex}
-                            />
-                          </div>
+                          <FilterItem label={input.label} name={input.name} index={subindex} />
                         )}
-                      </>
+                      </Fragment>
                     ))}
                   </div>
                   <button
                     type="button"
-                    className="text-small medium filter-hidden-trigger"
+                    className={`text-small medium ${styles.FilterHiddenTrigger}`}
                     onClick={(e) => toggleHidden(e)}
                   >
                     <span>{`показать еще ${items.length}`}</span>
-                    <Icon cls="filter-hidden-trigger-icon" name="chevron-down-icon" />
+                    <Icon cls={styles.FilterHiddenTriggerIcon} name="chevron-down-icon" />
                   </button>
                 </>
               )}
@@ -163,18 +153,19 @@ const Filter = observer((props) => {
           ))}
         </div>
         {isMobile && (
-          <svg
+          <Icon
             onClick={(e) => {
               toggleFilter(e);
             }}
-            className={`filter-close ${isMobile && expanded ? 'is-expanded' : ''}`}
-          >
-            <use xlinkHref="./assets/img/svg/sprite.svg#cross-icon" />
-          </svg>
+            cls={`${styles.FilterClose} ${isMobile && expanded ? 'is-expanded' : ''}`}
+            name="cross-icon"
+          />
         )}
         {isMobile && (
           <div
-            className={`filter-item-outer-backdrop ${isMobile && expanded ? 'is-expanded' : ''}`}
+            className={`${styles.FilterItemOuterBackdrop} ${
+              isMobile && expanded ? 'is-expanded' : ''
+            }`}
           />
         )}
       </div>

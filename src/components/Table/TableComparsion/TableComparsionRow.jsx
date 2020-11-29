@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Icon from '~cmp/Icon/Icon';
 
 const Column = (props) => {
   const { row, col } = props;
@@ -8,9 +10,7 @@ const Column = (props) => {
         {row.label !== 'brand' && (
           <>
             {typeof col[row.label] === 'boolean' && row.label === 'forNovice' && col[row.label] && (
-              <svg className="table__comparsion-row-check">
-                <use xlinkHref="./assets/img/svg/sprite.svg#table-check-icon" />
-              </svg>
+              <Icon cls="table__comparsion-row-check" name="table-check-icon" />
             )}
             {typeof col[row.label] === 'boolean' &&
               row.label === 'forNovice' &&
@@ -36,13 +36,13 @@ const Column = (props) => {
           </>
         )}
         {row.label === 'brand' && (
-          <a
+          <Link
             key={row.label + col[row.label]}
-            href={col.link}
+            to={col.link}
             className="table__comparsion-row-brand"
           >
             <img src={col[row.label]} alt={col.name} />
-          </a>
+          </Link>
         )}
       </p>
     </>

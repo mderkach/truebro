@@ -260,7 +260,7 @@ const Table = observer(() => {
             onClick={(e) => fetchAdditionRows(e)}
             variant="secondary"
             type="button"
-            cls="text-small medium table__button"
+            cls="table__button"
           >
             Загрузить еще
           </Button>
