@@ -155,7 +155,7 @@ const Filter = observer((props) => {
                     onClick={(e) => toggleHidden(e)}
                   >
                     <span>{`показать еще ${items.length}`}</span>
-                    <Icon cls="filter-hidden-trigger-icon" name="chevron-right-icon" />
+                    <Icon cls="filter-hidden-trigger-icon" name="chevron-down-icon" />
                   </button>
                 </>
               )}

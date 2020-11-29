@@ -34,11 +34,14 @@ const TableRow = (props) => {
     return 1;
   };
 
-  const setCompare = (index, e, item) => {
-    e.preventDefault();
-    const target = refs.current[index].current.querySelector('input');
-    target.checked = !target.checked;
-    Store.setCompare(item, target.checked);
+  const checkedAlreadyChecked = (item, arr) => {
+    if (arr && arr.length > 0 && arr.includes(item)) return true;
+    return false;
+  };
+
+  const setCompare = (item) => {
+    const isChecked = checkedAlreadyChecked(item, Store.compared);
+    Store.setCompare(item, !isChecked);
   };
 
   return (
@@ -74,7 +77,11 @@ const TableRow = (props) => {
               )}
             </div>
           ))}
-          <InputCheckbox name={row.name} onClick={(e) => setCompare(rowIndex, e, row)} />
+          <InputCheckbox
+            name={row.name}
+            onChange={() => setCompare(row)}
+            checked={() => checkedAlreadyChecked(row, Store.compared)}
+          />
           {dropdown && (
             <>
               <div className="table__row-data text-regular">

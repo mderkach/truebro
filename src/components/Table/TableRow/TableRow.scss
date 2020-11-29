@@ -54,6 +54,7 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
     background-color: #fff;
+    user-select: none;
     transition: all 0.5s ease;
 
     &:not(.table__header) {

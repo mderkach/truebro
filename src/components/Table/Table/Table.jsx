@@ -141,6 +141,66 @@ const LoaderErrorPlaceholder = () => {
   );
 };
 
+const TableHeaders = observer((props) => {
+  const { isDesktop, isMobile, isTablet, sortBy, sortDirection } = props;
+  return (
+    <div className="table__header table__row">
+      {isDesktop && <TableHeader headers={headers} sortDirection={sortDirection} sortBy={sortBy} />}
+      {isTablet && (
+        <TableHeader
+          headers={mobileDeviceHeaders(headers, excludeTablet, false)}
+          sortDirection={sortDirection}
+          sortBy={sortBy}
+        />
+      )}
+      {isMobile && (
+        <TableHeader
+          headers={mobileDeviceHeaders(headers, excludeMobile, false)}
+          sortDirection={sortDirection}
+          sortBy={sortBy}
+        />
+      )}
+    </div>
+  );
+});
+
+const TableFilter = observer(() => {
+  return (
+    <aside className="table__filter">
+      <div className="table__filter-outer">
+        {Store.filter && <Filter items={Store.filter} compare={Store.compared} />}
+      </div>
+    </aside>
+  );
+});
+
+const TableRows = observer((props) => {
+  const { isDesktop, isMobile, isTablet } = props;
+  return (
+    <div className="table__rows">
+      {isDesktop && Store.tableRows && (
+        <TableRow headers={headers} rows={Store.tableRows} mobile="false" />
+      )}
+      {isTablet && Store.tableRows && (
+        <TableRow
+          headers={mobileDeviceHeaders(headers, excludeTablet, false)}
+          rows={Store.tableRows}
+          dropdown={mobileDeviceHeaders(headers, excludeTablet, true)}
+          mobile
+        />
+      )}
+      {isMobile && Store.tableRows && (
+        <TableRow
+          headers={mobileDeviceHeaders(headers, excludeMobile, false)}
+          rows={Store.tableRows}
+          dropdown={mobileDeviceHeaders(headers, excludeMobile, true)}
+          mobile
+        />
+      )}
+    </div>
+  );
+});
+
 const Table = observer(() => {
   const [sortDirection, setSortDirection] = useState('down');
 
@@ -187,51 +247,15 @@ const Table = observer(() => {
       {!Store.tableLoading && Store.fetchFailed && <LoaderErrorPlaceholder />}
       {!Store.tableLoading && !Store.fetchFailed && (
         <main className="table__outer">
-          <div className="table__header table__row">
-            {isDesktop && (
-              <TableHeader headers={headers} sortDirection={sortDirection} sortBy={sortItems} />
-            )}
-            {isTablet && (
-              <TableHeader
-                headers={mobileDeviceHeaders(headers, excludeTablet, false)}
-                sortDirection={sortDirection}
-                sortBy={sortItems}
-              />
-            )}
-            {isMobile && (
-              <TableHeader
-                headers={mobileDeviceHeaders(headers, excludeMobile, false)}
-                sortDirection={sortDirection}
-                sortBy={sortItems}
-              />
-            )}
-          </div>
-          <aside className="table__filter">
-            <div className="table__filter-outer">
-              {Store.filter && <Filter items={Store.filter} compare={Store.compared} />}
-            </div>
-          </aside>
-          <div className="table__rows">
-            {isDesktop && Store.tableRows && (
-              <TableRow headers={headers} rows={Store.tableRows} mobile="false" />
-            )}
-            {isTablet && Store.tableRows && (
-              <TableRow
-                headers={mobileDeviceHeaders(headers, excludeTablet, false)}
-                rows={Store.tableRows}
-                dropdown={mobileDeviceHeaders(headers, excludeTablet, true)}
-                mobile
-              />
-            )}
-            {isMobile && Store.tableRows && (
-              <TableRow
-                headers={mobileDeviceHeaders(headers, excludeMobile, false)}
-                rows={Store.tableRows}
-                dropdown={mobileDeviceHeaders(headers, excludeMobile, true)}
-                mobile
-              />
-            )}
-          </div>
+          <TableHeaders
+            isDesktop={isDesktop}
+            isMobile={isMobile}
+            isTablet={isTablet}
+            sortBy={sortItems}
+            sortDirection={sortDirection}
+          />
+          <TableFilter />
+          <TableRows isDesktop={isDesktop} isMobile={isMobile} isTablet={isTablet} />
           <Button
             onClick={(e) => fetchAdditionRows(e)}
             variant="secondary"
