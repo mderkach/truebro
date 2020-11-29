@@ -25,9 +25,9 @@ const InputCheckbox = (props) => {
         }}
         {...rest}
       />
-      <div className={styles.InputCheckboxBox} />
+      <span className={styles.InputCheckboxBox} />
       <Icon cls={styles.InputCheckboxIcon} name="check-icon-input" />
-      {description && <p className="text-regular">{description}</p>}
+      {description && <span className="text-regular">{description}</span>}
     </label>
   );
 };

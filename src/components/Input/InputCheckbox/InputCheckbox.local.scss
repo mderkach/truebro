@@ -28,12 +28,12 @@
     opacity: 0;
 
     &:checked {
-      ~ div {
+      ~ [class*='InputCheckboxBox'] {
         border-color: $primary;
         border-radius: rem(3);
         background-color: $primary;
 
-        ~ svg {
+        ~ [class*='InputCheckboxIcon'] {
           opacity: 1;
         }
       }
