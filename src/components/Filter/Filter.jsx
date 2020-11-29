@@ -91,7 +91,12 @@ const Filter = observer((props) => {
                 <div className={styles.FilterComparsion}>
                   <CompareBtn action={toCompare} length={compare.length} />
                   {compare.map((item) => (
-                    <Picture key={item.name} cls={styles.FilterLogo} src={item.brand} />
+                    <Picture
+                      key={item.name}
+                      cls={styles.FilterLogo}
+                      src={item.brand}
+                      alt={item.name}
+                    />
                   ))}
                 </div>
               </>
