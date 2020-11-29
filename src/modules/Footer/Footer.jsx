@@ -26,14 +26,15 @@ const Footer = (props) => {
               Присоединяйтесь!
             </p>
             {socials.map((item) => (
-              <Link
+              <a
                 key={item.icon}
-                to={item.path}
+                href={item.path}
                 target="_blank"
+                rel="nofollow noreferrer"
                 className={`h3 ${styles.FooterSocialsItem}`}
               >
                 <Icon cls={styles.FooterSocialsIcon} name={item.icon} />
-              </Link>
+              </a>
             ))}
           </div>
         </div>

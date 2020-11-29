@@ -36,11 +36,11 @@ const NavSocials = [
   },
   {
     icon: 'fb',
-    path: '/',
+    path: 'https://facebook.com',
   },
   {
     icon: 'tg',
-    path: '/',
+    path: 'https://web.telegram.org/',
   },
 ];
 

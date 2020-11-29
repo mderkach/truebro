@@ -46,14 +46,15 @@ const HeaderDesktop = (props) => {
           <div className={styles.HeaderSocialsWrapper}>
             <InputSearch name="search-header" />
             {socials.map((item) => (
-              <Link
+              <a
                 key={item.icon}
                 className={styles.HeaderSocialsItem}
-                to={item.path}
+                href={item.path}
                 target="_blank"
+                rel="nofollow noreferrer"
               >
                 <Icon cls={styles.HeaderSocialsIcon} name={item.icon} />
-              </Link>
+              </a>
             ))}
           </div>
         </Wrapper>
@@ -91,9 +92,15 @@ const HeaderMobile = (props) => {
           <div className={styles.HeaderMobileMenuBottom}>
             <div className={styles.HeaderSocialsWrapper}>
               {socials.map((item) => (
-                <Link key={item.icon} className={styles.HeaderSocialsItem} to={item.path}>
+                <a
+                  key={item.icon}
+                  className={styles.HeaderSocialsItem}
+                  href={item.path}
+                  target="_blank"
+                  rel="nofollow noreferrer"
+                >
                   <Icon cls={styles.HeaderSocialsIcon} name={item.icon} />
-                </Link>
+                </a>
               ))}
             </div>
             <p className={`text-extrasmall ${styles.HeaderMobileMenuBottomText}`}>
