@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
+// components
 import TableHeader from '~cmp/Table/TableHeader/TableHeader';
 import TableRow from '~cmp/Table/TableRow/TableRow';
-import Filter from '~cmp/Filter/Filter';
-import Icon from '~cmp/Icon/Icon';
+import TableLoaderPlaceholder from '~cmp/Table/TableLoaderPlaceHolder';
+import Filter from '~cmp/Filter/Filter/Filter';
 import Button from '~cmp/Button/Button';
+// utils
 import Store from '~u/Store';
 // eslint-disable-next-line no-unused-vars
 import API from '~u/API';
@@ -96,7 +98,7 @@ const fetchAdditionRows = (e) => {
 
   // API запрос
   // пример:
-  // API.get(query-string).then((res) => Store.tableRows = res.data )
+  // API.get(<queryString>).then((res) => Store.tableRows = res.data )
   // Лучше создать @action в Store по типу fetchData и сохранить результат запроса в tableRows
 };
 
@@ -114,31 +116,6 @@ const compareItems = (key, direction) => {
 
     return bI - aI;
   };
-};
-
-const LoaderPlaceholder = () => {
-  return (
-    <div className="table__placeholder">
-      <Icon cls="table__placeholder-icon" name="loading-icon" />
-      <span>Загрузка...</span>
-    </div>
-  );
-};
-
-const LoaderErrorPlaceholder = () => {
-  return (
-    <div className="table__placeholder">
-      <span>Произошла ошибка! Попробуйте снова</span>
-      <Button
-        onClick={(e) => retryFetch(e)}
-        variant="secondary"
-        type="button"
-        cls="text-small medium table__button"
-      >
-        Повторить
-      </Button>
-    </div>
-  );
 };
 
 const TableHeaders = observer((props) => {
@@ -206,7 +183,7 @@ const Table = observer(() => {
 
   useEffect(() => {
     if (Store.tableLoading) {
-      Store.fetchData(Store.tableLoading);
+      Store.fetchData();
     }
   }, []);
 
@@ -243,8 +220,15 @@ const Table = observer(() => {
 
   return (
     <>
-      {Store.tableLoading && <LoaderPlaceholder />}
-      {!Store.tableLoading && Store.fetchFailed && <LoaderErrorPlaceholder />}
+      {Store.tableLoading && <TableLoaderPlaceholder text="Загрузка" icon="loading-icon" />}
+      {!Store.tableLoading && Store.fetchFailed && (
+        <TableLoaderPlaceholder
+          text="Произошла ошибка! Попробуйте снова"
+          action={retryFetch}
+          actionText="Повторить"
+          icon="loading-icon"
+        />
+      )}
       {!Store.tableLoading && !Store.fetchFailed && (
         <main className="table__outer">
           <TableHeaders

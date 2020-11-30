@@ -97,21 +97,6 @@
     }
   }
 
-  &__placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: rem(490);
-    background: #fafafa;
-
-    &-icon {
-      @include size(rem(40));
-      @include infinity-rotation();
-    }
-  }
-
   &__button {
     min-width: rem(165);
     max-width: rem(165);

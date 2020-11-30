@@ -4,9 +4,15 @@ import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
 
 import styles from './FilterItem.local';
 
-const FilterItem = observer(({ label, name, index, cls, children, checked }) => (
+const FilterItem = observer(({ label, name, index, cls, children, checked, onChange }) => (
   <div className={`${styles.FilterItem} ${cls || ''}`}>
-    <InputCheckbox name={name} description={label} mapIndex={index} checked={checked} />
+    <InputCheckbox
+      name={name}
+      description={label}
+      mapIndex={index}
+      checked={checked}
+      onChange={onChange}
+    />
     {children && children}
   </div>
 ));

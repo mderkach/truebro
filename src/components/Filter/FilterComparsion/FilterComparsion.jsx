@@ -7,7 +7,7 @@ import Icon from '~cmp/Icon/Icon';
 import styles from './FilterComparsion.local';
 // utils
 import Store from '~u/Store';
-import { checkedAlreadyChecked } from '~u/functions';
+import { checkedAlreadyChecked, setCompare } from '~u/functions';
 
 const FilterComparsion = observer((props) => {
   const { items } = props;
@@ -43,6 +43,7 @@ const FilterComparsion = observer((props) => {
               name={item.name}
               index={index}
               checked={checkedAlreadyChecked(item, Store.compared)}
+              onChange={() => setCompare(item)}
             >
               <Picture src={item.brand} cls={styles.FilterComparsionBrand} />
             </FilterItem>
@@ -51,13 +52,14 @@ const FilterComparsion = observer((props) => {
       ))}
       <div className={styles.FilterComparsionWrapperHidden}>
         {items.map((item, index) => (
-          <Fragment key={item.label}>
+          <Fragment key={item.name}>
             {index > 6 && (
               <FilterItem
                 label={item.name}
                 name={item.name}
                 index={index}
                 checked={checkedAlreadyChecked(item, Store.compared)}
+                onChange={() => setCompare(item)}
               >
                 <Picture src={item.brand} cls={styles.FilterComparsionBrand} />
               </FilterItem>
