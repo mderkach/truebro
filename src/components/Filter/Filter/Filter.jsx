@@ -4,10 +4,10 @@ import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
-import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
 import Picture from '~cmp/Picture/Picture';
 import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
+import FilterItem from '~cmp/Filter/FilterItem';
 // styles
 import styles from './Filter.local';
 
@@ -24,16 +24,12 @@ const CompareBtn = observer(({ action, length }) => (
   </Button>
 ));
 
-const FilterItem = observer(({ label, name, index }) => (
-  <div key={label} className={styles.FilterItem}>
-    <InputCheckbox name={name} description={label} mapIndex={index} />
-  </div>
-));
-
 const Filter = observer((props) => {
   const { items, compare } = props;
 
   const ref = createRef();
+  const spanRef = createRef();
+  const hiddenTriggerRef = createRef();
 
   const [expanded, setExpanded] = useState(false);
   const [text, setText] = useState();
@@ -53,8 +49,8 @@ const Filter = observer((props) => {
 
   const toggleHidden = (e) => {
     e.preventDefault();
-    const { target } = e;
-    const textTarget = target.querySelector('span');
+    const target = hiddenTriggerRef.current;
+    const textTarget = spanRef.current;
 
     target.previousElementSibling.classList.toggle('is-expanded');
     target.classList.toggle('is-expanded');
@@ -84,7 +80,7 @@ const Filter = observer((props) => {
   return (
     <>
       <div className={styles.FilterWrapper}>
-        {compare.length > 0 && (
+        {compare && compare.length > 0 && (
           <>
             {isDesktop && (
               <>
@@ -105,7 +101,9 @@ const Filter = observer((props) => {
         )}
         {isMobile && (
           <>
-            {compare.length > 0 && <CompareBtn action={toCompare} length={compare.length} />}
+            {compare && compare.length > 0 && (
+              <CompareBtn action={toCompare} length={compare.length} />
+            )}
             <Button
               variant="secondary"
               onClick={(e) => {
@@ -148,8 +146,9 @@ const Filter = observer((props) => {
                     type="button"
                     className={`text-small medium ${styles.FilterHiddenTrigger}`}
                     onClick={(e) => toggleHidden(e)}
+                    ref={hiddenTriggerRef}
                   >
-                    <span>{`показать еще ${items.length}`}</span>
+                    <span ref={spanRef}>{`показать еще ${items.length}`}</span>
                     <Icon cls={styles.FilterHiddenTriggerIcon} name="chevron-down-icon" />
                   </button>
                 </>

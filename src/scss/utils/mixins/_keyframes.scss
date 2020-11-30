@@ -33,3 +33,21 @@
   animation-direction: normal;
   animation-fill-mode: forwards;
 }
+@mixin collapse-in() {
+  @keyframes collapse-in {
+    99% {
+      max-height: 100vh;
+    }
+
+    100% {
+      max-height: 999999px;
+    }
+  }
+
+  overflow: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-in;
+  animation-name: collapse-in;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}

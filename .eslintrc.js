@@ -9,7 +9,7 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  plugins: ['babel', 'import', 'prettier', 'react'],
+  plugins: ['babel', 'import', 'prettier', 'react', 'react-hooks'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

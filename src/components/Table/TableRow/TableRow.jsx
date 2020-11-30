@@ -5,7 +5,7 @@ import Icon from '~cmp/Icon/Icon';
 import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
 // utils
 import Store from '~u/Store';
-
+import { checkedAlreadyChecked, setCompare } from '~u/functions';
 import './TableRow.scss';
 
 const TableRow = (props) => {
@@ -24,7 +24,7 @@ const TableRow = (props) => {
   const toggleDropdown = (index, e) => {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
-    if (e.target.tagName.toLowerCase() === 'label') {
+    if (e.target.tagName.toLowerCase() === 'label' || e.target.tagName.toLowerCase() === 'input') {
       return null;
     }
     refs.current[index].current.classList.toggle('is-expanded');
@@ -34,16 +34,6 @@ const TableRow = (props) => {
     });
 
     return 1;
-  };
-
-  const checkedAlreadyChecked = (item, arr) => {
-    if (arr && arr.length > 0 && arr.includes(item)) return true;
-    return false;
-  };
-
-  const setCompare = (item) => {
-    const isChecked = checkedAlreadyChecked(item, Store.compared);
-    Store.setCompare(item, !isChecked);
   };
 
   return (

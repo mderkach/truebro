@@ -1,0 +1,77 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.FilterComparsion {
+  &Header {
+    margin-bottom: rem(8);
+  }
+
+  &Brand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: rem(56);
+    height: rem(40);
+    margin: 0 0 0 auto;
+    padding: rem(4) rem(8);
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+    img {
+      display: block;
+      object-fit: contain;
+      width: 100%;
+      max-height: 100%;
+      object-position: center;
+    }
+  }
+
+  &Wrapper {
+    margin-bottom: rem(16);
+
+    &Hidden {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in 0s;
+
+      &[class~='is-expanded'] {
+        @include collapse-in();
+
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  &Hidden {
+    &Trigger {
+      display: flex;
+      align-items: center;
+      margin-left: rem(40);
+      color: #4989e0;
+      text-transform: uppercase;
+
+      &[class~='is-expanded'] {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      span {
+        pointer-events: none;
+      }
+
+      &Icon {
+        @include size(rem(24));
+
+        pointer-events: none;
+      }
+    }
+  }
+}

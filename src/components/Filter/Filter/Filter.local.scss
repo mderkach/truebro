@@ -79,20 +79,20 @@
   }
 
   &Item {
-    display: flex;
-    align-items: center;
-    margin-bottom: rem(16);
-
     &Wrapper {
       margin-bottom: rem(16);
 
       &Hidden {
-        height: 0;
-        transform: scaleY(0);
+        max-height: 0;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in 0s;
 
         &[class~='is-expanded'] {
-          height: auto;
-          transform: scaleY(1);
+          @include collapse-in();
+
+          opacity: 1;
+          visibility: visible;
         }
       }
     }
@@ -131,10 +131,6 @@
           right: 0;
         }
       }
-    }
-
-    [class~='text-regular'] {
-      margin-left: rem(16);
     }
   }
 
