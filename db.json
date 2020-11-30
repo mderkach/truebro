@@ -10,7 +10,19 @@
       "comfort": 10,
       "deposit": "10$",
       "bonus": "100%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#",
+      "loyality": true,
+      "partnership": true,
+      "shoulder": 1000,
+      "spread": true,
+      "pairs": 60,
+      "cfd": 45,
+      "type": "ECN",
+      "paymentSystems": 38,
+      "mobile": "Android, IOS",
+      "trustManagment": "PAMM",
+      "support": true
     },
     {
       "name": "forex",
@@ -22,7 +34,19 @@
       "comfort": 4,
       "deposit": "1$",
       "bonus": "10%",
-      "recognizability": 10
+      "recognizability": 10,
+      "link": "#",
+      "loyality": false,
+      "partnership": true,
+      "shoulder": 100,
+      "spread": false,
+      "pairs": 45,
+      "cfd": 30,
+      "type": "NDD",
+      "paymentSystems": 12,
+      "mobile": "Android, IOS",
+      "trustManagment": false,
+      "support": false
     },
     {
       "name": "bcs",
@@ -34,7 +58,19 @@
       "comfort": 2,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 8
+      "recognizability": 8,
+      "link": "#",
+      "loyality": false,
+      "partnership": false,
+      "shoulder": 50,
+      "spread": false,
+      "pairs": 30,
+      "cfd": 48,
+      "type": "NDD, ECN, STP, MM",
+      "paymentSystems": 8,
+      "mobile": "Android, IOS",
+      "trustManagment": "LAMM, MAM",
+      "support": true
     },
     {
       "name": "xm",
@@ -46,7 +82,8 @@
       "comfort": 9,
       "deposit": "1$",
       "bonus": "25%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "roboforex",
@@ -58,7 +95,8 @@
       "comfort": 8,
       "deposit": "1$",
       "bonus": "1%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "fxpro",
@@ -70,7 +108,8 @@
       "comfort": 6,
       "deposit": "1$",
       "bonus": "10%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "fxtm",
@@ -82,7 +121,8 @@
       "comfort": 4,
       "deposit": "10$",
       "bonus": "200%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "forex4you",
@@ -94,7 +134,8 @@
       "comfort": 2,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "justforex",
@@ -106,7 +147,8 @@
       "comfort": 1,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "a-market",
@@ -118,7 +160,8 @@
       "comfort": 5,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "nord-fx",
@@ -130,7 +173,8 @@
       "comfort": 5,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "weltrade",
@@ -142,7 +186,8 @@
       "comfort": 5,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "etoro",
@@ -154,7 +199,8 @@
       "comfort": 10,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "instaforex",
@@ -166,7 +212,8 @@
       "comfort": 3,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "admiral-markets",
@@ -178,7 +225,8 @@
       "comfort": 10,
       "deposit": "1$",
       "bonus": " ",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "dukascopy",
@@ -190,7 +238,8 @@
       "comfort": 10,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     },
     {
       "name": "hycm",
@@ -202,7 +251,8 @@
       "comfort": 10,
       "deposit": "1$",
       "bonus": "50%",
-      "recognizability": 6
+      "recognizability": 6,
+      "link": "#"
     }
   ],
   "filter": [
