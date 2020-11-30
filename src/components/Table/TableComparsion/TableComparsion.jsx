@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, createRef } from 'react';
 import { observer } from 'mobx-react';
+import { useMediaQuery } from 'react-responsive';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
 import FilterItem from '~cmp/Filter/FilterItem';
 import FilterComparsion from '~cmp/Filter/FilterComparsion/FilterComparsion';
 import TableComparsionRow from './TableComparsionRow';
 import TableLoaderPlaceholder from '~cmp/Table/TableLoaderPlaceHolder';
+import Icon from '~cmp/Icon/Icon';
 // utils
 import Store from '~u/Store';
 // eslint-disable-next-line no-unused-vars
@@ -117,6 +120,26 @@ const TableComparsion = observer(() => {
       Store.fetchData();
     }
   }, []);
+
+  const [expanded, setExpanded] = useState(false);
+
+  const isMobile = useMediaQuery({
+    query: '(max-width: 1679px)',
+  });
+
+  const ref = createRef();
+
+  const toggleFilter = (e) => {
+    e.preventDefault();
+    setExpanded(!expanded);
+
+    if (!expanded) {
+      disableBodyScroll(ref.current);
+    } else {
+      enableBodyScroll(ref.current);
+    }
+  };
+
   return (
     <>
       {!Store.fetchFailed && !Store.tableLoading && Store.tableRows.length === 0 && (
@@ -166,10 +189,43 @@ const TableComparsion = observer(() => {
           </div>
           <Tabs />
           <aside className="table__comparsion-filter">
-            <div className="table__comparsion-filter_inner">
-              <FilterItem label="Только отличия" name="diff" index="0" />
+            <FilterItem label="Только отличия" name="diff" index="0" />
+            {isMobile && (
+              <button
+                onClick={(e) => {
+                  toggleFilter(e);
+                }}
+                type="button"
+                className="text-extrasmall medium table__comparsion-filter-button"
+              >
+                <Icon cls="table__comparsion-filter-button-icon" name="chevron-right-icon" />
+                <span>выбрать брокеров</span>
+              </button>
+            )}
+            <div
+              ref={ref}
+              className={`table__comparsion-filter_inner ${
+                isMobile && expanded ? 'is-expanded' : ''
+              }`}
+            >
               <FilterComparsion items={Store.tableRows} />
             </div>
+            {isMobile && (
+              <Icon
+                onClick={(e) => {
+                  toggleFilter(e);
+                }}
+                cls={`table__comparsion-filter-close ${isMobile && expanded ? 'is-expanded' : ''}`}
+                name="cross-icon"
+              />
+            )}
+            {isMobile && (
+              <div
+                className={`table__comparsion-filter_inner-backdrop ${
+                  isMobile && expanded ? 'is-expanded' : ''
+                }`}
+              />
+            )}
           </aside>
         </main>
       )}

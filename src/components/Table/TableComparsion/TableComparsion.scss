@@ -1,8 +1,32 @@
 @use 'src/scss/utils/vars' as *;
 @use 'src/scss/utils/mixins' as *;
-@use '../Table/Table.scss' as *;
+
+%outer {
+  @include media-breakpoint-down(xl) {
+    grid-template-rows: auto;
+    grid-template-columns: 1fr 1fr;
+    gap: rem(24) rem(8);
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 100%;
+  }
+
+  display: grid;
+  grid-template-columns: 1fr minmax(80px, rem(276));
+  grid-auto-rows: auto;
+  gap: 0 rem(40);
+}
 
 .table__comparsion {
+  @include media-breakpoint-down(xl) {
+    @include make-col-fluid();
+
+    grid-row: 2/2;
+  }
+  @include media-breakpoint-down(sm) {
+    grid-row: 3/3;
+  }
+
   overflow: hidden;
 
   &-outer {
@@ -13,6 +37,12 @@
   }
 
   &-tabs {
+    @include media-breakpoint-down(sm) {
+      @include make-col-fluid();
+
+      grid-row: 2/2;
+    }
+
     display: flex;
     grid-row: 1/1;
     grid-column: 1/1;
@@ -20,6 +50,10 @@
     justify-content: flex-start;
 
     &-btn {
+      @include media-breakpoint-down(xl) {
+        margin: 0 rem(4);
+      }
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -111,6 +145,10 @@
   }
 
   &-body {
+    @include media-breakpoint-down(sm) {
+      grid-row: 3/3;
+    }
+
     display: grid; // hack for prevent scrolling of stiky
     grid-template-columns: 1fr; // hack for prevent scrolling of stiky
     overflow-x: auto;
@@ -121,15 +159,135 @@
   }
 
   &-filter {
-    position: relative;
+    @include media-breakpoint-down(xl) {
+      display: flex;
+      grid-row: 1/1;
+      grid-column: 2/-1;
+      align-items: center;
+      justify-content: space-between;
+
+      [class*='FilterItem'] {
+        margin-bottom: 0;
+
+        span {
+          margin-left: rem(8);
+        }
+      }
+    }
+    @include media-breakpoint-down(sm) {
+      @include make-col-fluid();
+    }
+
     grid-row: 1 / span 2;
     grid-column: 2/-1;
+    width: 100%;
 
     &_inner {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+      @include media-breakpoint-down(xl) {
+        position: fixed;
+        top: 0;
+        right: rem(-290);
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        overflow: auto;
+        width: rem(290);
+        height: 100vh;
+        padding: rem(40) rem(16) rem(32);
+        background-color: #fff;
+        transition: right 0.5s ease;
+
+        &.is-expanded {
+          right: 0;
+
+          [class*='FilterItem'] {
+            margin-bottom: rem(16);
+
+            [class*='InputCheckbox'] {
+              margin-left: 0;
+            }
+
+            .text-regular {
+              margin-left: rem(16);
+            }
+          }
+        }
+      }
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      &-backdrop {
+        @include media-breakpoint-down(xl) {
+          position: fixed;
+          top: 0;
+          right: -100vw;
+          z-index: 998;
+          display: block;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(63, 71, 86, 0.4);
+          transition: right 0.5s ease;
+
+          &.is-expanded {
+            right: 0;
+          }
+        }
+
+        display: none;
+      }
+    }
+
+    &-close {
+      @include size(rem(16));
+
+      position: fixed;
+      top: rem(16);
+      right: rem(-16);
+      z-index: 999;
+      transition: right 0.5s ease;
+
+      &.is-expanded {
+        right: rem(16);
+      }
+    }
+
+    &-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: auto;
+      border-color: transparent;
+      background-color: transparent;
+      color: #4989e0;
+      text-transform: uppercase;
+
+      svg {
+        fill: #4989e0;
+      }
+
+      &:hover {
+        svg {
+          left: -4px;
+        }
+      }
+
+      span {
+        pointer-events: none;
+      }
+
+      &-icon {
+        @include media-breakpoint-down(xl) {
+          @include size(rem(10));
+
+          position: relative;
+          left: 0;
+          margin-right: rem(4);
+          transition: left 0.3s ease;
+          transform: rotate(180deg);
+        }
+      }
     }
   }
 }

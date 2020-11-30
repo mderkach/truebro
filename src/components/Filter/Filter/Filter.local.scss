@@ -32,8 +32,8 @@
       @include media-breakpoint-down(xl) {
         margin-top: 0;
       }
+      @include make-col-fluid();
 
-      grid-column: 1/-1;
       margin-top: rem(16);
     }
 
