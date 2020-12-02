@@ -56,7 +56,7 @@ const TableRow = (props) => {
               }`}
             >
               {header.label === 'brand' && (
-                <Link to={row.link}>
+                <Link to={`/broker/${row.name}`}>
                   <img src={row.brand} alt={row.brand} />
                 </Link>
               )}

@@ -1,0 +1,25 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Page {
+  &Wrapper {
+    padding-top: rem(40);
+  }
+
+  &Header {
+    @include make-col-fluid();
+
+    margin-bottom: rem(64);
+  }
+
+  &Container {
+    display: grid;
+    grid-template-columns: minmax(auto, rem(996)) minmax(auto, rem(424));
+    gap: rem(32) rem(40);
+  }
+
+  &Block {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+  }
+}

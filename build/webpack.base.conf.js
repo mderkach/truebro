@@ -179,7 +179,7 @@ module.exports = {
               modules: {
                 mode: 'local',
                 exportLocalsConvention: 'asIs',
-                auto: resourcePath => resourcePath.endsWith('.local.scss'),
+                auto: (resourcePath) => resourcePath.endsWith('.local.scss'),
                 localIdentName: '[local]___[hash:base64:5]',
               },
             },

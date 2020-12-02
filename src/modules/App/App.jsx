@@ -7,9 +7,10 @@ import './App.scss';
 // components
 import Header from '~m/Header/Header';
 import Footer from '~m/Footer/Footer';
-
+// routes
 import Rating from '~v/Rating/Rating';
 import Compare from '~v/Compare/Compare';
+import Broker from '~m/Broker/Broker';
 
 const NavMenu = [
   {
@@ -44,22 +45,51 @@ const NavSocials = [
   },
 ];
 
-const App = () => {
+const routes = [
+  {
+    key: 'rating',
+    path: '/',
+    component: Rating,
+    exact: true,
+  },
+  {
+    key: 'compare',
+    path: '/compare',
+    component: Compare,
+    exact: true,
+  },
+  {
+    key: 'broker',
+    path: '/broker/:name?',
+    exact: false,
+    component: Broker,
+  },
+];
+
+const App = observer(() => {
   const history = useHistory();
 
   return (
-    <>
-      <Router history={history}>
+    <Router history={history}>
+      <div>
         <Header nav={NavMenu} socials={NavSocials} />
         <div className="compensate-header" />
         <Switch>
-          <Route exact path="/" component={Rating} />
-          <Route exact path="/compare" component={Compare} />
+          {routes.map((route) => {
+            return (
+              <Route
+                key={route.key}
+                path={route.path}
+                exact={route.exact}
+                render={(props) => <route.component {...props} />}
+              />
+            );
+          })}
         </Switch>
         <Footer nav={NavMenu} socials={NavSocials} />
-      </Router>
-    </>
+      </div>
+    </Router>
   );
-};
+});
 
-export default observer(App);
+export default App;

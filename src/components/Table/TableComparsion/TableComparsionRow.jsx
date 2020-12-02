@@ -36,7 +36,11 @@ const Column = (props) => {
           </>
         )}
         {row.label === 'brand' && (
-          <Link key={row.label + col[row.label]} to={col.link} className="table__comparsion-brand">
+          <Link
+            key={row.label + col[row.label]}
+            to={`broker/${col.name}`}
+            className="table__comparsion-brand"
+          >
             <img src={col[row.label]} alt={col.name} />
           </Link>
         )}
