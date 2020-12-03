@@ -8,9 +8,9 @@ import Button from '~cmp/Button/Button';
 // styles
 import styles from './BrokerTopBar.local';
 
-const BrokerTopBar = () => {
+const BrokerTopBar = (props) => {
   return (
-    <div className={styles.TopBar}>
+    <div className={styles.TopBar} {...props}>
       <Picture cls={styles.Logo} src="/assets/img/alpari.png" />
       <div className={styles.Cell}>
         <p className={`text-small ${styles.CellHeader}`}>Рейтинг</p>

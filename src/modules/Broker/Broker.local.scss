@@ -9,17 +9,39 @@
   &Header {
     @include make-col-fluid();
 
-    margin-bottom: rem(64);
+    margin-bottom: rem(32);
   }
 
   &Container {
     display: grid;
     grid-template-columns: minmax(auto, rem(996)) minmax(auto, rem(424));
+    grid-auto-rows: auto;
     gap: rem(32) rem(40);
   }
 
   &Block {
+    margin-bottom: rem(32);
+    padding-bottom: rem(16);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
+  }
+}
+
+.Area {
+  &Main {
+    display: flex;
+    flex-direction: column;
+    grid-column: 1/1;
+    justify-content: space-between;
+  }
+
+  &Aside {
+    grid-column: 2/2;
+  }
+}
+
+.Heading {
+  &H2 {
+    margin: rem(64) 0 rem(24);
   }
 }
