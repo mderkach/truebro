@@ -1,0 +1,42 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Card {
+  display: flex;
+  flex-direction: column;
+
+  &Head {
+    margin-bottom: rem(8);
+  }
+
+  &Icon {
+    position: relative;
+    right: 0;
+    width: rem(8);
+    height: rem(6);
+    margin-left: rem(10);
+    fill: #4989e0;
+    transition: right 0.3s linear;
+  }
+
+  &Link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #4989e0;
+    text-transform: uppercase;
+    transition: all 0.3s linear;
+
+    &:hover {
+      svg {
+        right: -6px;
+      }
+    }
+  }
+
+  h3,
+  p,
+  a {
+    margin-bottom: rem(8);
+  }
+}

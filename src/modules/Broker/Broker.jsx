@@ -8,6 +8,7 @@ import BrokerTopBar from './BrokerTopBar/BrokerTopBar';
 import TableSimple from '~cmp/Table/TableSimple/TableSimple';
 import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
+import Card from '~cmp/Card/Card';
 // styles
 import styles from './Broker.local';
 
@@ -33,7 +34,7 @@ const mainInfo = [
   },
   {
     header: 'Адрес сайта',
-    description: 'www.alpari.com',
+    description: 'http://www.alpari.com',
     isLink: true,
   },
   {
@@ -338,6 +339,66 @@ const Broker = () => {
             </div>
             <div className={styles.PageBlock}>
               <List heading="Особые характеристики" rows={specials} />
+            </div>
+          </div>
+        </Wrapper>
+        <Wrapper extClass={styles.PageContainer}>
+          <div className={styles.AreaMain}>
+            <h2 className={`h2 medium ${styles.HeadingH2}`}>О компании</h2>
+            <div className={`${styles.PageBlockText} ${styles.PageBlock}`}>
+              <p className="text-regular">
+                Компания Alpari - российский Форекс брокер, предоставляющий качественные брокерские
+                услуги с 1998 года. За время своего существования компания заслужила всеобщее
+                признание и массу положительных отзывов от своих клиентов, которые вы сможете
+                почитать в разделе отзывы об Альпари. Кроме всего прочего Альпари вполне обоснованно
+                считается одним из главных инициаторов создания НАФД (ЦРФИН), ведущей отечественной
+                ассоциации форекс дилеров.
+              </p>
+              <p className="text-regular">
+                Компания предлагает 2 метода котирования: стандартный и ECN. Стандартный метод
+                котирования подразумевает вывод на рынок только совокупной позиции по всем счетам,
+                при этом клиринг осуществляется внутри компании. Для счетов ECN все ордера клиентов
+                автоматически выводятся на внешний рынок. Плюсом счета ECN является отсутствие
+                реквот, а минусом – наличие комиссии.
+              </p>
+              <p className="text-regular">
+                Следует отметить, что Альпари имеет три международные лицензии авторитетных
+                финансовых регуляторов. Данная брокерская компания признана лучшим брокером по
+                версии агентства «Интерфакс». Более детально с основными событиями из жизни
+                рассматриваемого брокера Вы можете ознакомиться на этой странице. Alpari постоянно
+                находится в процессе развития и стремится предложить своим клиентам максимально
+                выгодные условия для действительно успешной торговли с большой прибылью.
+              </p>
+            </div>
+          </div>
+        </Wrapper>
+        <Wrapper extClass={styles.PageContainer}>
+          <div className={styles.AreaMain}>
+            <h2 className={`h2 medium ${styles.HeadingH2}`}>Новости Альпари</h2>
+            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+              <Card />
+              <Card />
+              <Card />
+            </div>
+          </div>
+        </Wrapper>
+        <Wrapper extClass={styles.PageContainer}>
+          <div className={styles.AreaMain}>
+            <h2 className={`h2 medium ${styles.HeadingH2}`}>Семинары и вебинары Альпари </h2>
+            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+              <Card />
+              <Card />
+              <Card />
+            </div>
+          </div>
+        </Wrapper>
+        <Wrapper extClass={styles.PageContainer}>
+          <div className={styles.AreaMain}>
+            <h2 className={`h2 medium ${styles.HeadingH2}`}>Бонусы, акции, конкурсы Альпари </h2>
+            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+              <Card />
+              <Card />
+              <Card />
             </div>
           </div>
         </Wrapper>
