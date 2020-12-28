@@ -1,11 +1,11 @@
 const Webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
-const BaseWebpackConfig = require('./webpack.base.conf');
+const BaseWebpackConfig = require('./webpack.base.conf.js');
 
 const devWebpackConfig = merge(BaseWebpackConfig, {
   // DEV config
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'eval-cheap-source-map',
   devServer: {
     historyApiFallback: true,
     compress: true,
@@ -15,11 +15,12 @@ const devWebpackConfig = merge(BaseWebpackConfig, {
       warnings: true,
       errors: true,
     },
+    watchContentBase: true,
+    watchOptions: {
+      poll: true,
+    },
   },
   plugins: [
-    new Webpack.SourceMapDevToolPlugin({
-      filename: '[file].map',
-    }),
     new BrowserSyncPlugin(
       {
         host: 'localhost',
@@ -31,6 +32,9 @@ const devWebpackConfig = merge(BaseWebpackConfig, {
         reload: false,
       },
     ),
+    new Webpack.SourceMapDevToolPlugin({
+      filename: '[file].map',
+    }),
   ],
 });
 

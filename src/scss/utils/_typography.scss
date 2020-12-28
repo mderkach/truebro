@@ -33,6 +33,13 @@
 }
 
 .text {
+  &-big {
+    @include font-size(24);
+
+    color: $mainFontColor;
+    line-height: 1.3;
+  }
+
   &-regular {
     @include media-breakpoint-down(lg) {
       font-size: rem(14);

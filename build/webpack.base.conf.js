@@ -1,15 +1,8 @@
 const Path = require('path');
-const Fs = require('fs');
-const Glob = require('glob');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const CssNano = require('cssnano');
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const Dotenv = require('dotenv-webpack');
 
 const isProd = function () {
@@ -30,21 +23,16 @@ const PATHS = {
 };
 
 const PAGES_DIR = `${PATHS.src}/views/`;
-const PAGES = Fs.readdirSync(PAGES_DIR).filter((fileName) => fileName.endsWith('.html'));
 
 // plugins
 const plugins = [
   new Dotenv({
-    path: isProd() ? './.env.prod' : './.env',
+    path: './.env'
   }),
-  // Automatic creation any html pages (Don't forget to RERUN dev server)
-  ...PAGES.map(
-    (page) =>
-      new HtmlWebpackPlugin({
-        template: `${PAGES_DIR}/${page}`,
-        filename: `./${page}`,
-      }),
-  ),
+  new HtmlWebpackPlugin({
+    template: `${PAGES_DIR}/index.html`,
+    filename: `./index.html`,
+  }),
   // load svg sprite
   new SpriteLoaderPlugin({
     plainSprite: true,
@@ -59,20 +47,9 @@ const plugins = [
   }),
 ];
 
-if (isProd()) {
-  plugins.push(
-    new CleanWebpackPlugin({
-      verbose: true,
-    }),
-    new MiniCssExtractPlugin({
-      filename: ({ chunk }) => `${PATHS.assets}css/${chunk.name.replace('/js/', '/css/')}.css`,
-    }),
-    new BundleAnalyzerPlugin(),
-  );
-}
-
 // BASE config
 module.exports = {
+  target: 'web',
   mode: isProd() ? 'production' : 'development',
   externals: {
     paths: PATHS,
@@ -86,12 +63,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: '/node_modules/',
-      },
-      {
-        test: /\.jsx$/,
+        test: /\.(js|jsx)$/,
         loader: 'babel-loader',
         exclude: '/node_modules/',
       },
@@ -200,65 +172,6 @@ module.exports = {
         ],
       },
     ],
-  },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        parallel: true,
-        terserOptions: {
-          ecma: 2018,
-          module: true,
-          sourceMap: false, // Must be set to true if using source-maps in production
-          compress: {
-            drop_console: true,
-            drop_debugger: true,
-            ecma: 2018,
-            module: true,
-          },
-          format: {
-            comments: false,
-            indent_level: 2,
-          },
-        },
-      }),
-      new OptimizeCssAssetsPlugin({
-        cssProcessor: CssNano,
-        cssProcessorPluginOptions: {
-          preset: ['default', { discardComments: { removeAll: true } }],
-        },
-        canPrint: true,
-      }),
-    ],
-    splitChunks: {
-      cacheGroups: {
-        vendorJs: {
-          name: 'vendor-js',
-          test: /node_modules/,
-          chunks: 'all',
-          enforce: true,
-        },
-        vendorStyles: {
-          name: 'app',
-          test: /src[\\/]scss/,
-          chunks: 'all',
-          enforce: true,
-        },
-        pages: {
-          name(module, chunks) {
-            return chunks.map((item) => item.name).join('');
-          },
-          test(module) {
-            return (
-              module.resource &&
-              module.resource.endsWith('.js') &&
-              module.resource.includes(`${Path.sep}pages${Path.sep}`)
-            );
-          },
-          chunks: 'all',
-          enforce: true,
-        },
-      },
-    },
   },
   resolve: {
     alias: {

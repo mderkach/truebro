@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
+import ScrollContainer from 'react-indiana-drag-scroll';
 import FilterItem from '~cmp/Filter/FilterItem';
 import FilterComparsion from '~cmp/Filter/FilterComparsion/FilterComparsion';
 import TableComparsionRow from './TableComparsionRow';
@@ -98,7 +99,7 @@ const rows = [
 ];
 
 const Tabs = () => (
-  <div className="table__comparsion-tabs">
+  <ScrollContainer className="table__comparsion-tabs">
     <a className="table__comparsion-tabs-btn text-small is-active" href="/compare.html">
       <span>Всё</span>
     </a>
@@ -111,7 +112,7 @@ const Tabs = () => (
     <a className="table__comparsion-tabs-btn text-small" href="/compare.html">
       <span>Платежи</span>
     </a>
-  </div>
+  </ScrollContainer>
 );
 
 const TableComparsion = observer(() => {
@@ -167,7 +168,7 @@ const TableComparsion = observer(() => {
       {!Store.tableLoading && Store.tableRows.length > 0 && (
         <main className="table__comparsion-outer">
           <div className="table__comparsion">
-            <div className="table__comparsion-body">
+            <ScrollContainer className="table__comparsion-body">
               {Store.compared.length === 0 && (
                 <TableLoaderPlaceholder
                   style={{
@@ -185,7 +186,7 @@ const TableComparsion = observer(() => {
                     cols={Store.compared}
                   />
                 ))}
-            </div>
+            </ScrollContainer>
           </div>
           <Tabs />
           <aside className="table__comparsion-filter">

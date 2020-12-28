@@ -9,7 +9,7 @@ const ListRow = (props) => {
   return (
     <>
       <div className={styles.ListRow}>
-        <Icon name="list-dot-icon" />
+        <Icon fill="#fdd835" name="list-dot-icon" />
         <span className="text-regular">{description}</span>
       </div>
     </>

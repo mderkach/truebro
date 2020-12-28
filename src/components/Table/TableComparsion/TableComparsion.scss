@@ -81,7 +81,7 @@
       grid-template-columns: rem(160);
       gap: 0 rem(44);
     }
-    @include media-breakpoint-down(sm) {
+    @include media-breakpoint-between(0, xs) {
       grid-template-columns: rem(86);
       grid-auto-columns: rem(70);
       gap: 0 rem(16);
@@ -259,11 +259,11 @@
       width: auto;
       border-color: transparent;
       background-color: transparent;
-      color: #4989e0;
+      color: $info;
       text-transform: uppercase;
 
       svg {
-        fill: #4989e0;
+        fill: $info;
       }
 
       &:hover {

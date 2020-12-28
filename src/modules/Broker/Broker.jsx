@@ -9,6 +9,7 @@ import TableSimple from '~cmp/Table/TableSimple/TableSimple';
 import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
 import Card from '~cmp/Card/Card';
+import Icon from '~cmp/Icon/Icon';
 // styles
 import styles from './Broker.local';
 
@@ -315,6 +316,29 @@ const specials = [
   },
 ];
 
+const Date = (props) => {
+  const { date = '27 июня 18:02', time } = props;
+  return (
+    <time className="text-regular" dateTime={time}>
+      {date}
+    </time>
+  );
+};
+
+const Status = (props) => {
+  const { text, color, date } = props;
+
+  return (
+    <div className={styles.StatusWrapper}>
+      <div className={styles.StatusIndicator}>
+        <Icon fill={color} name="list-dot-icon" />
+        <p className="text-regular">{text}</p>
+      </div>
+      <Date date={date} />
+    </div>
+  );
+};
+
 const Broker = () => {
   return (
     <>
@@ -376,9 +400,24 @@ const Broker = () => {
           <div className={styles.AreaMain}>
             <h2 className={`h2 medium ${styles.HeadingH2}`}>Новости Альпари</h2>
             <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
-              <Card />
-              <Card />
-              <Card />
+              <Card
+                head={<Date />}
+                title="«Валентин Катасонов: что такое криптовалюты?»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
+        зимнее время будет осуществлен в США. В связи с этим"
+              />
+              <Card
+                head={<Date />}
+                title="«Валентин Катасонов: что такое криптовалюты?»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
+        зимнее время будет осуществлен в США. В связи с этим"
+              />
+              <Card
+                head={<Date />}
+                title="«Валентин Катасонов: что такое криптовалюты?»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
+        зимнее время будет осуществлен в США. В связи с этим"
+              />
             </div>
           </div>
         </Wrapper>
@@ -386,9 +425,21 @@ const Broker = () => {
           <div className={styles.AreaMain}>
             <h2 className={`h2 medium ${styles.HeadingH2}`}>Семинары и вебинары Альпари </h2>
             <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
-              <Card />
-              <Card />
-              <Card />
+              <Card
+                head={<Date />}
+                title={`Вебинар "Базовый курс"`}
+                excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
+              />
+              <Card
+                head={<Date />}
+                title={`Вебинар "Базовый курс"`}
+                excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
+              />
+              <Card
+                head={<Date />}
+                title={`Вебинар "Базовый курс"`}
+                excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
+              />
             </div>
           </div>
         </Wrapper>
@@ -396,9 +447,60 @@ const Broker = () => {
           <div className={styles.AreaMain}>
             <h2 className={`h2 medium ${styles.HeadingH2}`}>Бонусы, акции, конкурсы Альпари </h2>
             <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
-              <Card />
-              <Card />
-              <Card />
+              <Card
+                head="Конкурсы"
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+              />
+              <Card
+                head="Конкурсы"
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+              />
+              <Card
+                head="Конкурсы"
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+              />
+            </div>
+          </div>
+        </Wrapper>
+        <Wrapper extClass={styles.PageContainer}>
+          <div className={styles.AreaMain}>
+            <h2 className={`h2 medium ${styles.HeadingH2}`}>Петензии</h2>
+            <div className={styles.InfoBar}>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Решенных</p>
+                <p className="text-big">6 из 8</p>
+              </div>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Процент решенных</p>
+                <p className="text-big">75%</p>
+              </div>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Среднее время рассмотрения</p>
+                <p className="text-big">2 дн.</p>
+              </div>
+            </div>
+            <div className={styles.PageBlockGrid}>
+              <Card
+                head={<Status color="#2ACC50" text="Решена" />}
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+                variant="outlined"
+              />
+              <Card
+                head={<Status color="#EED346" text="На рассмотрении" />}
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+                variant="outlined"
+              />
+              <Card
+                head={<Status color="#FF724B" text="Отклонена" />}
+                title="Конкурс «Formula FX»"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
+                variant="outlined"
+              />
             </div>
           </div>
         </Wrapper>

@@ -68,3 +68,52 @@
     margin: rem(64) 0 rem(24);
   }
 }
+
+.InfoBar {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  gap: rem(0) rem(60);
+  margin-bottom: rem(32);
+
+  &Cell {
+    > [class*='text-small'] {
+      white-space: nowrap;
+    }
+
+    > [class*='text-big'] {
+      color: $fontAlt;
+    }
+  }
+
+  &Link {
+    color: $info;
+  }
+}
+
+.Status {
+  &Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rem(24);
+
+    time {
+      color: rgba(59, 60, 60, 0.6);
+    }
+  }
+
+  &Indicator {
+    display: flex;
+    align-items: center;
+
+    svg {
+      @include size(rem(16));
+
+      margin-right: rem(8);
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

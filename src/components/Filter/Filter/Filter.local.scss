@@ -185,7 +185,7 @@
       display: flex;
       align-items: center;
       margin-left: rem(40);
-      color: #4989e0;
+      color: $info;
       text-transform: uppercase;
 
       &[class~='is-expanded'] {

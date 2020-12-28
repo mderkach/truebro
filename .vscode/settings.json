@@ -6,5 +6,8 @@
   },
   "[scss]": {
     "editor.formatOnSave": true
-  }
+  },
+  "eslint.workingDirectories": [
+    "./truebro"
+  ]
 }
