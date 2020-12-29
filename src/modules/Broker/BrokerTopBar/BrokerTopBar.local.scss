@@ -2,12 +2,11 @@
 @use 'src/scss/utils/mixins' as *;
 
 .TopBar {
-  @include make-col-fluid();
-
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: rem(6);
+  width: 100%;
+  margin-bottom: rem(32);
 
   &Button {
     padding-right: rem(32);

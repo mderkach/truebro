@@ -1,6 +1,7 @@
 // core
 import React from 'react';
 import { observer } from 'mobx-react';
+import classNames from 'classnames/bind';
 // components
 import Picture from '~cmp/Picture/Picture';
 import Icon from '~cmp/Icon/Icon';
@@ -8,33 +9,53 @@ import Button from '~cmp/Button/Button';
 // styles
 import styles from './BrokerTopBar.local';
 
+const classes = classNames.bind(styles);
+
+const CellHeader = classes({
+  'text-small': true,
+  CellHeader: true,
+});
+
+const CellDescr = classes({
+  h2: true,
+  CellDescr: true,
+});
+
+const Contacts = classes({
+  'text-small': true,
+  medium: true,
+  Contacts: true,
+});
+
 const BrokerTopBar = (props) => {
+  const { className, ...rest } = props;
+
   return (
-    <div className={styles.TopBar} {...props}>
+    <div className={classes(styles.TopBar, className)} {...rest}>
       <Picture cls={styles.Logo} src="/assets/img/alpari.png" />
       <div className={styles.Cell}>
-        <p className={`text-small ${styles.CellHeader}`}>Рейтинг</p>
+        <p className={CellHeader}>Рейтинг</p>
         <div className={styles.CellBody}>
-          <p className={`h2 ${styles.CellDescr}`}>4.13</p>
+          <p className={CellDescr}>4.13</p>
           <Icon cls={styles.CellIcon} name="star-icon" />
         </div>
       </div>
       <div className={styles.Cell}>
-        <p className={`text-small ${styles.CellHeader}`}>Отзывы</p>
+        <p className={CellHeader}>Отзывы</p>
         <div className={styles.CellBody}>
-          <p className={`h2 ${styles.CellDescr}`}>178</p>
+          <p className={CellDescr}>178</p>
           <Icon cls={styles.CellIcon} name="baloon-icon" />
         </div>
       </div>
       <div className={styles.Cell}>
-        <p className={`text-small ${styles.CellHeader}`}>Обработка претензий</p>
+        <p className={CellHeader}>Обработка претензий</p>
         <div className={styles.CellBody}>
-          <p className={`h2 ${styles.CellDescr}`}>65%</p>
+          <p className={CellDescr}>65%</p>
           <Icon cls={styles.CellIcon} name="rating-middle-icon" />
         </div>
       </div>
-      <button type="button" className={`medium text-small ${styles.Contacts}`}>
-        <Icon cls={styles.CellIcon} style={{ fill: '#3F4756' }} name="phone-icon" />
+      <button type="button" className={Contacts}>
+        <Icon cls={styles.CellIcon} fill="#3F4756" name="phone-icon" />
         Контакты
       </button>
       <Button cls={styles.TopBarButton} type="button" variant="primary" text="Открыть счет" />

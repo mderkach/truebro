@@ -14,6 +14,7 @@
 
   &Container {
     display: grid;
+    grid-template-areas: 'mt at mc ac mb mc';
     grid-template-columns: minmax(auto, rem(996)) minmax(auto, rem(424));
     grid-auto-rows: auto;
     gap: rem(32) rem(40);
@@ -45,27 +46,34 @@
 
 .Area {
   &Main {
-    display: flex;
-    flex-direction: column;
-    grid-column: 1/1;
-
-    [class*='PageBlock'] {
-      padding-bottom: rem(64);
-    }
-
-    > [class*='Heading'] {
-      margin-top: rem(32);
-    }
+    grid-column: 1/2;
   }
 
   &Aside {
-    grid-column: 2/2;
+    grid-column: 2/-1;
+  }
+
+  &DoubleRow {
+    grid-row: span 2;
   }
 }
 
 .Heading {
   &H2 {
-    margin: rem(64) 0 rem(24);
+    margin: rem(32) 0 rem(24);
+  }
+}
+
+.Banner {
+  &Main {
+    h2 {
+      margin-top: 0;
+    }
+  }
+
+  &Aside {
+    grid-row: 2/4;
+    grid-column: 2/-1;
   }
 }
 
@@ -116,4 +124,8 @@
       margin-bottom: 0;
     }
   }
+}
+
+.mt0 {
+  margin-top: 0;
 }

@@ -8,11 +8,11 @@ const TableRow = (props) => {
   return (
     <>
       <div className={styles.TableRow}>
-        <p className="text-small">{header}</p>
+        <p className="text-regular">{header}</p>
         {!isLink ? (
-          <p className="text-small medium">{description}</p>
+          <p className="text-regular medium">{description}</p>
         ) : (
-          <p className="text-small medium">
+          <p className="text-regular medium">
             <a href={description} target="_blank" rel="nofollow noreferrer">
               {description}
             </a>

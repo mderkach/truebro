@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
+import classNames from 'classnames/bind';
 // components
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Breadcrumbs from '~cmp/Breadcrumbs/Breadcrumbs';
@@ -11,6 +12,25 @@ import Card from '~cmp/Card/Card';
 import Icon from '~cmp/Icon/Icon';
 // styles
 import styles from './Broker.local';
+
+const classes = classNames.bind(styles);
+
+const H1 = classes({
+  h1: true,
+  bold: true,
+  PageHeader: true,
+});
+
+const H2 = classes({
+  h2: true,
+  medium: true,
+  HeadingH2: true,
+});
+
+const GridBlock = classes({
+  PageBlockGrid: true,
+  PageBlock: true,
+});
 
 const links = [
   {
@@ -344,31 +364,27 @@ const Broker = () => {
       <Breadcrumbs links={links} />
       <div className={styles.PageWrapper}>
         <Wrapper extClass={styles.PageContainer}>
-          <h1 className={`h1 bold ${styles.PageHeader}`}>Форекс брокер Альпари (Alpari)</h1>
-          <div className={styles.AreaMain}>
-            <BrokerTopBar />
-            <div className={styles.PageBlock}>
-              <h2 className={`h2 medium ${styles.HeadingH2}`}>Торговые условия</h2>
-              <Tabs>
-                {tabs.map((tab) => (
-                  <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
-                ))}
-              </Tabs>
-            </div>
+          <h1 className={H1}>Форекс брокер Альпари (Alpari)</h1>
+          <BrokerTopBar className={styles.AreaMain} />
+          <div className={classes(styles.PageBlock, styles.AreaAside, styles.AreaDoubleRow)}>
+            <TableSimple heading="Основная информация" rows={mainInfo} />
           </div>
-          <div className={styles.AreaAside}>
-            <div className={styles.PageBlock}>
-              <TableSimple heading="Основная информация" rows={mainInfo} />
-            </div>
-            <div className={styles.PageBlock}>
-              <List heading="Особые характеристики" rows={specials} />
-            </div>
+          <div className={classes(styles.PageBlock, styles.AreaMain, styles.AreaDoubleRow)}>
+            <h2 className={classes(H2, styles.mt0)}>Торговые условия</h2>
+            <Tabs>
+              {tabs.map((tab) => (
+                <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
+              ))}
+            </Tabs>
+          </div>
+          <div className={classes(styles.PageBlock, styles.AreaAside)}>
+            <List heading="Особые характеристики" rows={specials} />
           </div>
         </Wrapper>
         <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
-            <h2 className={`h2 medium ${styles.HeadingH2}`}>О компании</h2>
-            <div className={`${styles.PageBlockText} ${styles.PageBlock}`}>
+            <h2 className={H2}>О компании</h2>
+            <div className={classes(styles.PageBlockText, styles.PageBlock)}>
               <p className="text-regular">
                 Компания Alpari - российский Форекс брокер, предоставляющий качественные брокерские
                 услуги с 1998 года. За время своего существования компания заслужила всеобщее
@@ -397,33 +413,30 @@ const Broker = () => {
         </Wrapper>
         <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
-            <h2 className={`h2 medium ${styles.HeadingH2}`}>Новости Альпари</h2>
-            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+            <h2 className={H2}>Новости Альпари</h2>
+            <div className={GridBlock}>
               <Card
                 head={<Date />}
                 title="«Валентин Катасонов: что такое криптовалюты?»"
-                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
-        зимнее время будет осуществлен в США. В связи с этим"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
               />
               <Card
                 head={<Date />}
                 title="«Валентин Катасонов: что такое криптовалюты?»"
-                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
-        зимнее время будет осуществлен в США. В связи с этим"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
               />
               <Card
                 head={<Date />}
                 title="«Валентин Катасонов: что такое криптовалюты?»"
-                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на
-        зимнее время будет осуществлен в США. В связи с этим"
+                excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
               />
             </div>
           </div>
         </Wrapper>
         <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
-            <h2 className={`h2 medium ${styles.HeadingH2}`}>Семинары и вебинары Альпари </h2>
-            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+            <h2 className={H2}>Семинары и вебинары Альпари </h2>
+            <div className={GridBlock}>
               <Card
                 head={<Date />}
                 title={`Вебинар "Базовый курс"`}
@@ -444,8 +457,8 @@ const Broker = () => {
         </Wrapper>
         <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
-            <h2 className={`h2 medium ${styles.HeadingH2}`}>Бонусы, акции, конкурсы Альпари </h2>
-            <div className={`${styles.PageBlockGrid} ${styles.PageBlock}`}>
+            <h2 className={H2}>Бонусы, акции, конкурсы Альпари </h2>
+            <div className={GridBlock}>
               <Card
                 head="Конкурсы"
                 title="Конкурс «Formula FX»"
@@ -466,7 +479,7 @@ const Broker = () => {
         </Wrapper>
         <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
-            <h2 className={`h2 medium ${styles.HeadingH2}`}>Петензии</h2>
+            <h2 className={H2}>Петензии</h2>
             <div className={styles.InfoBar}>
               <div className={styles.InfoBarCell}>
                 <p className="text-small">Решенных</p>
