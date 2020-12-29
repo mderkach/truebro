@@ -6,6 +6,7 @@ import { useMediaQuery } from 'react-responsive';
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Breadcrumbs from '~cmp/Breadcrumbs/Breadcrumbs';
 import BrokerTopBar from './BrokerTopBar/BrokerTopBar';
+import BrokerPaymentSystems from './BrokerPaymentSystems/BrokerPaymentSystems';
 import TableSimple from '~cmp/Table/TableSimple/TableSimple';
 import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
@@ -336,6 +337,47 @@ const specials = [
   },
 ];
 
+const imgPath = './assets/img/';
+
+const payments = [
+  {
+    src: `${imgPath}visa.png`,
+  },
+  {
+    src: `${imgPath}mc.png`,
+  },
+  {
+    src: `${imgPath}neteller.png`,
+  },
+  {
+    src: `${imgPath}apay.png`,
+  },
+  {
+    src: `${imgPath}skrill.png`,
+  },
+  {
+    src: `${imgPath}tinkoff.png`,
+  },
+  {
+    src: `${imgPath}qiwi.png`,
+  },
+  {
+    src: `${imgPath}wm.png`,
+  },
+  {
+    src: `${imgPath}btc.png`,
+  },
+  {
+    src: `${imgPath}vtb.png`,
+  },
+  {
+    src: `${imgPath}psb.png`,
+  },
+  {
+    src: `${imgPath}sber.png`,
+  },
+];
+
 const Date = (props) => {
   const { date = '27 июня 18:02', time } = props;
   return (
@@ -389,7 +431,7 @@ const Broker = () => {
           <div className={classes(styles.PageBlock, styles.AreaAside)}>
             <List heading="Особые характеристики" rows={specials} />
           </div>
-          <div className={styles.AreaMain}>
+          <div className={classes(styles.AreaMain, styles.AreaDoubleRow)}>
             <h2 className={H2}>О компании</h2>
             <div className={classes(styles.PageBlockText, styles.PageBlock)}>
               <p className="text-regular">
@@ -416,6 +458,9 @@ const Broker = () => {
                 выгодные условия для действительно успешной торговли с большой прибылью.
               </p>
             </div>
+          </div>
+          <div className={styles.AreaAside}>
+            <BrokerPaymentSystems items={payments} />
           </div>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Новости Альпари</h2>
