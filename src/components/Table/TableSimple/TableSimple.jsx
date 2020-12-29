@@ -13,7 +13,7 @@ const TableRow = (props) => {
           <p className="text-regular medium">{description}</p>
         ) : (
           <p className="text-regular medium">
-            <a href={description} target="_blank" rel="nofollow noreferrer">
+            <a href={`https://${description}`} target="_blank" rel="nofollow noreferrer">
               {description}
             </a>
           </p>

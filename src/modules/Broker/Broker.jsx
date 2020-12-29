@@ -54,7 +54,7 @@ const mainInfo = [
   },
   {
     header: 'Адрес сайта',
-    description: 'http://www.alpari.com',
+    description: 'www.alpari.com',
     isLink: true,
   },
   {
@@ -365,7 +365,7 @@ const Broker = () => {
       <div className={styles.PageWrapper}>
         <Wrapper extClass={styles.PageContainer}>
           <h1 className={H1}>Форекс брокер Альпари (Alpari)</h1>
-          <BrokerTopBar className={styles.AreaMain} />
+          <BrokerTopBar className={(styles.AreaMain, styles.AreaFluid)} />
           <div className={classes(styles.PageBlock, styles.AreaAside, styles.AreaDoubleRow)}>
             <TableSimple heading="Основная информация" rows={mainInfo} />
           </div>
@@ -380,8 +380,6 @@ const Broker = () => {
           <div className={classes(styles.PageBlock, styles.AreaAside)}>
             <List heading="Особые характеристики" rows={specials} />
           </div>
-        </Wrapper>
-        <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
             <h2 className={H2}>О компании</h2>
             <div className={classes(styles.PageBlockText, styles.PageBlock)}>
@@ -410,8 +408,6 @@ const Broker = () => {
               </p>
             </div>
           </div>
-        </Wrapper>
-        <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Новости Альпари</h2>
             <div className={GridBlock}>
@@ -432,8 +428,6 @@ const Broker = () => {
               />
             </div>
           </div>
-        </Wrapper>
-        <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Семинары и вебинары Альпари </h2>
             <div className={GridBlock}>
@@ -454,8 +448,6 @@ const Broker = () => {
               />
             </div>
           </div>
-        </Wrapper>
-        <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Бонусы, акции, конкурсы Альпари </h2>
             <div className={GridBlock}>
@@ -476,8 +468,6 @@ const Broker = () => {
               />
             </div>
           </div>
-        </Wrapper>
-        <Wrapper extClass={styles.PageContainer}>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Петензии</h2>
             <div className={styles.InfoBar}>

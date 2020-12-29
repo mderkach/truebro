@@ -13,15 +13,19 @@
   }
 
   &Container {
+    @include media-breakpoint-down(xl) {
+      grid-template-columns: minmax(auto, rem(670)) minmax(auto, rem(280));
+      grid-auto-flow: column;
+      gap: rem(32) rem(25);
+    }
+
     display: grid;
-    grid-template-areas: 'mt at mc ac mb mc';
     grid-template-columns: minmax(auto, rem(996)) minmax(auto, rem(424));
     grid-auto-rows: auto;
     gap: rem(32) rem(40);
   }
 
   &Block {
-    margin-bottom: rem(32);
     padding-bottom: rem(32);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
@@ -56,24 +60,17 @@
   &DoubleRow {
     grid-row: span 2;
   }
+
+  &Fluid {
+    @include media-breakpoint-down(xl) {
+      grid-column: 1/-1;
+    }
+  }
 }
 
 .Heading {
   &H2 {
-    margin: rem(32) 0 rem(24);
-  }
-}
-
-.Banner {
-  &Main {
-    h2 {
-      margin-top: 0;
-    }
-  }
-
-  &Aside {
-    grid-row: 2/4;
-    grid-column: 2/-1;
+    margin: 0 0 rem(24);
   }
 }
 
