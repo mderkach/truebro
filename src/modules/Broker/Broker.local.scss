@@ -3,7 +3,7 @@
 
 .Page {
   &Wrapper {
-    padding-top: rem(40);
+    padding: rem(40) 0 rem(64);
   }
 
   &Header {
@@ -41,6 +41,11 @@
     }
 
     &Grid {
+      @include media-breakpoint-down(xl) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0 rem(16);
+      }
+
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 0 rem(20);
