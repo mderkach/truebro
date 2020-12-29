@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 // components
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Button from '~cmp/Button/Button';
@@ -7,12 +8,24 @@ import InputField from '~cmp/Input/InputField/InputField';
 // styles
 import styles from './ScreenBroker.local';
 
+const classes = classNames.bind(styles);
+
 const ScreenBroker = (props) => {
   const { title, descr, containerClass, svg, action } = props;
 
+  const WrapperClass = classes({
+    ScreenBrokerContainer: true,
+    [containerClass]: containerClass,
+  });
+
+  const AgreementClass = classes({
+    'text-smal': true,
+    ScreenBrokerFormAgreement: true,
+  });
+
   return (
     <section className={styles.ScreenBroker}>
-      <Wrapper extClass={`${styles.ScreenBrokerContainer} ${containerClass || ''}`}>
+      <Wrapper extClass={WrapperClass}>
         <div className={styles.ScreenBrokerOuter}>
           <Icon cls={styles.ScreenBrokerBrand} name={svg} />
           <div>
@@ -25,7 +38,7 @@ const ScreenBroker = (props) => {
             <div className={styles.ScreenBrokerFormBody}>
               <InputField type="email" name="email" placeholder="Пожалуйста, введите ваш е-мail" />
               <Button variant="primary" type="submit" text="Подписаться" />
-              <p className={`text-small ${styles.ScreenBrokerFormAgreement}`}>
+              <p className={AgreementClass}>
                 Нажимая на кнопку «Подписаться» я даю согласие на обработку персональных данных и
                 подтверждаю что мне есть 18 лет.
               </p>

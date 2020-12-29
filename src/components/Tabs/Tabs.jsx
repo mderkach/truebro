@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
+import classNames from 'classnames/bind';
 // styles
 import styles from './Tabs.local';
 
+const classes = classNames.bind(styles);
+
 const TabsButton = (props) => {
   const { text, cls, ...rest } = props;
+
+  const ButtonClass = classes({
+    'text-small': true,
+    TabsButton: true,
+    [cls]: cls,
+  });
+
   return (
     <>
-      <button type="button" className={`text-small ${styles.TabsButton} ${cls}`} {...rest}>
+      <button type="button" className={ButtonClass} {...rest}>
         {text}
       </button>
     </>
@@ -16,13 +26,24 @@ const TabsButton = (props) => {
 
 const TabContent = (props) => {
   const { children, cls } = props;
-  return <div className={`${styles.TabsContent} ${cls}`}>{children}</div>;
+
+  const ContentClass = classes({
+    TabsContent: true,
+    [cls]: cls,
+  });
+
+  return <div className={ContentClass}>{children}</div>;
 };
 
 const Tabs = (props) => {
   const { children } = props;
 
   const [activeTab, setActiveTab] = useState(children[0].key);
+
+  const isActive = (bool) =>
+    classes({
+      'is-active': bool,
+    });
 
   return (
     <>
@@ -32,7 +53,7 @@ const Tabs = (props) => {
             <TabsButton
               key={item.key}
               text={item.key}
-              cls={activeTab === item.key ? 'is-active' : ''}
+              cls={isActive(activeTab === item.key)}
               onClick={() => {
                 setActiveTab(item.key);
               }}
@@ -41,7 +62,7 @@ const Tabs = (props) => {
         </div>
         <div className={styles.TabsBody}>
           {children.map((item) => (
-            <TabContent key={item.key} cls={activeTab === item.key ? 'is-active' : ''}>
+            <TabContent key={item.key} cls={isActive(activeTab === item.key)}>
               {item}
             </TabContent>
           ))}

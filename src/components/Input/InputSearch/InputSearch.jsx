@@ -1,4 +1,5 @@
 import React, { useState, createRef } from 'react';
+import classNames from 'classnames/bind';
 // eslint-disable-next-line no-unused-vars
 import API from '~u/API';
 // components
@@ -6,6 +7,8 @@ import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
 // styles
 import styles from './InputSearch.local';
+
+const classes = classNames.bind(styles);
 
 const InputSearch = (props) => {
   const { name } = props;
@@ -44,13 +47,15 @@ const InputSearch = (props) => {
     }
   };
 
+  const Wrapper = classes({
+    InputSearchWrapper: true,
+    InputSearchWrapperExpanded: expanded,
+    InputSearchWrapperLoading: loading,
+  });
+
   return (
     <>
-      <div
-        className={`${styles.InputSearchWrapper} ${
-          !expanded ? '' : styles.InputSearchWrapperExpanded
-        } ${!loading ? '' : styles.InputSearchWrapperLoading}`}
-      >
+      <div className={Wrapper}>
         <Button
           variant="primary"
           type="link"
