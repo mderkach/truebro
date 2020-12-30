@@ -1,8 +1,10 @@
-import React, { createRef, useState, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react';
-import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
+import classNames from 'classnames/bind';
+import useScrollLock from '~u/useScrollLock';
+import useToggleHidden from '~u/useToggleHidden';
 // components
 import Picture from '~cmp/Picture/Picture';
 import Button from '~cmp/Button/Button';
@@ -11,56 +13,46 @@ import FilterItem from '~cmp/Filter/FilterItem';
 // styles
 import styles from './Filter.local';
 
-const CompareBtn = observer(({ action, length }) => (
-  <Button
-    onClick={(e) => {
-      action(e);
-    }}
-    type="button"
-    cls={`text-small medium ${styles.FilterButton}`}
-  >
-    <span>к сравнению</span>
-    <span className={styles.FilterCounter}>{length}</span>
-  </Button>
-));
+const classes = classNames.bind(styles);
+
+const CompareBtn = observer(({ action, length }) => {
+  const BtnClass = classes({
+    'text-small': true,
+    medium: true,
+    FilterButton: true,
+  });
+
+  return (
+    <Button
+      onClick={(e) => {
+        action(e);
+      }}
+      type="button"
+      cls={BtnClass}
+    >
+      <span>к сравнению</span>
+      <span className={styles.FilterCounter}>{length}</span>
+    </Button>
+  );
+});
 
 const Filter = observer((props) => {
   const { items, compare } = props;
 
-  const ref = createRef();
-  const spanRef = createRef();
-  const hiddenTriggerRef = createRef();
+  const { expanded, event, ref } = useScrollLock();
 
-  const [expanded, setExpanded] = useState(false);
-  const [text, setText] = useState();
+  const { event: toggleHiddenEvent, spanRef, hiddenTriggerRef } = useToggleHidden();
 
   const history = useHistory();
 
   const toggleFilter = (e) => {
     e.preventDefault();
-    setExpanded(!expanded);
-
-    if (!expanded) {
-      disableBodyScroll(ref.current);
-    } else {
-      enableBodyScroll(ref.current);
-    }
+    event();
   };
 
   const toggleHidden = (e) => {
     e.preventDefault();
-    const target = hiddenTriggerRef.current;
-    const textTarget = spanRef.current;
-
-    target.previousElementSibling.classList.toggle('is-expanded');
-    target.classList.toggle('is-expanded');
-
-    if (target.classList.contains('is-expanded')) {
-      setText(textTarget.textContent);
-      textTarget.textContent = 'Свернуть';
-    } else {
-      textTarget.textContent = text;
-    }
+    toggleHiddenEvent();
   };
 
   const toCompare = (e) => {
@@ -75,6 +67,39 @@ const Filter = observer((props) => {
 
   const isMobile = useMediaQuery({
     query: '(max-width: 1679px)',
+  });
+
+  const FilterOuterClass = classes({
+    FilterItemOuter: true,
+    'is-expanded': isMobile && expanded,
+  });
+
+  const FilterCloseClass = classes({
+    FilterClose: true,
+    'is-expanded': isMobile && expanded,
+  });
+
+  const FilterBackdropClass = classes({
+    FilterItemOuterBackdrop: true,
+    'is-expanded': isMobile && expanded,
+  });
+
+  const BtnClass = classes({
+    'text-small': true,
+    medium: true,
+    FilterButton: true,
+  });
+
+  const BtnHiddenClass = classes({
+    'text-small': true,
+    medium: true,
+    FilterHiddenTrigger: true,
+  });
+
+  const FilterHeader = classes({
+    'text-regular': true,
+    medium: true,
+    FilterHeader: true,
   });
 
   return (
@@ -104,26 +129,16 @@ const Filter = observer((props) => {
             {compare && compare.length > 0 && (
               <CompareBtn action={toCompare} length={compare.length} />
             )}
-            <Button
-              variant="secondary"
-              onClick={(e) => {
-                toggleFilter(e);
-              }}
-              type="button"
-              cls={`text-small medium ${styles.FilterButton}`}
-            >
+            <Button variant="secondary" onClick={toggleFilter} type="button" cls={BtnClass}>
               <Icon cls={styles.FilterButtonIcon} name="chevron-right-icon" />
               <span>Фильтр</span>
             </Button>
           </>
         )}
-        <div
-          ref={ref}
-          className={`${styles.FilterItemOuter} ${isMobile && expanded ? 'is-expanded' : ''}`}
-        >
+        <div ref={ref} className={FilterOuterClass}>
           {items.map((item) => (
             <div data-key={item.header} key={item.header} className={styles.FilterItemWrapper}>
-              <p className={`text-regular medium ${styles.FilterHeader}`}>{item.header}</p>
+              <p className={FilterHeader}>{item.header}</p>
               {item.items.map((input, subindex) => (
                 <Fragment key={input.label}>
                   {subindex < 8 && (
@@ -144,8 +159,8 @@ const Filter = observer((props) => {
                   </div>
                   <button
                     type="button"
-                    className={`text-small medium ${styles.FilterHiddenTrigger}`}
-                    onClick={(e) => toggleHidden(e)}
+                    className={BtnHiddenClass}
+                    onClick={toggleHidden}
                     ref={hiddenTriggerRef}
                   >
                     <span ref={spanRef}>{`показать еще ${items.length}`}</span>
@@ -156,22 +171,8 @@ const Filter = observer((props) => {
             </div>
           ))}
         </div>
-        {isMobile && (
-          <Icon
-            onClick={(e) => {
-              toggleFilter(e);
-            }}
-            cls={`${styles.FilterClose} ${isMobile && expanded ? 'is-expanded' : ''}`}
-            name="cross-icon"
-          />
-        )}
-        {isMobile && (
-          <div
-            className={`${styles.FilterItemOuterBackdrop} ${
-              isMobile && expanded ? 'is-expanded' : ''
-            }`}
-          />
-        )}
+        {isMobile && <Icon onClick={toggleFilter} cls={FilterCloseClass} name="cross-icon" />}
+        {isMobile && <div className={FilterBackdropClass} />}
       </div>
     </>
   );

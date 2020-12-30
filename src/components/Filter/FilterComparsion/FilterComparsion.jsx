@@ -1,5 +1,6 @@
-import React, { Fragment, createRef, useState } from 'react';
+import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
+import useToggleHidden from '~u/useToggleHidden';
 // components
 import FilterItem from '~cmp/Filter/FilterItem';
 import Picture from '~cmp/Picture/Picture';
@@ -12,24 +13,11 @@ import { checkedAlreadyChecked, setCompare } from '~u/functions';
 const FilterComparsion = observer((props) => {
   const { items } = props;
 
-  const spanRef = createRef();
-  const hiddenTriggerRef = createRef();
-  const [text, setText] = useState();
+  const { event: toggleHiddenEvent, spanRef, hiddenTriggerRef } = useToggleHidden();
 
   const toggleHidden = (e) => {
     e.preventDefault();
-    const target = hiddenTriggerRef.current;
-    const textTarget = spanRef.current;
-
-    target.previousElementSibling.classList.toggle('is-expanded');
-    target.classList.toggle('is-expanded');
-
-    if (target.classList.contains('is-expanded')) {
-      setText(textTarget.textContent);
-      textTarget.textContent = 'Свернуть';
-    } else {
-      textTarget.textContent = text;
-    }
+    toggleHiddenEvent();
   };
 
   return (
@@ -70,7 +58,7 @@ const FilterComparsion = observer((props) => {
       <button
         type="button"
         className={`text-small medium ${styles.FilterComparsionHiddenTrigger}`}
-        onClick={(e) => toggleHidden(e)}
+        onClick={toggleHidden}
         ref={hiddenTriggerRef}
       >
         <span ref={spanRef}>показать еще</span>

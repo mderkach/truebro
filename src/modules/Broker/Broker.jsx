@@ -376,6 +376,9 @@ const payments = [
   {
     src: `${imgPath}sber.png`,
   },
+  {
+    src: `${imgPath}pskb.png`,
+  },
 ];
 
 const Date = (props) => {

@@ -30,4 +30,49 @@
     gap: rem(16);
     margin-top: rem(16);
   }
+
+  &Hidden {
+    &Wrapper {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in 0s;
+
+      &[class~='is-expanded'] {
+        @include collapse-in();
+
+        margin-bottom: rem(16);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &Trigger {
+      display: flex;
+      align-items: center;
+      margin-top: rem(8);
+      color: $info;
+      text-transform: uppercase;
+
+      &[class~='is-expanded'] {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      span {
+        pointer-events: none;
+      }
+
+      &Icon {
+        @include size(rem(24));
+
+        pointer-events: none;
+      }
+    }
+  }
 }
