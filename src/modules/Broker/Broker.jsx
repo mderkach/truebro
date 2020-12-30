@@ -14,6 +14,7 @@ import Card from '~cmp/Card/Card';
 import Icon from '~cmp/Icon/Icon';
 // styles
 import styles from './Broker.local';
+import Picture from '../../components/Picture/Picture';
 
 const classes = classNames.bind(styles);
 
@@ -381,6 +382,21 @@ const payments = [
   },
 ];
 
+const banner = [
+  {
+    src: `${imgPath}banner-big.jpg`,
+    media: 'min-width: 1680px',
+  },
+  {
+    src: `${imgPath}banner-medium.jpg`,
+    media: 'max-width: 1679px',
+  },
+  {
+    src: `${imgPath}banner-small.jpg`,
+    media: 'max-width: 768px',
+  },
+];
+
 const Date = (props) => {
   const { date = '27 июня 18:02', time } = props;
   return (
@@ -464,6 +480,9 @@ const Broker = () => {
           </div>
           <div className={styles.AreaAside}>
             <BrokerPaymentSystems items={payments} />
+          </div>
+          <div className={classes(styles.AreaAside, styles.AreaBanner)}>
+            <Picture cls={styles.AreaAbsolute} src={banner[0].src} media={banner} />
           </div>
           <div className={styles.AreaMain}>
             <h2 className={H2}>Новости Альпари</h2>

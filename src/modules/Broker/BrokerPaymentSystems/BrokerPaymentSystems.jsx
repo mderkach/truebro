@@ -17,7 +17,7 @@ const hiddenTriggerClass = classes({
 });
 
 const BrokerPaymentSystems = (props) => {
-  const { items } = props;
+  const { items, className } = props;
   const { event: toggleHiddenEvent, spanRef, hiddenTriggerRef } = useToggleHidden();
   const toggleHidden = (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const BrokerPaymentSystems = (props) => {
   };
   return (
     <>
-      <div className={styles.Wrapper}>
+      <div className={classes(styles.Wrapper, className)}>
         <h3 className="h3 medium">Платежные системы</h3>
         <div className={styles.PictureWrapper}>
           {items.map(

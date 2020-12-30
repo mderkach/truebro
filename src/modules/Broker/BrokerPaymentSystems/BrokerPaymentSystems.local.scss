@@ -24,6 +24,10 @@
   }
 
   &Wrapper {
+    @include media-breakpoint-down(xl) {
+      grid-template-columns: repeat(3, rem(80));
+    }
+
     display: grid;
     grid-template-columns: repeat(4, rem(80));
     grid-auto-rows: rem(56);

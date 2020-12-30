@@ -55,10 +55,12 @@
 
 .Area {
   &Main {
+    position: relative;
     grid-column: 1/2;
   }
 
   &Aside {
+    position: relative;
     grid-column: 2/-1;
   }
 
@@ -71,11 +73,19 @@
       grid-column: 1/-1;
     }
   }
+
+  &Banner {
+    margin-top: rem(-1);
+  }
+
+  &Absolute {
+    position: absolute;
+  }
 }
 
 .Heading {
   &H2 {
-    margin: 0 0 rem(24);
+    margin: rem(32) 0 rem(24);
   }
 }
 
