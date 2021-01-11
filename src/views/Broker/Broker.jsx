@@ -5,11 +5,11 @@ import { useMediaQuery } from 'react-responsive';
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Breadcrumbs from '~cmp/Breadcrumbs/Breadcrumbs';
 // views
-import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from './Views';
+import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '~m/Broker/Views';
 // styles
-import styles from './Broker.local';
+import styles from '~m/Broker/Broker.local';
 // utils
-import { H1 } from './Utils/Classes';
+import { H1 } from '~m/Broker/Utils/Classes';
 
 const links = [
   {
@@ -22,7 +22,7 @@ const links = [
   },
 ];
 
-const Broker = () => {
+const Broker = observer(() => {
   const isDesktop = useMediaQuery({
     query: '(min-width: 1680px)',
   });
@@ -48,6 +48,6 @@ const Broker = () => {
       </div>
     </>
   );
-};
+});
 
-export default observer(Broker);
+export default Broker;

@@ -13,24 +13,25 @@ const Button = (props) => {
     medium: true,
     ButtonPrimary: variant === 'primary',
     ButtonSecondary: variant !== 'primary',
+    [cls]: cls,
   });
 
   return (
     <>
       {type === 'submit' && (
-        <button type="submit" className={classNames(btnClass, cls)} {...rest}>
+        <button type="submit" className={btnClass} {...rest}>
           {text}
           {children}
         </button>
       )}
       {type === 'link' && (
-        <a href={href} className={classNames(btnClass, cls)} {...rest}>
+        <a href={href} className={btnClass} {...rest}>
           {text}
           {children}
         </a>
       )}
       {type === 'button' && (
-        <button type="button" className={classNames(btnClass, cls)} {...rest}>
+        <button type="button" className={btnClass} {...rest}>
           <span>{text}</span>
           {children}
         </button>

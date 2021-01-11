@@ -1,5 +1,6 @@
+/* eslint-disable react/display-name */
 // core
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 // app styles always before imported components
@@ -8,9 +9,9 @@ import './App.scss';
 import Header from '~m/Header/Header';
 import Footer from '~m/Footer/Footer';
 // routes
-import Rating from '~v/Rating/Rating';
-import Compare from '~v/Compare/Compare';
-import Broker from '~m/Broker/Broker';
+const Rating = lazy(() => import('~v/Rating/Rating'));
+const Compare = lazy(() => import('~v/Compare/Compare'));
+const Broker = lazy(() => import('~v/Broker/Broker'));
 
 const NavMenu = [
   {
@@ -49,20 +50,32 @@ const routes = [
   {
     key: 'rating',
     path: '/',
-    component: Rating,
+    render: (props) => (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Rating {...props} />
+      </Suspense>
+    ),
     exact: true,
   },
   {
     key: 'compare',
     path: '/compare',
-    component: Compare,
+    render: (props) => (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Compare {...props} />
+      </Suspense>
+    ),
     exact: true,
   },
   {
     key: 'broker',
     path: '/broker/:name?',
     exact: false,
-    component: Broker,
+    render: (props) => (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Broker {...props} />
+      </Suspense>
+    ),
   },
 ];
 
@@ -77,12 +90,7 @@ const App = observer(() => {
         <Switch>
           {routes.map((route) => {
             return (
-              <Route
-                key={route.key}
-                path={route.path}
-                exact={route.exact}
-                render={(props) => <route.component {...props} />}
-              />
+              <Route key={route.key} path={route.path} exact={route.exact} render={route.render} />
             );
           })}
         </Switch>

@@ -1,6 +1,7 @@
 const Webpack = require('webpack');
 const { merge } = require('webpack-merge');
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const BaseWebpackConfig = require('./webpack.base.conf.js');
 
 const devWebpackConfig = merge(BaseWebpackConfig, {
@@ -32,6 +33,9 @@ const devWebpackConfig = merge(BaseWebpackConfig, {
         reload: false,
       },
     ),
+    new Dotenv({
+      path: './.env',
+    }),
     new Webpack.SourceMapDevToolPlugin({
       filename: '[file].map',
     }),
