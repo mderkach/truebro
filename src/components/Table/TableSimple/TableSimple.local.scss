@@ -10,12 +10,12 @@
 
   &Row {
     @include media-breakpoint-down(xl) {
-      grid-template-columns: repeat(2, minmax(rem(140), rem(276)));
-      gap: rem(16) 0;
+      grid-template-columns: repeat(2, minmax(rem(170), rem(276)));
+      gap: rem(16) rem(20);
     }
 
     display: grid;
-    grid-template-columns: repeat(2, minmax(rem(140), rem(425)));
+    grid-template-columns: repeat(2, minmax(rem(120), rem(425)));
     gap: rem(16) rem(20);
 
     a {
