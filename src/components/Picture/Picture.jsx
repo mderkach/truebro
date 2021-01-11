@@ -17,7 +17,7 @@ const Picture = (props) => {
       {media && (
         <>
           {media.map((s) => (
-            <source key={s.media} srcSet={s.src} media={`(${s.media})`} />
+            <source key={s.media} srcSet={s.src} media={s.media} />
           ))}
           <img src={src} alt={alt} />
         </>
