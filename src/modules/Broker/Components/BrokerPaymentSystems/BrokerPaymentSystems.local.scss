@@ -30,6 +30,9 @@
     @include media-breakpoint-down(lg) {
       grid-template-columns: repeat(7, rem(80));
     }
+    @include media-breakpoint-down(sm) {
+      grid-template-columns: repeat(3, rem(80));
+    }
 
     display: grid;
     grid-template-columns: repeat(4, rem(80));

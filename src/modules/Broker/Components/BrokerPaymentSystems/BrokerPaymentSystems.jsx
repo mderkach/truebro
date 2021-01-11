@@ -33,6 +33,10 @@ const BrokerPaymentSystems = (props) => {
     query: '(min-width: 768px) and (max-width: 1365px)',
   });
 
+  const isMobile = useMediaQuery({
+    query: '(max-width: 767px)',
+  });
+
   return (
     <>
       <div className={classes(styles.Wrapper, className)}>
@@ -45,6 +49,10 @@ const BrokerPaymentSystems = (props) => {
           {isTablet &&
             items.map(
               (i, index) => index < 14 && <Picture key={i.src} src={i.src} cls={styles.Picture} />,
+            )}
+          {isMobile &&
+            items.map(
+              (i, index) => index < 9 && <Picture key={i.src} src={i.src} cls={styles.Picture} />,
             )}
         </div>
         {isDesktop && items.length > 11 && (
@@ -81,6 +89,24 @@ const BrokerPaymentSystems = (props) => {
               ref={hiddenTriggerRef}
             >
               <span ref={spanRef}>{`показать еще ${items.length - 14}`}</span>
+              <Icon cls={styles.PictureHiddenTriggerIcon} name="chevron-down-icon" />
+            </button>
+          </>
+        )}
+        {isMobile && items.length > 8 && (
+          <>
+            <div className={classes(styles.PictureHiddenWrapper, styles.PictureWrapper)}>
+              {items.map(
+                (i, index) => index > 8 && <Picture key={i.src} src={i.src} cls={styles.Picture} />,
+              )}
+            </div>
+            <button
+              type="button"
+              className={hiddenTriggerClass}
+              onClick={toggleHidden}
+              ref={hiddenTriggerRef}
+            >
+              <span ref={spanRef}>{`показать еще ${items.length - 9}`}</span>
               <Icon cls={styles.PictureHiddenTriggerIcon} name="chevron-down-icon" />
             </button>
           </>
