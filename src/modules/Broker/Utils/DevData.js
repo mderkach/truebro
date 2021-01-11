@@ -351,7 +351,11 @@ const banner = [
   },
   {
     src: `${imgPath}banner-small.jpg`,
-    media: '(max-width: 1365px)',
+    media: '(min-width: 767px) and (max-width: 1365px)',
+  },
+  {
+    src: `${imgPath}banner-medium.jpg`,
+    media: '(max-width: 767px)',
   },
 ];
 

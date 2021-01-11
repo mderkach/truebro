@@ -11,7 +11,7 @@ const Picture = (props) => {
       {!media && (
         <>
           <source srcSet={src || srcset} />
-          <img src={src || `./assets/img/${picname}.webp`} alt={alt} />
+          <img src={src || `./assets/img/${picname}.webp`} alt={alt || ''} />
         </>
       )}
       {media && (
@@ -19,7 +19,7 @@ const Picture = (props) => {
           {media.map((s) => (
             <source key={s.media} srcSet={s.src} media={s.media} />
           ))}
-          <img src={src} alt={alt} />
+          <img src={src} alt={alt || ''} />
         </>
       )}
     </picture>

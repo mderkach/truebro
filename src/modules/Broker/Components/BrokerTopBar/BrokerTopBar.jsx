@@ -56,7 +56,7 @@ const BrokerTopBar = (props) => {
       </div>
       <button type="button" className={Contacts}>
         <Icon cls={styles.CellIcon} fill="#3F4756" name="phone-icon" />
-        Контакты
+        <span>Контакты</span>
       </button>
       <Button cls={styles.TopBarButton} type="button" variant="primary" text="Открыть счет" />
     </div>

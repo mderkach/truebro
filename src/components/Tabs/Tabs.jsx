@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
+import ScrollContainer from 'react-indiana-drag-scroll';
 import classNames from 'classnames/bind';
 // styles
 import styles from './Tabs.local';
@@ -48,7 +49,7 @@ const Tabs = (props) => {
   return (
     <>
       <div className={styles.TabsWrapper}>
-        <div className={styles.TabsHead}>
+        <ScrollContainer className={styles.TabsHead}>
           {children.map((item) => (
             <TabsButton
               key={item.key}
@@ -59,7 +60,7 @@ const Tabs = (props) => {
               }}
             />
           ))}
-        </div>
+        </ScrollContainer>
         <div className={styles.TabsBody}>
           {children.map((item) => (
             <TabContent key={item.key} cls={isActive(activeTab === item.key)}>

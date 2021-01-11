@@ -31,7 +31,7 @@ const Button = (props) => {
       )}
       {type === 'button' && (
         <button type="button" className={classNames(btnClass, cls)} {...rest}>
-          {text}
+          <span>{text}</span>
           {children}
         </button>
       )}
