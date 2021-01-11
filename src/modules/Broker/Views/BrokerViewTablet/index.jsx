@@ -1,4 +1,6 @@
 import React from 'react';
+// modules
+import Comments from '~m/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
@@ -110,6 +112,10 @@ const BrokerViewTablet = () => {
             excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
           />
         </div>
+      </div>
+      <div className={styles.PageBlock}>
+        <h2 className={H2}>Отзывы о компании Альпари</h2>
+        <Comments />
       </div>
       <div>
         <h2 className={H2}>Претензии</h2>
