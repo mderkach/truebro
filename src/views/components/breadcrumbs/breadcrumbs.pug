@@ -1,7 +1,0 @@
-mixin breadcrumbs(links)
-  nav.breadcrumbs
-    +wrapper()
-      each link, index in links
-        a.breadcrumbs-item.text-regular(href=link.href) !{ link.descr }
-        if index !== links.length - 1
-          span.breadcrumbs-divider &nbsp;/&nbsp;

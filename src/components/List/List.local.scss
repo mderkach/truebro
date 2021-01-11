@@ -1,0 +1,27 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.List {
+  &Body {
+    margin-bottom: 0;
+  }
+
+  &Row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: rem(16);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    svg {
+      @include size(rem(24));
+    }
+
+    span {
+      margin-left: rem(16);
+    }
+  }
+}

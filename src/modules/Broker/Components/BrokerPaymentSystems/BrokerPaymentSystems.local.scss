@@ -1,0 +1,85 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Wrapper {
+  width: 100%;
+}
+
+.Picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: rem(6) rem(10);
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+
+  img {
+    display: block;
+    object-fit: contain;
+    width: auto;
+    height: auto;
+    object-position: center;
+  }
+
+  &Wrapper {
+    @include media-breakpoint-down(xl) {
+      grid-template-columns: repeat(3, rem(80));
+    }
+    @include media-breakpoint-down(lg) {
+      grid-template-columns: repeat(7, rem(80));
+    }
+
+    display: grid;
+    grid-template-columns: repeat(4, rem(80));
+    grid-auto-rows: rem(56);
+    gap: rem(16);
+    margin-top: rem(16);
+  }
+
+  &Hidden {
+    &Wrapper {
+      max-height: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in 0s;
+
+      &[class~='is-expanded'] {
+        @include collapse-in();
+
+        margin-bottom: rem(16);
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &Trigger {
+      display: flex;
+      align-items: center;
+      margin-top: rem(8);
+      color: $info;
+      text-transform: uppercase;
+
+      &[class~='is-expanded'] {
+        svg {
+          transform: rotate(180deg);
+        }
+      }
+
+      &:focus {
+        outline: 0;
+      }
+
+      span {
+        pointer-events: none;
+      }
+
+      &Icon {
+        @include size(rem(24));
+
+        pointer-events: none;
+      }
+    }
+  }
+}

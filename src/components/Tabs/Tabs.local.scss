@@ -1,0 +1,47 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Tabs {
+  &Wrapper {
+    display: block;
+  }
+
+  &Head {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: rem(24);
+  }
+
+  &Button {
+    @include media-breakpoint-down(xl) {
+      margin-right: rem(8);
+    }
+
+    margin-right: rem(16);
+    padding: rem(4) rem(16);
+    border-radius: 4px;
+    background-color: rgba(63, 71, 86, 0.12);
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &[class~='is-active'] {
+      background-color: $primary;
+    }
+  }
+
+  &Content {
+    display: none;
+
+    &[class~='is-active'] {
+      display: block;
+    }
+  }
+
+  &Body {
+    display: block;
+  }
+}

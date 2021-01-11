@@ -1,0 +1,76 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.InputSearch {
+  display: block;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  color: $fontAlt;
+
+  &Wrapper {
+    @include size(rem(40));
+    @include media-breakpoint-down(sm) {
+      @include size(rem(32));
+    }
+
+    display: flex;
+    align-items: center;
+    border-radius: rem(100);
+    background-color: $primary;
+    transition: width 0.5s ease;
+
+    &Expanded {
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        margin-right: rem(10);
+      }
+
+      width: 100%;
+      padding-right: rem(10);
+
+      [class~='InputSearchForm'] {
+        width: 100%;
+      }
+    }
+
+    &Loading {
+      svg {
+        @include infinity-rotation();
+      }
+    }
+  }
+
+  &Icon {
+    @include size(rem(20));
+
+    pointer-events: none;
+    user-select: none;
+
+    use {
+      pointer-events: none;
+      user-select: none;
+    }
+  }
+
+  &Button {
+    @include size(rem(40));
+    @include media-breakpoint-down(sm) {
+      @include size(rem(32));
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(10);
+
+    &:focus {
+      outline: 0;
+    }
+  }
+
+  &Form {
+    display: block;
+    width: 0;
+  }
+}

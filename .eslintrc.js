@@ -5,11 +5,12 @@ module.exports = {
   },
   extends: [
     'airbnb',
+    'airbnb-base',
     'plugin:prettier/recommended',
     'plugin:react/recommended',
     'plugin:react-hooks/recommended',
   ],
-  plugins: ['babel', 'import', 'prettier', 'react'],
+  plugins: ['babel', 'import', 'prettier', 'react', 'react-hooks'],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',

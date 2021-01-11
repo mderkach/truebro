@@ -1,0 +1,30 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Status {
+  &Wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: rem(24);
+
+    time {
+      color: rgba(59, 60, 60, 0.6);
+    }
+  }
+
+  &Indicator {
+    display: flex;
+    align-items: center;
+
+    svg {
+      @include size(rem(16));
+
+      margin-right: rem(8);
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

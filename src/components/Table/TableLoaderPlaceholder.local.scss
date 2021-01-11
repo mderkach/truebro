@@ -1,0 +1,17 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: rem(490);
+  background: #fafafa;
+
+  &Icon {
+    @include size(rem(40));
+    @include infinity-rotation();
+  }
+}

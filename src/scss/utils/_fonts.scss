@@ -1,4 +1,4 @@
 @use './_mixins' as *;
-@include font-face('Rubik', '../assets/fonts/Rubik', 400);
-@include font-face('Rubik', '../assets/fonts/RubikBold', 700);
-@include font-face('RUbik', '../assets/fonts/RubikMedium', 500);
+@include font-face('Rubik', '~s/assets/fonts/Rubik', 400);
+@include font-face('Rubik', '~s/assets/fonts/RubikBold', 700);
+@include font-face('RUbik', '~s/assets/fonts/RubikMedium', 500);

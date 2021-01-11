@@ -1,0 +1,12 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.FilterItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: rem(16);
+
+  [class~='text-regular'] {
+    margin-left: rem(16);
+  }
+}
