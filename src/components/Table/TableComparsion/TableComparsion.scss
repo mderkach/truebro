@@ -60,7 +60,7 @@
       margin: 0 rem(8);
       padding: rem(4) rem(16);
       border-radius: 4px;
-      background-color: rgba(63, 71, 86, 0.12);
+      background-color: $static;
 
       &.is-active {
         background-color: $primary;

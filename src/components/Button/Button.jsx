@@ -10,9 +10,10 @@ const Button = (props) => {
 
   const btnClass = classes({
     'text-small': true,
-    medium: true,
+    medium: variant !== 'chip',
     ButtonPrimary: variant === 'primary',
-    ButtonSecondary: variant !== 'primary',
+    ButtonSecondary: variant === 'secondary',
+    ButtonChip: variant === 'chip',
     [cls]: cls,
   });
 
@@ -20,13 +21,13 @@ const Button = (props) => {
     <>
       {type === 'submit' && (
         <button type="submit" className={btnClass} {...rest}>
-          {text}
+          <span>{text}</span>
           {children}
         </button>
       )}
       {type === 'link' && (
         <a href={href} className={btnClass} {...rest}>
-          {text}
+          <span>{text}</span>
           {children}
         </a>
       )}

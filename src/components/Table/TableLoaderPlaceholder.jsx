@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 // components
 import Icon from '~cmp/Icon/Icon';
 import Button from '~cmp/Button/Button';

@@ -16,36 +16,72 @@
   transition: background 0.3s ease, border 0.3s ease;
 }
 
+%chip {
+  @include media-breakpoint-down(xl) {
+    margin-right: rem(8);
+  }
+
+  margin-right: rem(16);
+  padding: rem(4) rem(16);
+  border-radius: rem(4);
+  background-color: $static;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+%primary-state {
+  &:hover {
+    border-color: $primary-hover;
+    background-color: $primary-hover;
+  }
+
+  &:active {
+    border-color: $primary-hover;
+    background-color: $primary-active;
+  }
+}
+
+%secondary-state {
+  &:hover {
+    background-color: rgba($color: $primary, $alpha: 0.3);
+  }
+
+  &:active {
+    background-color: $primary-active;
+  }
+}
+
+%chip-state {
+  &:hover {
+    background-color: $static-hover;
+  }
+}
+
 .Button {
   &Primary {
     @extend %button;
+    @extend %primary-state;
 
     border-color: $primary;
     background-color: $primary;
-
-    &:hover {
-      border-color: #f3d035;
-      background-color: #f3d035;
-    }
-
-    &:active {
-      border-color: #f3d035;
-      background-color: #eecb30;
-    }
   }
 
   &Secondary {
     @extend %button;
+    @extend %secondary-state;
 
-    border-color: #fdd835;
+    border-color: $primary;
     background-color: transparent;
+  }
 
-    &:hover {
-      background-color: rgba(253, 216, 53, 0.3);
-    }
+  &Chip {
+    @extend %chip;
+    @extend %chip-state;
 
-    &:active {
-      background-color: #eecb30;
+    &[class~='is-active'] {
+      @extend %primary-state;
+
+      background-color: $primary;
     }
   }
 }

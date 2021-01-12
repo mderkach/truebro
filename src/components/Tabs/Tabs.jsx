@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
+// utils
 import ScrollContainer from 'react-indiana-drag-scroll';
 import classNames from 'classnames/bind';
+// components
+import Button from '~cmp/Button/Button';
 // styles
 import styles from './Tabs.local';
 
@@ -16,13 +19,7 @@ const TabsButton = (props) => {
     [cls]: cls,
   });
 
-  return (
-    <>
-      <button type="button" className={ButtonClass} {...rest}>
-        {text}
-      </button>
-    </>
-  );
+  return <Button type="button" variant="chip" cls={ButtonClass} text={text} {...rest} />;
 };
 
 const TabContent = (props) => {
