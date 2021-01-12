@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '~cmp/Icon/Icon';
-import Date from '../Date/Date';
+import Date from '~cmp/Date/Date';
 
 import styles from './Status.local';
 

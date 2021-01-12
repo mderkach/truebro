@@ -1,0 +1,79 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.CommentItem {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: rem(12) 0;
+  margin-top: rem(24);
+
+  &Head {
+    display: flex;
+    gap: 0 rem(16);
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &Controls {
+    display: grid;
+    grid-template-columns: repeat(3, min-content);
+    gap: 0 rem(8);
+  }
+
+  &Rating {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.Nested {
+  @include media-breakpoint-down(lg) {
+    padding-left: rem(28);
+  }
+  @include media-breakpoint-down(sm) {
+    padding-left: rem(20);
+  }
+
+  padding-left: rem(36);
+}
+
+.Emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: rem(16);
+  line-height: rem(24);
+}
+
+.Reply {
+  align-self: center;
+  margin-right: rem(8);
+  color: rgba($color: $fontAlt, $alpha: 0.6);
+  text-transform: uppercase;
+
+  &:hover {
+    color: $fontAlt;
+  }
+}
+
+.Like,
+.Dislike {
+  fill: rgba($color: $fontAlt, $alpha: 0.6);
+
+  &:hover {
+    fill: $fontAlt;
+  }
+}
+
+.Dislike {
+  transform: rotate(180deg);
+}
+
+.Star {
+  margin-right: rem(4);
+  fill: rgba($color: $fontAlt, $alpha: 0.6);
+
+  &[class~='is-filled'] {
+    fill: $primary;
+  }
+}

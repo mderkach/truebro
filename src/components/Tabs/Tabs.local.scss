@@ -14,6 +14,12 @@
   }
 
   &Button {
+    @include media-breakpoint-down(xl) {
+      margin-right: rem(8);
+    }
+
+    margin-right: rem(16);
+
     &:last-child {
       margin-right: 0;
     }

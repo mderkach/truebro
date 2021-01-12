@@ -25,25 +25,25 @@ const Button = (props) => {
     <>
       {type === 'submit' && (
         <button type="submit" className={btnClass} {...rest}>
-          {text && <span>{text}</span>}
+          {text && <span className="inherit">{text}</span>}
           {children}
         </button>
       )}
       {type === 'link' && (
         <a href={href} className={btnClass} {...rest}>
-          {text && <span>{text}</span>}
+          {text && <span className="inherit">{text}</span>}
           {children}
         </a>
       )}
       {type === 'button' && (
         <button type="button" className={btnClass} {...rest}>
-          {text && <span>{text}</span>}
+          {text && <span className="inherit">{text}</span>}
           {children}
         </button>
       )}
       {type === 'router' && (
         <Link className={btnClass} {...rest}>
-          {text && <span>{text}</span>}
+          {text && <span className="inherit">{text}</span>}
           {children}
         </Link>
       )}

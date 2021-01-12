@@ -9,7 +9,7 @@ import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
 import Card from '~cmp/Card/Card';
 import Picture from '~cmp/Picture/Picture';
-import Date from '../../Components/Date/Date';
+import Date from '~cmp/Date/Date';
 import Status from '../../Components/Status/Status';
 // styles
 import styles from '../../Broker.local';

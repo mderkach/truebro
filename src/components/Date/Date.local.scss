@@ -1,0 +1,6 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.DateText {
+  color: rgba($color: $fontAlt, $alpha: 0.6);
+}
