@@ -31,16 +31,10 @@
   }
 
   &Link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    color: $info;
-    text-transform: uppercase;
-    transition: all 0.3s linear;
-
     &:hover {
       svg {
         right: -6px;
+        fill: $info-hover;
       }
     }
   }

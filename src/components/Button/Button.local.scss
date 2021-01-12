@@ -2,6 +2,7 @@
 @use 'src/scss/utils/mixins' as *;
 
 %button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,12 +22,26 @@
     margin-right: rem(8);
   }
 
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin-right: rem(16);
   padding: rem(4) rem(16);
   border-radius: rem(4);
   background-color: $static;
   white-space: nowrap;
   cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+%link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: $info;
+  text-transform: uppercase;
+  transition: color 0.3s linear;
 }
 
 %primary-state {
@@ -51,6 +66,16 @@
   }
 }
 
+%tertiary-state {
+  &:hover {
+    color: $info-hover;
+  }
+
+  &:active {
+    color: $info-hover;
+  }
+}
+
 %chip-state {
   &:hover {
     background-color: $static-hover;
@@ -72,6 +97,11 @@
 
     border-color: $primary;
     background-color: transparent;
+  }
+
+  &Tertiary {
+    @extend %link;
+    @extend %tertiary-state;
   }
 
   &Chip {
