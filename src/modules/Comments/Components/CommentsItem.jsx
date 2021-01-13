@@ -5,39 +5,11 @@ import classNames from 'classnames/bind';
 import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
 import Date from '~cmp/Date/Date';
+import Rating from '~cmp/Rating/Rating';
 // styles
 import styles from './CommentsItem.local';
 
 const classes = classNames.bind(styles);
-
-const RatingItem = ({ filled }) => {
-  if (filled) return <Icon name="star-icon" cls={classes('icon', 'is-filled', styles.Star)} />;
-  return <Icon name="star-icon" cls={classes('icon', styles.Star)} />;
-};
-
-const Emoji = {
-  1: <span className={styles.Emoji}>&#128545;</span>,
-
-  2: <span className={styles.Emoji}>&#128544;</span>,
-
-  3: <span className={styles.Emoji}>&#128528;</span>,
-
-  4: <span className={styles.Emoji}>&#128512;</span>,
-
-  5: <span className={styles.Emoji}>&#128513;</span>,
-};
-
-const RatingMap = ({ rating }) => {
-  return (
-    <div className={styles.CommentItemRating}>
-      {[...Array(5)].map((_, i) => (
-        // eslint-disable-next-line react/no-array-index-key
-        <RatingItem key={i} filled={i < rating} />
-      ))}
-      {Emoji[rating]}
-    </div>
-  );
-};
 
 const CommentItem = observer((props) => {
   const { nested, rating } = props;
@@ -53,7 +25,7 @@ const CommentItem = observer((props) => {
         <p className="h3 medium">Name</p>
         <Date />
       </div>
-      {rating && <RatingMap rating={rating} />}
+      {rating && <Rating rating={rating} />}
       <p className="text-regular">
         Альпари кидалово!!! Переел средства на счет, они мне дали кредит 100% моего счета. У меня
         были открыты позиции. Мой счет прилижался к нулю, а кредит был на счете. В итоге я решил

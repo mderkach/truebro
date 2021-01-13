@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
@@ -8,6 +8,7 @@ import Icon from '~cmp/Icon/Icon';
 import InputField from '~cmp/Input/InputField/InputField';
 import InputTextArea from '~cmp/Input/InputTextArea/InputTextArea';
 import Button from '~cmp/Button/Button';
+import Rating from '~cmp/Rating/Rating';
 // styles
 import styles from './Modal.local';
 // store
@@ -37,6 +38,8 @@ const Modal = observer(() => {
     enableBodyScroll(document.documentElement);
   }
 
+  const [rating, setRating] = useState(1);
+
   return (
     <div
       role="presentation"
@@ -46,9 +49,18 @@ const Modal = observer(() => {
         Store.showModal();
       }}
     >
-      <div className={styles.Body}>
+      <div
+        role="presentation"
+        className={styles.Body}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        }}
+      >
         <div className={styles.Head}>
-          <p className={Header}>Оформите претензию</p>
+          <p className={Header}>
+            {Store.modalVariant === 'pretension' ? 'Оформите претензию' : 'Написать отзыв'}
+          </p>
           <Icon
             cls={styles.Icon}
             name="cross-icon"
@@ -66,13 +78,34 @@ const Modal = observer(() => {
           labeled
           labelText={<span className="text-regular">E-mail:</span>}
         />
-        <InputField
-          type="number"
-          name="sum"
-          placeholder="100"
-          labeled
-          labelText={<span className="text-regular">Сумма петензии:</span>}
-        />
+        {Store.modalVariant === 'pretension' && (
+          <InputField
+            type="number"
+            name="sum"
+            placeholder="100"
+            labeled
+            labelText={<span className="text-regular">Сумма петензии:</span>}
+          />
+        )}
+        {Store.modalVariant === 'feedback' && (
+          <div className={styles.Rating}>
+            {[...Array(5)].map((_, i) => (
+              <Button
+                // eslint-disable-next-line react/no-array-index-key
+                key={`${i}-RatingModal`}
+                variant="secondary"
+                type="button"
+                text={i + 1}
+                cls={classes(styles.RatingButton, rating === i + 1 ? 'is-active' : null)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setRating(i + 1);
+                }}
+              />
+            ))}
+            <Rating rating={rating} hiddenClass={styles.RatingHide} />
+          </div>
+        )}
         <InputTextArea
           name="pretension"
           rows={2}

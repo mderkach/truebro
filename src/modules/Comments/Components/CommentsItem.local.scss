@@ -19,11 +19,6 @@
     grid-template-columns: repeat(3, min-content);
     gap: 0 rem(8);
   }
-
-  &Rating {
-    display: flex;
-    align-items: center;
-  }
 }
 
 .Nested {
@@ -35,14 +30,6 @@
   }
 
   padding-left: rem(36);
-}
-
-.Emoji {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: rem(16);
-  line-height: rem(24);
 }
 
 .Reply {
@@ -67,13 +54,4 @@
 
 .Dislike {
   transform: rotate(180deg);
-}
-
-.Star {
-  margin-right: rem(4);
-  fill: rgba($color: $fontAlt, $alpha: 0.6);
-
-  &[class~='is-filled'] {
-    fill: $primary;
-  }
 }

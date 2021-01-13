@@ -21,8 +21,8 @@ const Comments = () => {
         <Button
           type="button"
           variant="tertiary"
-          text="Оформить претензию"
-          onClick={() => Store.showModal()}
+          text="Написать отзыв"
+          onClick={() => Store.showModal('feedback')}
         />
       </div>
       <div className={styles.CommentsWrapper}>

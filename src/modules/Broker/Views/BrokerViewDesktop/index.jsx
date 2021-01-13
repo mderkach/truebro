@@ -158,8 +158,8 @@ const BrokerViewDesktop = () => {
           <Button
             type="button"
             variant="tertiary"
-            text="Написать отзыв"
-            onClick={() => Store.showModal('feedback')}
+            text="Оформить претензию"
+            onClick={() => Store.showModal()}
           />
         </div>
         <div className={styles.PageBlockGrid}>

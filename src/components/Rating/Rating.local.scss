@@ -1,0 +1,24 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Star {
+  margin-right: rem(4);
+  fill: rgba($color: $fontAlt, $alpha: 0.6);
+
+  &[class~='is-filled'] {
+    fill: $primary;
+  }
+}
+
+.Emoji {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: rem(16);
+  line-height: rem(24);
+}
+
+.Wrapper {
+  display: flex;
+  align-items: center;
+}
