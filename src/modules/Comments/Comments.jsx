@@ -5,6 +5,8 @@ import Button from '~cmp/Button/Button';
 import CommentItem from './Components/CommentsItem';
 // styles
 import styles from './Comments.local';
+// store
+import Store from '~u/Store';
 
 const Comments = () => {
   return (
@@ -16,7 +18,12 @@ const Comments = () => {
           <Button type="button" variant="chip" text="Отрицательные" />
           <Button type="button" variant="chip" text="Все отзывы" />
         </ScrollContainer>
-        <Button type="button" variant="tertiary" text="Написать отзыв" />
+        <Button
+          type="button"
+          variant="tertiary"
+          text="Оформить претензию"
+          onClick={() => Store.showModal()}
+        />
       </div>
       <div className={styles.CommentsWrapper}>
         <CommentItem rating={1} />

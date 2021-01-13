@@ -13,11 +13,7 @@ const Wrapper = (props) => {
     [extClass]: extClass,
   });
 
-  return (
-    <>
-      <div className={WrapperClass}>{children}</div>
-    </>
-  );
+  return <div className={WrapperClass}>{children}</div>;
 };
 
 export default Wrapper;

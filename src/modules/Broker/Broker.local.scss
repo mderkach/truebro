@@ -113,7 +113,6 @@
   display: grid;
   grid-template-columns: repeat(3, min-content);
   gap: rem(0) rem(60);
-  margin-bottom: rem(32);
 
   &Cell {
     @include media-breakpoint-down(sm) {
@@ -138,6 +137,14 @@
   &Link {
     color: $info;
   }
+}
+
+.Flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: rem(32);
 }
 
 .mt0 {

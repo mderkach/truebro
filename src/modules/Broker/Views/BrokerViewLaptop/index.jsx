@@ -11,11 +11,14 @@ import Card from '~cmp/Card/Card';
 import Picture from '~cmp/Picture/Picture';
 import Date from '~cmp/Date/Date';
 import Status from '../../Components/Status/Status';
+import Button from '~cmp/Button/Button';
 // styles
 import styles from '../../Broker.local';
 // utils
 import { H2, classes } from '../../Utils/Classes';
 import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
+// store
+import Store from '~u/Store';
 
 const BrokerViewLaptop = () => {
   return (
@@ -109,19 +112,27 @@ const BrokerViewLaptop = () => {
         </div>
         <div>
           <h2 className={H2}>Претензии</h2>
-          <div className={styles.InfoBar}>
-            <div className={styles.InfoBarCell}>
-              <p className="text-small">Решенных</p>
-              <p className="text-big">6 из 8</p>
+          <div className={styles.Flex}>
+            <div className={styles.InfoBar}>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Решенных</p>
+                <p className="text-big">6 из 8</p>
+              </div>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Процент решенных</p>
+                <p className="text-big">75%</p>
+              </div>
+              <div className={styles.InfoBarCell}>
+                <p className="text-small">Среднее время рассмотрения</p>
+                <p className="text-big">2 дн.</p>
+              </div>
             </div>
-            <div className={styles.InfoBarCell}>
-              <p className="text-small">Процент решенных</p>
-              <p className="text-big">75%</p>
-            </div>
-            <div className={styles.InfoBarCell}>
-              <p className="text-small">Среднее время рассмотрения</p>
-              <p className="text-big">2 дн.</p>
-            </div>
+            <Button
+              type="button"
+              variant="tertiary"
+              text="Написать отзыв"
+              onClick={() => Store.showModal('feedback')}
+            />
           </div>
           <div className={styles.PageBlockGrid}>
             <Card

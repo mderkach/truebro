@@ -21,6 +21,10 @@ class StoreProto {
 
   @observable compared = [];
 
+  @observable isModalShowed = false;
+
+  @observable modalVariant = 'pretension';
+
   @action toggleTableLoading = (bool) => {
     if (bool) this.tableLoading = bool;
     else this.tableLoading = !this.tableLoading;
@@ -58,6 +62,11 @@ class StoreProto {
       this.compared = this.compared.filter((row) => row !== item);
     }
   }
+
+  @action showModal = (variant = 'pretension') => {
+    this.isModalShowed = !this.isModalShowed;
+    this.modalVariant = variant;
+  };
 }
 
 const Store = new StoreProto();

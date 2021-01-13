@@ -44,29 +44,27 @@ const Tabs = (props) => {
     });
 
   return (
-    <>
-      <div className={styles.TabsWrapper}>
-        <ScrollContainer className={styles.TabsHead}>
-          {children.map((item) => (
-            <TabsButton
-              key={item.key}
-              text={item.key}
-              cls={isActive(activeTab === item.key)}
-              onClick={() => {
-                setActiveTab(item.key);
-              }}
-            />
-          ))}
-        </ScrollContainer>
-        <div className={styles.TabsBody}>
-          {children.map((item) => (
-            <TabContent key={item.key} cls={isActive(activeTab === item.key)}>
-              {item}
-            </TabContent>
-          ))}
-        </div>
+    <div className={styles.TabsWrapper}>
+      <ScrollContainer className={styles.TabsHead}>
+        {children.map((item) => (
+          <TabsButton
+            key={item.key}
+            text={item.key}
+            cls={isActive(activeTab === item.key)}
+            onClick={() => {
+              setActiveTab(item.key);
+            }}
+          />
+        ))}
+      </ScrollContainer>
+      <div className={styles.TabsBody}>
+        {children.map((item) => (
+          <TabContent key={item.key} cls={isActive(activeTab === item.key)}>
+            {item}
+          </TabContent>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

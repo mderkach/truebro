@@ -2,6 +2,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
+import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
 import Icon from '~cmp/Icon/Icon';
 import InputField from '~cmp/Input/InputField/InputField';
@@ -9,6 +10,8 @@ import InputTextArea from '~cmp/Input/InputTextArea/InputTextArea';
 import Button from '~cmp/Button/Button';
 // styles
 import styles from './Modal.local';
+// store
+import Store from '~u/Store';
 
 const classes = classNames.bind(styles);
 
@@ -23,12 +26,38 @@ const Agreement = classes({
 });
 
 const Modal = observer(() => {
+  const ModalWrapper = classes({
+    'is-active': Store.isModalShowed,
+    Modal: true,
+  });
+
+  if (Store.isModalShowed) {
+    disableBodyScroll(document.documentElement);
+  } else {
+    enableBodyScroll(document.documentElement);
+  }
+
   return (
-    <div className={styles.Modal}>
+    <div
+      role="presentation"
+      className={ModalWrapper}
+      onClick={(e) => {
+        e.preventDefault();
+        Store.showModal();
+      }}
+    >
       <div className={styles.Body}>
         <div className={styles.Head}>
           <p className={Header}>Оформите претензию</p>
-          <Icon cls={styles.Icon} name="cross-icon" />
+          <Icon
+            cls={styles.Icon}
+            name="cross-icon"
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              Store.showModal();
+            }}
+          />
         </div>
         <InputField name="name" labeled labelText={<span className="text-regular">Имя:</span>} />
         <InputField
