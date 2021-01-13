@@ -1,0 +1,30 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Comments {
+  &Wrapper {
+    padding-top: rem(8);
+  }
+
+  &Controls {
+    @include media-breakpoint-down(sm) {
+      margin-top: rem(24);
+    }
+
+    display: grid;
+    grid-template-columns: repeat(4, min-content);
+    gap: 0 rem(8);
+    width: 100%;
+
+    &Wrapper {
+      @include media-breakpoint-down(sm) {
+        flex-direction: column-reverse;
+        align-items: flex-start;
+      }
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}

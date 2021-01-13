@@ -2,6 +2,15 @@
 @use 'src/scss/utils/mixins' as *;
 
 .TopBar {
+  @include media-breakpoint-down(lg) {
+    display: grid;
+    grid-template-columns: minmax(auto, rem(116)) repeat(3, minmax(auto, rem(80))) 1fr rem(180);
+    gap: rem(20);
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: rem(90) repeat(3, 1fr);
+  }
+
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -9,12 +18,25 @@
   margin-bottom: rem(32);
 
   &Button {
+    @include media-breakpoint-down(lg) {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    @include media-breakpoint-down(sm) {
+      @include make-col-size(2, 1);
+    }
+
     padding-right: rem(32);
     padding-left: rem(32);
   }
 }
 
 .Logo {
+  @include media-breakpoint-down(sm) {
+    width: 100%;
+    height: auto;
+  }
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +47,12 @@
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 
   img {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      height: auto;
+      max-height: rem(48);
+    }
+
     object-fit: contain;
     width: 100%;
     height: 100%;
@@ -33,12 +61,20 @@
 }
 
 .Cell {
+  @include media-breakpoint-down(lg) {
+    align-self: start;
+  }
+
   display: flex;
   flex-direction: column;
   align-items: space-between;
   justify-content: flex-start;
 
   &Header {
+    @include media-breakpoint-down(lg) {
+      min-height: rem(40);
+    }
+
     margin-bottom: rem(8);
   }
 
@@ -49,10 +85,17 @@
   }
 
   &Descr {
+    @include media-breakpoint-down(lg) {
+      @include font-size(24);
+    }
+
     margin-right: rem(12);
   }
 
   &Icon {
+    @include media-breakpoint-down(lg) {
+      display: none;
+    }
     @include size(rem(24));
 
     fill: $primary;
@@ -60,11 +103,22 @@
 }
 
 .Contacts {
+  @include media-breakpoint-down(sm) {
+    @include make-col-size(2, 1);
+
+    justify-content: flex-start;
+  }
+
   display: flex;
+  align-items: center;
   justify-content: space-between;
   text-transform: uppercase;
 
   svg {
+    @include media-breakpoint-down(lg) {
+      display: block;
+    }
+
     margin-right: rem(8);
   }
 }

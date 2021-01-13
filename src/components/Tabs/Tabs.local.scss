@@ -19,17 +19,9 @@
     }
 
     margin-right: rem(16);
-    padding: rem(4) rem(16);
-    border-radius: 4px;
-    background-color: rgba(63, 71, 86, 0.12);
-    cursor: pointer;
 
     &:last-child {
       margin-right: 0;
-    }
-
-    &[class~='is-active'] {
-      background-color: $primary;
     }
   }
 

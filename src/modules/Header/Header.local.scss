@@ -20,7 +20,7 @@
   padding: rem(16) 0;
   // box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
+  background-color: $white;
 
   &Container {
     @include make-grid-container(3, 20px);
@@ -136,7 +136,7 @@
       margin: 0 rem(12);
       padding: rem(12);
       border-radius: 50%;
-      background-color: rgba(63, 71, 86, 0.12);
+      background-color: $static;
 
       &:last-child {
         margin-right: 0;
@@ -190,7 +190,7 @@
         max-width: rem(290);
         height: 100vh;
         padding: rem(24) rem(16) rem(32);
-        background-color: #fff;
+        background-color: $white;
         transition: right 0.5s ease;
 
         &[data-expanded='true'] {
@@ -262,7 +262,7 @@
         &Text {
           width: 100%;
           margin-top: rem(8);
-          color: rgba(59, 60, 60, 0.6);
+          color: rgba($color: $fontAlt, $alpha: 0.6);
           line-height: 2;
           text-align: center;
         }

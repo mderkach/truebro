@@ -1,4 +1,6 @@
 import React from 'react';
+// modules
+import Comments from '~m/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
@@ -7,13 +9,16 @@ import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
 import Card from '~cmp/Card/Card';
 import Picture from '~cmp/Picture/Picture';
-import Date from '../../Components/Date/Date';
+import Date from '~cmp/Date/Date';
 import Status from '../../Components/Status/Status';
+import Button from '~cmp/Button/Button';
 // styles
 import styles from '../../Broker.local';
 // utils
 import { H2, GridBlock, classes } from '../../Utils/Classes';
 import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
+// store
+import Store from '~u/Store';
 
 const BrokerViewDesktop = () => {
   return (
@@ -128,20 +133,34 @@ const BrokerViewDesktop = () => {
         </div>
       </div>
       <div className={styles.AreaMain}>
+        <h2 className={H2}>Отзывы о компании Альпари</h2>
+        <div className={styles.PageBlock}>
+          <Comments />
+        </div>
+      </div>
+      <div className={styles.AreaMain}>
         <h2 className={H2}>Претензии</h2>
-        <div className={styles.InfoBar}>
-          <div className={styles.InfoBarCell}>
-            <p className="text-small">Решенных</p>
-            <p className="text-big">6 из 8</p>
+        <div className={styles.Flex}>
+          <div className={styles.InfoBar}>
+            <div className={styles.InfoBarCell}>
+              <p className="text-small">Решенных</p>
+              <p className="text-big">6 из 8</p>
+            </div>
+            <div className={styles.InfoBarCell}>
+              <p className="text-small">Процент решенных</p>
+              <p className="text-big">75%</p>
+            </div>
+            <div className={styles.InfoBarCell}>
+              <p className="text-small">Среднее время рассмотрения</p>
+              <p className="text-big">2 дн.</p>
+            </div>
           </div>
-          <div className={styles.InfoBarCell}>
-            <p className="text-small">Процент решенных</p>
-            <p className="text-big">75%</p>
-          </div>
-          <div className={styles.InfoBarCell}>
-            <p className="text-small">Среднее время рассмотрения</p>
-            <p className="text-big">2 дн.</p>
-          </div>
+          <Button
+            type="button"
+            variant="tertiary"
+            text="Оформить претензию"
+            onClick={() => Store.showModal()}
+          />
         </div>
         <div className={styles.PageBlockGrid}>
           <Card

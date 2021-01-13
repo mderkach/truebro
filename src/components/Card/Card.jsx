@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 // components
+import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
 // styles
 import styles from './Card.local';
@@ -16,21 +16,14 @@ const Card = (props) => {
     [`is-${variant}`]: variant,
   });
 
-  const LinkClass = classes({
-    'text-regular': true,
-    medium: true,
-    CardLink: true,
-  });
-
   return (
     <div className={WrapperClass}>
       <div className={styles.CardHead}>{head}</div>
       <h3 className="h3 medium">{title}</h3>
       <p className="text-regular">{excerpt}</p>
-      <Link className={LinkClass} to="/">
-        <span>Подробнее</span>
+      <Button type="router" cls={styles.CardLink} text="Подробнее" to="/">
         <Icon cls={styles.CardIcon} name="chevron-right-icon" />
-      </Link>
+      </Button>
     </div>
   );
 };

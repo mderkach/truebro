@@ -3,7 +3,6 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const Dotenv = require('dotenv-webpack');
 
 const isProd = function () {
   if (process.argv.includes('production')) {
@@ -26,9 +25,6 @@ const PAGES_DIR = `${PATHS.src}/views/`;
 
 // plugins
 const plugins = [
-  new Dotenv({
-    path: './.env'
-  }),
   new HtmlWebpackPlugin({
     template: `${PAGES_DIR}/index.html`,
     filename: `./index.html`,

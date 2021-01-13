@@ -19,7 +19,7 @@ const ScreenBroker = (props) => {
   });
 
   const AgreementClass = classes({
-    'text-smal': true,
+    'text-small': true,
     ScreenBrokerFormAgreement: true,
   });
 

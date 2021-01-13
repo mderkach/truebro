@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
+// utils
+import ScrollContainer from 'react-indiana-drag-scroll';
 import classNames from 'classnames/bind';
+// components
+import Button from '~cmp/Button/Button';
 // styles
 import styles from './Tabs.local';
 
@@ -15,13 +19,7 @@ const TabsButton = (props) => {
     [cls]: cls,
   });
 
-  return (
-    <>
-      <button type="button" className={ButtonClass} {...rest}>
-        {text}
-      </button>
-    </>
-  );
+  return <Button type="button" variant="chip" cls={ButtonClass} text={text} {...rest} />;
 };
 
 const TabContent = (props) => {
@@ -46,29 +44,27 @@ const Tabs = (props) => {
     });
 
   return (
-    <>
-      <div className={styles.TabsWrapper}>
-        <div className={styles.TabsHead}>
-          {children.map((item) => (
-            <TabsButton
-              key={item.key}
-              text={item.key}
-              cls={isActive(activeTab === item.key)}
-              onClick={() => {
-                setActiveTab(item.key);
-              }}
-            />
-          ))}
-        </div>
-        <div className={styles.TabsBody}>
-          {children.map((item) => (
-            <TabContent key={item.key} cls={isActive(activeTab === item.key)}>
-              {item}
-            </TabContent>
-          ))}
-        </div>
+    <div className={styles.TabsWrapper}>
+      <ScrollContainer className={styles.TabsHead}>
+        {children.map((item) => (
+          <TabsButton
+            key={item.key}
+            text={item.key}
+            cls={isActive(activeTab === item.key)}
+            onClick={() => {
+              setActiveTab(item.key);
+            }}
+          />
+        ))}
+      </ScrollContainer>
+      <div className={styles.TabsBody}>
+        {children.map((item) => (
+          <TabContent key={item.key} cls={isActive(activeTab === item.key)}>
+            {item}
+          </TabContent>
+        ))}
       </div>
-    </>
+    </div>
   );
 };
 

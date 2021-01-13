@@ -53,7 +53,7 @@
     padding: rem(16) 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
-    background-color: #fff;
+    background-color: $white;
     user-select: none;
     transition: all 0.5s ease;
 
@@ -74,7 +74,7 @@
         width: rem(80);
         height: rem(56);
         padding: rem(6) rem(8);
-        background-color: #fff;
+        background-color: $white;
       }
 
       img {
@@ -157,7 +157,7 @@
         justify-content: space-between;
         padding: rem(8) 0;
         border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
-        color: rgba(59, 60, 60, 0.6);
+        color: rgba($color: $fontAlt, $alpha: 0.6);
         opacity: 0;
 
         &:last-child {
@@ -176,7 +176,7 @@
     @include font-size(14);
 
     display: flex;
-    color: rgba(59, 60, 60, 0.6);
+    color: rgba($color: $fontAlt, $alpha: 0.6);
     line-height: 1.71;
     text-align: center;
     cursor: pointer;

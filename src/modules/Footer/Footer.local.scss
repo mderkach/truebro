@@ -74,7 +74,7 @@
   }
 
   &Text {
-    color: rgba(59, 60, 60, 0.6);
+    color: rgba($color: $fontAlt, $alpha: 0.6);
   }
 
   &Socials {
@@ -100,7 +100,7 @@
       justify-content: center;
       padding: rem(12);
       border-radius: 50%;
-      background-color: rgba(63, 71, 86, 0.12);
+      background-color: $static;
     }
 
     &Text {

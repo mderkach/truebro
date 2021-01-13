@@ -30,7 +30,7 @@ const buildWebpackConfig = merge(BaseWebpackConfig, {
           module: true,
           sourceMap: false, // Must be set to true if using source-maps in production
           compress: {
-            drop_console: false,
+            drop_console: true,
           },
           output: {
             comments: false,
@@ -46,12 +46,14 @@ const buildWebpackConfig = merge(BaseWebpackConfig, {
       }),
     ],
     splitChunks: {
+      chunks: 'all',
       cacheGroups: {
-        vendorJs: {
-          name: 'vendor-js',
+        vendor: {
           test: /node_modules/,
-          chunks: 'all',
-          enforce: true,
+          name(module) {
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+            return `vendor-${packageName.replace('@', '')}`;
+          },
         },
         vendorStyles: {
           name: 'app',
@@ -59,19 +61,11 @@ const buildWebpackConfig = merge(BaseWebpackConfig, {
           chunks: 'all',
           enforce: true,
         },
-        pages: {
-          name(module, chunks) {
-            return chunks.map((item) => item.name).join('');
-          },
-          test(module) {
-            return (
-              module.resource &&
-              module.resource.endsWith('.js') &&
-              module.resource.includes(`${Path.sep}pages${Path.sep}`)
-            );
-          },
-          chunks: 'all',
+        app: {
+          name: 'app',
           enforce: true,
+          maxSize: 249856,
+          chunks: 'all',
         },
       },
     },
