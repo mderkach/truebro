@@ -1,0 +1,64 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Modal {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($color: $mainFontColor, $alpha: 0.4);
+}
+
+.Body {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: rem(16) 0;
+  width: 100%;
+  max-width: rem(512);
+  padding: rem(24) rem(16);
+  border-radius: rem(4);
+  background-color: $white;
+}
+
+.Head {
+  display: flex;
+  justify-content: space-between;
+
+  &er {
+    @include font-size(28);
+
+    color: $mainFontColor;
+    line-height: rem(36);
+  }
+}
+
+.Icon {
+  @include size(rem(16));
+
+  position: relative;
+  top: rem(-8);
+  margin-bottom: rem(-8);
+  cursor: pointer;
+  fill: $mainFontColor;
+
+  &:hover {
+    color: rgba($color: $mainFontColor, $alpha: 0.4);
+  }
+}
+
+.Agreement {
+  color: rgba($color: $fontAlt, $alpha: 0.6);
+  letter-spacing: rem(-0.2);
+}
+
+.Submit {
+  width: 100%;
+  max-width: rem(160);
+}

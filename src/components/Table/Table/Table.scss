@@ -37,7 +37,7 @@
         z-index: -1;
         width: 100%;
         height: 100%;
-        background-color: #fff;
+        background-color: $white;
         pointer-events: none;
       }
     }
@@ -85,7 +85,7 @@
 
     align-self: center;
     opacity: 0;
-    fill: #3f4756;
+    fill: $mainFontColor;
     transition: opacity 0.2s ease, transform 0.5s ease;
 
     &.up {

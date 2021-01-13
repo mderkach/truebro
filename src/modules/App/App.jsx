@@ -8,6 +8,7 @@ import './App.scss';
 // components
 import Header from '~m/Header/Header';
 import Footer from '~m/Footer/Footer';
+import Modal from '~cmp/Modal/Modal';
 // routes
 const Rating = lazy(() => import('~v/Rating/Rating'));
 const Compare = lazy(() => import('~v/Compare/Compare'));
@@ -95,6 +96,7 @@ const App = observer(() => {
           })}
         </Switch>
         <Footer nav={NavMenu} socials={NavSocials} />
+        <Modal />
       </div>
     </Router>
   );

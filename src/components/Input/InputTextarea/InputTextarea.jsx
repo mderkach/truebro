@@ -1,35 +1,23 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 // styles
-import styles from './InputField.local';
+import styles from './InputTextArea.local';
 
 const classes = classNames.bind(styles);
 
 const input = classes({
   'text-small': true,
-  InputField: true,
+  InputTextArea: true,
 });
 
-const InputField = (props) => {
-  const {
-    type,
-    name,
-    placeholder,
-    onChange,
-    onFocus,
-    onBlur,
-    labeled,
-    labelClass,
-    labelText,
-  } = props;
+const InputTextArea = (props) => {
+  const { type, name, rows, onChange, onFocus, onBlur, labeled, labelClass, labelText } = props;
 
   const onFocusHandler = (e) => {
-    e.target.setAttribute('placeholder', '');
     if (onFocus) onFocus(e);
   };
 
   const onBlurHandler = (e) => {
-    e.target.setAttribute('placeholder', placeholder || '');
     if (onBlur) onBlur(e);
   };
 
@@ -37,13 +25,13 @@ const InputField = (props) => {
     if (onChange) onChange(e);
   };
 
-  const Input = (
-    <input
+  const Textarea = (
+    <textarea
       className={input}
       type={type}
       name={name}
       id={name}
-      placeholder={placeholder}
+      rows={rows || 2}
       onChange={(e) => onChangeHandler(e)}
       onFocus={(e) => onFocusHandler(e)}
       onBlur={(e) => onBlurHandler(e)}
@@ -54,12 +42,12 @@ const InputField = (props) => {
     return (
       <label htmlFor={name} className={labelClass}>
         {labelText}
-        {Input}
+        {Textarea}
       </label>
     );
   }
 
-  return Input;
+  return Textarea;
 };
 
-export default InputField;
+export default InputTextArea;

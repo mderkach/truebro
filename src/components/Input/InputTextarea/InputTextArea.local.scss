@@ -1,23 +1,14 @@
 @use 'src/scss/utils/vars' as *;
 @use 'src/scss/utils/mixins' as *;
 
-.InputField {
+.InputTextArea {
   display: block;
   width: 100%;
   padding: rem(12) rem(16);
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: rem(3);
   color: $mainFontColor;
-
-  &[type='number'] {
-    appearance: textfield;
-
-    &::-webkit-inner-spin-button,
-    &::-webkit-outer-spin-button {
-      margin: 0;
-      appearance: none;
-    }
-  }
+  resize: none;
 
   &::placeholder {
     color: $placeholder;

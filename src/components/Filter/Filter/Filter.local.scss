@@ -17,7 +17,7 @@
     }
 
     height: 100%;
-    background-color: #fff;
+    background-color: $white;
   }
 
   &Button {
@@ -109,7 +109,7 @@
         width: rem(290);
         height: 100vh;
         padding: rem(40) rem(16) rem(32);
-        background-color: #fff;
+        background-color: $white;
         transition: right 0.5s ease;
 
         &Backdrop {
@@ -146,7 +146,7 @@
     padding-bottom: rem(32);
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-radius: 2px;
-    background-color: #fff;
+    background-color: $white;
   }
 
   &Logo {
