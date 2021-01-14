@@ -46,3 +46,14 @@
     margin-bottom: rem(8);
   }
 }
+
+.Picture {
+  display: block;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+  min-height: rem(136);
+  max-height: rem(136);
+  margin-bottom: rem(16);
+  object-position: center;
+}

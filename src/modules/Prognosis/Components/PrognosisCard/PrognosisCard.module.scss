@@ -1,0 +1,12 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Category {
+  color: rgba($color: $mainFontColor, $alpha: 0.6);
+}

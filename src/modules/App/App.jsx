@@ -13,6 +13,7 @@ import Modal from '~cmp/Modal/Modal';
 const Rating = lazy(() => import('~v/Rating/Rating'));
 const Compare = lazy(() => import('~v/Compare/Compare'));
 const Broker = lazy(() => import('~v/Broker/Broker'));
+const Prognosis = lazy(() => import('~v/Prognosis/Prognosis'));
 
 const NavMenu = [
   {
@@ -75,6 +76,16 @@ const routes = [
     render: (props) => (
       <Suspense fallback={<div>Загрузка...</div>}>
         <Broker {...props} />
+      </Suspense>
+    ),
+  },
+  {
+    key: 'prognosis',
+    path: '/prognosis',
+    exact: true,
+    render: (props) => (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Prognosis {...props} />
       </Suspense>
     ),
   },

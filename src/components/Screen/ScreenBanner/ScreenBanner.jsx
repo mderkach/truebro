@@ -12,7 +12,7 @@ const ScreenBanner = (props) => {
       <Wrapper extClass={containerClass || ''}>
         <div className={styles.ScreenBannerOuter}>
           <h1 className="h1 bold">{title}</h1>
-          <p className="text-regular">{descr}</p>
+          {descr && <p className="text-regular">{descr}</p>}
         </div>
       </Wrapper>
     </section>
