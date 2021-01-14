@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 // components
+import Picture from '~cmp/Picture/Picture';
 import Icon from '~cmp/Icon/Icon';
 import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
 // utils
@@ -56,8 +57,8 @@ const TableRow = (props) => {
               }`}
             >
               {header.label === 'brand' && (
-                <Link to={`/broker/${row.name}`}>
-                  <img src={row.brand} alt={row.brand} />
+                <Link to={`/broker/${row.name}`} className="table__row-logo-link">
+                  <Picture src={row.brand} alt={row.brand} cls="table__row-logo-img" />
                 </Link>
               )}
               {header.label === 'forNovice' && row[header.label] && (
