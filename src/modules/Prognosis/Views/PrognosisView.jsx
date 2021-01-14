@@ -3,6 +3,7 @@ import React from 'react';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
+import PrognosisQuotes from '../Components/PrognosisQuotes/PrognosisQuotes';
 import Button from '~cmp/Button/Button';
 // styles
 import s from './PrognosisViews.local';
@@ -47,6 +48,9 @@ const PrognosisView = () => {
           ))}
         </div>
       </main>
+      <aside>
+        <PrognosisQuotes />
+      </aside>
     </div>
   );
 };

@@ -1,0 +1,67 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Controls {
+  display: grid;
+  grid-auto-columns: auto;
+  grid-auto-flow: column;
+  gap: rem(16);
+  margin: rem(16) 0;
+}
+
+.Quotes {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: rem(16);
+
+  &Row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: rem(16);
+  }
+
+  &Header {
+    color: rgba($color: $mainFontColor, $alpha: 0.6);
+
+    &:nth-child(2) {
+      text-align: right;
+    }
+
+    &:last-child {
+      text-align: center;
+    }
+  }
+
+  &Cell {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    &:last-child {
+      justify-content: center;
+    }
+  }
+}
+
+.Icon {
+  width: rem(10);
+  height: rem(12);
+  margin-right: rem(8);
+  fill: inherit;
+}
+
+.Trend {
+  &Up {
+    color: $success;
+    fill: $success;
+  }
+
+  &Down {
+    color: $danger;
+    fill: $danger;
+
+    [class*='Icon'] {
+      transform: rotate(180deg);
+    }
+  }
+}
