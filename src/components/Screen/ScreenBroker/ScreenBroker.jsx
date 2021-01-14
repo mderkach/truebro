@@ -2,9 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 // components
 import Wrapper from '~cmp/Wrapper/Wrapper';
-import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
-import InputField from '~cmp/Input/InputField/InputField';
+import ScreenSubscribe from '~cmp/Screen/ScreenSubscribe/ScreenSubscribe';
 // styles
 import styles from './ScreenBroker.local';
 
@@ -18,11 +17,6 @@ const ScreenBroker = (props) => {
     [containerClass]: containerClass,
   });
 
-  const AgreementClass = classes({
-    'text-small': true,
-    ScreenBrokerFormAgreement: true,
-  });
-
   return (
     <section className={styles.ScreenBroker}>
       <Wrapper extClass={WrapperClass}>
@@ -33,17 +27,7 @@ const ScreenBroker = (props) => {
             <p className="text-regular">{descr}</p>
           </div>
           <div className={styles.ScreenBrokerDivider} />
-          <form action={action} method="POST" className={styles.ScreenBrokerForm}>
-            <h2 className="h2 bold">Подпишитесь на рассылки и обновления TrueBRO</h2>
-            <div className={styles.ScreenBrokerFormBody}>
-              <InputField type="email" name="email" placeholder="Пожалуйста, введите ваш е-мail" />
-              <Button variant="primary" type="submit" text="Подписаться" />
-              <p className={AgreementClass}>
-                Нажимая на кнопку «Подписаться» я даю согласие на обработку персональных данных и
-                подтверждаю что мне есть 18 лет.
-              </p>
-            </div>
-          </form>
+          <ScreenSubscribe action={action} />
         </div>
       </Wrapper>
     </section>

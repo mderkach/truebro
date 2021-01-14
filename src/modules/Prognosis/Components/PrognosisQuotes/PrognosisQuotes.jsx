@@ -28,7 +28,7 @@ const PrognosisQuotes = () => {
   });
 
   return (
-    <section>
+    <section className={styles.QuotesWrapper}>
       <h3 className="h3 medium">Котировки</h3>
       <ScrollContainer className={styles.Controls}>
         <Button type="button" variant="chip" cls="is-active" text="Forex" />

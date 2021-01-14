@@ -56,33 +56,4 @@
     border-radius: 2px;
     background-color: rgba(0, 0, 0, 0.12);
   }
-
-  &Form {
-    @include make-col-fluid();
-
-    [class~='h2'] {
-      margin-bottom: rem(48);
-      text-align: center;
-    }
-
-    &Body {
-      @include media-breakpoint-between(0, xs) {
-        grid-template-columns: 1fr;
-      }
-
-      display: grid;
-      grid-template-columns: minmax(auto, rem(362)) minmax(auto, rem(178));
-      gap: rem(24) rem(32);
-      width: 100%;
-      max-width: rem(572);
-      margin: 0 auto;
-    }
-
-    &Agreement {
-      @include make-col-fluid();
-
-      color: rgba($color: $fontAlt, $alpha: 0.6);
-      text-align: center;
-    }
-  }
 }

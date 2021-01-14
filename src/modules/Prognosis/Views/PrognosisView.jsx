@@ -1,10 +1,12 @@
 import React from 'react';
-
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
 import PrognosisQuotes from '../Components/PrognosisQuotes/PrognosisQuotes';
 import Button from '~cmp/Button/Button';
+import Picture from '~cmp/Picture/Picture';
+import ScreenSubscribe from '~cmp/Screen/ScreenSubscribe/ScreenSubscribe';
+import Wrapper from '~cmp/Wrapper/Wrapper';
 // styles
 import s from './PrognosisViews.local';
 
@@ -16,6 +18,25 @@ const cardsArray = [
       'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
     img: './assets/img/prognosis-card.jpg',
     category: 'EUR/USD',
+  },
+];
+const imgPath = './assets/img/';
+const banner = [
+  {
+    src: `${imgPath}banner-big.jpg`,
+    media: '(min-width: 1680px)',
+  },
+  {
+    src: `${imgPath}banner-medium.jpg`,
+    media: '(min-width: 1366px) and (max-width: 1679px)',
+  },
+  {
+    src: `${imgPath}banner-small.jpg`,
+    media: '(min-width: 767px) and (max-width: 1365px)',
+  },
+  {
+    src: `${imgPath}banner-medium.jpg`,
+    media: '(max-width: 767px)',
   },
 ];
 
@@ -50,7 +71,11 @@ const PrognosisView = () => {
       </main>
       <aside>
         <PrognosisQuotes />
+        <Picture src={banner[0].src} media={banner} />
       </aside>
+      <Wrapper>
+        <ScreenSubscribe action="" />
+      </Wrapper>
     </div>
   );
 };
