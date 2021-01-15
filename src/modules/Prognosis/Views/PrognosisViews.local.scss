@@ -22,21 +22,6 @@
   }
 }
 
-.Wrapper {
-  @include media-breakpoint-down(xl) {
-    grid-template-columns: rem(672) rem(280);
-    gap: rem(24);
-  }
-  @include media-breakpoint-down(lg) {
-    grid-template-columns: 100%;
-  }
-
-  display: grid;
-  grid-template-columns: 1fr rem(424);
-  gap: rem(40);
-  width: 100%;
-}
-
 .Subscribe {
   padding: rem(64) 0;
   border-top: 1px solid rgba($color: #000, $alpha: 0.12);
@@ -52,5 +37,80 @@
 
   [class~='text-regular'] {
     margin-bottom: rem(8);
+  }
+}
+
+.Tab {
+  display: none;
+
+  &[class~='is-active'] {
+    display: block;
+  }
+
+  &Button {
+    margin-right: rem(32);
+    border-bottom: 4px solid transparent;
+    color: $mainFontColor;
+    transition: border-color 0.3s ease-in-out;
+
+    &[class~='is-active'] {
+      border-bottom-color: $primary;
+      color: $info;
+    }
+
+    &Wrapper {
+      display: flex;
+      align-items: center;
+      margin-bottom: rem(32);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      border-radius: 2px;
+    }
+  }
+}
+
+.Wrapper {
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: rem(672) rem(280);
+    gap: rem(24);
+  }
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: 100%;
+  }
+
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr rem(424);
+  gap: rem(40);
+  width: 100%;
+}
+
+.Area {
+  &Main {
+    position: relative;
+    grid-row: 1;
+  }
+
+  &Secondary {
+    @include media-breakpoint-down(lg) {
+      grid-row: 3;
+    }
+
+    grid-row: 2;
+  }
+
+  &Aside {
+    @include media-breakpoint-down(xl) {
+      max-width: rem(280);
+    }
+    @include media-breakpoint-down(lg) {
+      position: relative;
+      grid-row: 2;
+      max-width: 100%;
+    }
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    max-width: rem(424);
   }
 }

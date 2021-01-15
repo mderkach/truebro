@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classNames from 'classnames/bind';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
@@ -95,8 +96,23 @@ const categories = [
   'Нефть',
 ];
 
+const tabs = ['Прогнозы форекс', 'Крипто прогнозы'];
+
 const PrognosisView = () => {
-  const [cardsCategory, setCardsCategory] = useState('Все');
+  const [cardsCategory, setCardsCategory] = useState(categories[0]);
+  const [activeTab, setActiveTab] = useState(tabs[0]);
+
+  const RenderTabsBtn = () =>
+    tabs.map((item) => (
+      <Button
+        type="button"
+        variant="tertiary"
+        cls={classNames(s.TabButton, activeTab === item ? 'is-active' : null)}
+        text={item}
+        key={item}
+        onClick={() => setActiveTab(item)}
+      />
+    ));
 
   const RenderButtons = () =>
     categories.map((item) => (
@@ -112,52 +128,60 @@ const PrognosisView = () => {
 
   return (
     <div className={s.Wrapper}>
-      <main>
-        <ScrollContainer className={s.CardsControls}>
-          <RenderButtons />
-        </ScrollContainer>
-        <div className={s.Cards}>
-          {cardsArray.map((card) => {
-            if (cardsCategory === 'Все') {
-              return (
-                <PrognosisCard
-                  key={card.category}
-                  category={card.category}
-                  date={card.date}
-                  title={card.title}
-                  img={card.img}
-                  alt={card.title}
-                  excerpt={card.excerpt}
-                  like={card.like}
-                  dislike={card.dislike}
-                />
-              );
-            }
-            if (cardsCategory === card.category) {
-              return (
-                <PrognosisCard
-                  key={card.category}
-                  category={card.category}
-                  date={card.date}
-                  title={card.title}
-                  img={card.img}
-                  alt={card.title}
-                  excerpt={card.excerpt}
-                  like={card.like}
-                  dislike={card.dislike}
-                />
-              );
-            }
-            return null;
-          })}
+      <main className={s.AreaMain}>
+        <div className={s.TabButtonWrapper}>
+          <RenderTabsBtn />
+        </div>
+        <div className={classNames(s.Tab, activeTab === tabs[0] ? 'is-active' : null)}>
+          <ScrollContainer className={s.CardsControls}>
+            <RenderButtons />
+          </ScrollContainer>
+          <div className={s.Cards}>
+            {cardsArray.map((card) => {
+              if (cardsCategory === categories[0]) {
+                return (
+                  <PrognosisCard
+                    key={card.category}
+                    category={card.category}
+                    date={card.date}
+                    title={card.title}
+                    img={card.img}
+                    alt={card.title}
+                    excerpt={card.excerpt}
+                    like={card.like}
+                    dislike={card.dislike}
+                  />
+                );
+              }
+              if (cardsCategory === card.category) {
+                return (
+                  <PrognosisCard
+                    key={card.category}
+                    category={card.category}
+                    date={card.date}
+                    title={card.title}
+                    img={card.img}
+                    alt={card.title}
+                    excerpt={card.excerpt}
+                    like={card.like}
+                    dislike={card.dislike}
+                  />
+                );
+              }
+              return null;
+            })}
+          </div>
+        </div>
+        <div className={classNames(s.Tab, activeTab === tabs[1] ? 'is-active' : null)}>
+          content here
         </div>
       </main>
-      <aside>
+      <aside className={s.AreaAside}>
         <PrognosisQuotes />
         <Picture src={banner[0].src} media={banner} />
         <PrognosisBrokersTable />
       </aside>
-      <Wrapper>
+      <Wrapper extClass={s.AreaSecondary}>
         <div className={s.Subscribe}>
           <ScreenSubscribe action="" />
         </div>
