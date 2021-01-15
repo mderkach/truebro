@@ -50,5 +50,6 @@ module.exports = {
       },
     ],
     'declaration-no-important': null,
+    'value-no-vendor-prefix': [true, { ignoreValues: ['crisp-edges', 'optimize-contrast'] }],
   },
 };

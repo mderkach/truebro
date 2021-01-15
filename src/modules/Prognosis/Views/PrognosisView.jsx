@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
 import PrognosisQuotes from '../Components/PrognosisQuotes/PrognosisQuotes';
+import PrognosisBrokersTable from '../Components/PrognosisBrokersTable/PrognosisBrokersTable';
 import Button from '~cmp/Button/Button';
 import Picture from '~cmp/Picture/Picture';
 import ScreenSubscribe from '~cmp/Screen/ScreenSubscribe/ScreenSubscribe';
@@ -41,6 +42,26 @@ const cardsArray = [
     like: 0,
     dislike: 1,
   },
+  {
+    date: '27 июня',
+    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
+    excerpt:
+      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
+    img: './assets/img/prognosis-card.jpg',
+    category: 'USD/CHF',
+    like: 0,
+    dislike: 1,
+  },
+  {
+    date: '27 июня',
+    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
+    excerpt:
+      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
+    img: './assets/img/prognosis-card.jpg',
+    category: 'USD/CAD',
+    like: 0,
+    dislike: 1,
+  },
 ];
 const imgPath = './assets/img/';
 const banner = [
@@ -66,7 +87,7 @@ const categories = [
   'Все',
   'EUR/USD',
   'EUR/RUB',
-  'usd/jpy',
+  'USD/JPY',
   'USD/CHF',
   'USD/CAD',
   'Серебро',
@@ -76,7 +97,6 @@ const categories = [
 
 const PrognosisView = () => {
   const [cardsCategory, setCardsCategory] = useState('Все');
-  console.log(cardsCategory);
 
   const RenderButtons = () =>
     categories.map((item) => (
@@ -135,9 +155,41 @@ const PrognosisView = () => {
       <aside>
         <PrognosisQuotes />
         <Picture src={banner[0].src} media={banner} />
+        <PrognosisBrokersTable />
       </aside>
       <Wrapper>
-        <ScreenSubscribe action="" />
+        <div className={s.Subscribe}>
+          <ScreenSubscribe action="" />
+        </div>
+        <div className={s.Info}>
+          <h2 className="h2 bold">FOREX прогноз EUR/USD</h2>
+          <p className="text-regular">
+            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
+            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
+            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
+            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
+            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
+            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
+          </p>
+          <h3 className="h3 medium">Форекс прогноз Евро Доллар (EUR/USD) на завтра</h3>
+          <p className="text-regular">
+            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
+            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
+            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
+            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
+            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
+            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
+          </p>
+          <h3 className="h3 medium">EUR USD прогноз онлайн</h3>
+          <p className="text-regular">
+            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
+            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
+            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
+            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
+            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
+            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
+          </p>
+        </div>
       </Wrapper>
     </div>
   );

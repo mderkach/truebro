@@ -36,6 +36,24 @@ const CompareBtn = observer(({ action, length }) => {
   );
 });
 
+const BtnClass = classes({
+  'text-small': true,
+  medium: true,
+  FilterButton: true,
+});
+
+const BtnHiddenClass = classes({
+  'text-small': true,
+  medium: true,
+  FilterHiddenTrigger: true,
+});
+
+const FilterHeader = classes({
+  'text-regular': true,
+  medium: true,
+  FilterHeader: true,
+});
+
 const Filter = observer((props) => {
   const { items, compare } = props;
 
@@ -84,97 +102,77 @@ const Filter = observer((props) => {
     'is-expanded': isMobile && expanded,
   });
 
-  const BtnClass = classes({
-    'text-small': true,
-    medium: true,
-    FilterButton: true,
-  });
-
-  const BtnHiddenClass = classes({
-    'text-small': true,
-    medium: true,
-    FilterHiddenTrigger: true,
-  });
-
-  const FilterHeader = classes({
-    'text-regular': true,
-    medium: true,
-    FilterHeader: true,
-  });
-
   return (
-    <>
-      <div className={styles.FilterWrapper}>
-        {compare && compare.length > 0 && (
-          <>
-            {isDesktop && (
+    <div className={styles.FilterWrapper}>
+      {compare && compare.length > 0 && (
+        <>
+          {isDesktop && (
+            <>
+              <div className={styles.FilterComparsion}>
+                <CompareBtn action={toCompare} length={compare.length} />
+                {compare.map((item) => (
+                  <Picture
+                    key={item.name}
+                    cls={styles.FilterLogo}
+                    src={item.brand}
+                    alt={item.name}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </>
+      )}
+      {isMobile && (
+        <>
+          {compare && compare.length > 0 && (
+            <CompareBtn action={toCompare} length={compare.length} />
+          )}
+          <Button variant="secondary" onClick={toggleFilter} type="button" cls={BtnClass}>
+            <Icon cls={styles.FilterButtonIcon} name="chevron-right-icon" />
+            <span>Фильтр</span>
+          </Button>
+        </>
+      )}
+      <div ref={ref} className={FilterOuterClass}>
+        {items.map((item) => (
+          <div data-key={item.header} key={item.header} className={styles.FilterItemWrapper}>
+            <p className={FilterHeader}>{item.header}</p>
+            {item.items.map((input, subindex) => (
+              <Fragment key={input.label}>
+                {subindex < 8 && (
+                  <FilterItem label={input.label} name={input.name} index={subindex} />
+                )}
+              </Fragment>
+            ))}
+            {item.items.length > 8 && (
               <>
-                <div className={styles.FilterComparsion}>
-                  <CompareBtn action={toCompare} length={compare.length} />
-                  {compare.map((item) => (
-                    <Picture
-                      key={item.name}
-                      cls={styles.FilterLogo}
-                      src={item.brand}
-                      alt={item.name}
-                    />
+                <div className={styles.FilterItemWrapperHidden}>
+                  {item.items.map((input, subindex) => (
+                    <Fragment key={input.label}>
+                      {subindex > 8 && (
+                        <FilterItem label={input.label} name={input.name} index={subindex} />
+                      )}
+                    </Fragment>
                   ))}
                 </div>
+                <button
+                  type="button"
+                  className={BtnHiddenClass}
+                  onClick={toggleHidden}
+                  ref={hiddenTriggerRef}
+                >
+                  <span ref={spanRef}>{`показать еще ${items.length}`}</span>
+                  <Icon cls={styles.FilterHiddenTriggerIcon} name="chevron-down-icon" />
+                </button>
               </>
             )}
-          </>
-        )}
-        {isMobile && (
-          <>
-            {compare && compare.length > 0 && (
-              <CompareBtn action={toCompare} length={compare.length} />
-            )}
-            <Button variant="secondary" onClick={toggleFilter} type="button" cls={BtnClass}>
-              <Icon cls={styles.FilterButtonIcon} name="chevron-right-icon" />
-              <span>Фильтр</span>
-            </Button>
-          </>
-        )}
-        <div ref={ref} className={FilterOuterClass}>
-          {items.map((item) => (
-            <div data-key={item.header} key={item.header} className={styles.FilterItemWrapper}>
-              <p className={FilterHeader}>{item.header}</p>
-              {item.items.map((input, subindex) => (
-                <Fragment key={input.label}>
-                  {subindex < 8 && (
-                    <FilterItem label={input.label} name={input.name} index={subindex} />
-                  )}
-                </Fragment>
-              ))}
-              {item.items.length > 8 && (
-                <>
-                  <div className={styles.FilterItemWrapperHidden}>
-                    {item.items.map((input, subindex) => (
-                      <Fragment key={input.label}>
-                        {subindex > 8 && (
-                          <FilterItem label={input.label} name={input.name} index={subindex} />
-                        )}
-                      </Fragment>
-                    ))}
-                  </div>
-                  <button
-                    type="button"
-                    className={BtnHiddenClass}
-                    onClick={toggleHidden}
-                    ref={hiddenTriggerRef}
-                  >
-                    <span ref={spanRef}>{`показать еще ${items.length}`}</span>
-                    <Icon cls={styles.FilterHiddenTriggerIcon} name="chevron-down-icon" />
-                  </button>
-                </>
-              )}
-            </div>
-          ))}
-        </div>
-        {isMobile && <Icon onClick={toggleFilter} cls={FilterCloseClass} name="cross-icon" />}
-        {isMobile && <div className={FilterBackdropClass} />}
+          </div>
+        ))}
       </div>
-    </>
+      {isMobile && <Icon onClick={toggleFilter} cls={FilterCloseClass} name="cross-icon" />}
+      {isMobile && <div className={FilterBackdropClass} />}
+    </div>
   );
 });
 

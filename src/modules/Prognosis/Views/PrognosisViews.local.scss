@@ -2,6 +2,13 @@
 @use 'src/scss/utils/mixins' as *;
 
 .Cards {
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include media-breakpoint-down(sm) {
+    grid-template-columns: 100%;
+  }
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: rem(44) rem(24);
@@ -16,7 +23,34 @@
 }
 
 .Wrapper {
+  @include media-breakpoint-down(xl) {
+    grid-template-columns: rem(672) rem(280);
+    gap: rem(24);
+  }
+  @include media-breakpoint-down(lg) {
+    grid-template-columns: 100%;
+  }
+
   display: grid;
-  grid-template-columns: 1fr minmax(80px, rem(424));
+  grid-template-columns: 1fr rem(424);
   gap: rem(40);
+  width: 100%;
+}
+
+.Subscribe {
+  padding: rem(64) 0;
+  border-top: 1px solid rgba($color: #000, $alpha: 0.12);
+  border-bottom: 1px solid rgba($color: #000, $alpha: 0.12);
+  border-radius: rem(2);
+}
+
+.Info {
+  display: grid;
+  grid-template-columns: 100%;
+  gap: rem(24) 0;
+  padding: rem(28) 0 rem(100);
+
+  [class~='text-regular'] {
+    margin-bottom: rem(8);
+  }
 }

@@ -1,0 +1,92 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: rem(32) 0;
+  border-bottom: 1px solid rgba($color: #000, $alpha: 0.12);
+  border-radius: rem(2);
+
+  [class~='h3'] {
+    margin-bottom: rem(16);
+  }
+}
+
+.Picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: contain;
+  width: rem(56);
+  height: rem(40);
+  margin-right: rem(16);
+  padding: rem(4) rem(6);
+  border-radius: 4px;
+  background: $white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  object-position: center;
+
+  [class*='Img'] {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+.Row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  margin-bottom: rem(16);
+
+  &Info {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
+
+.Hidden {
+  &Wrapper {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in 0s;
+
+    &[class~='is-expanded'] {
+      @include collapse-in();
+
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &Trigger {
+    display: flex;
+    align-items: center;
+    margin-top: rem(8);
+    color: $info;
+    text-transform: uppercase;
+
+    &[class~='is-expanded'] {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    span {
+      pointer-events: none;
+    }
+
+    &Icon {
+      @include size(rem(24));
+
+      pointer-events: none;
+    }
+  }
+}
