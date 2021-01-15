@@ -1,16 +1,24 @@
 import React from 'react';
+// components
 import Card from '~cmp/Card/Card';
 import Date from '~cmp/Date/Date';
-import styles from './PrognosisCard.module';
+import Likes from '~cmp/Likes/Likes';
+// styles
+import styles from './PrognosisCard.local';
 
 const CardHeader = ({ category, date }) => (
   <div className={styles.Head}>
-    <p className={`text-small ${styles.HeadCategory}`}>{category}</p>
+    <p className={`text-small ${styles.Category}`}>
+      <span className="inherit">прогноз </span>
+      {category}
+    </p>
     <Date date={date} />
   </div>
 );
 
-const PrognosisCard = ({ title, excerpt, img, alt, category, date }) => {
+const CardLikes = ({ like, dislike }) => <Likes like={like} dislike={dislike} />;
+
+const PrognosisCard = ({ title, excerpt, img, alt, category, date, like, dislike }) => {
   return (
     <Card
       head={<CardHeader category={category} date={date} />}
@@ -19,7 +27,9 @@ const PrognosisCard = ({ title, excerpt, img, alt, category, date }) => {
       excerpt={excerpt}
       img={img}
       alt={alt}
-    />
+    >
+      <CardLikes like={like} dislike={dislike} />
+    </Card>
   );
 };
 

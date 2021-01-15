@@ -6,7 +6,6 @@ import InputField from '~cmp/Input/InputField/InputField';
 // styles
 import styles from './ScreenSubscribe.local';
 
-console.log(styles);
 const classes = classNames.bind(styles);
 
 const AgreementClass = classes({

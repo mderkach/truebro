@@ -6,6 +6,7 @@ import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
 import Date from '~cmp/Date/Date';
 import Rating from '~cmp/Rating/Rating';
+import Likes from '~cmp/Likes/Likes';
 // styles
 import styles from './CommentsItem.local';
 
@@ -39,12 +40,7 @@ const CommentItem = observer((props) => {
       </p>
       <div className={styles.CommentItemControls}>
         <Button variant="tretiary" cls={styles.Reply} text="Ответить" />
-        <Button variant="tretiary">
-          <Icon name="like-icon" cls={classes('icon', styles.Like)} />
-        </Button>
-        <Button variant="tretiary">
-          <Icon name="like-icon" cls={classes('icon', styles.Dislike)} />
-        </Button>
+        <Likes />
       </div>
     </div>
   );

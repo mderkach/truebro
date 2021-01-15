@@ -16,8 +16,8 @@
 
   &Controls {
     display: grid;
-    grid-template-columns: repeat(3, min-content);
-    gap: 0 rem(8);
+    grid-template-columns: repeat(2, min-content);
+    gap: 0 rem(16);
   }
 }
 

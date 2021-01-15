@@ -1,0 +1,32 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, min-content);
+  gap: 0 rem(8);
+}
+
+.Like,
+.Dislike {
+  transition: fill 0.3s ease-in-out;
+}
+
+.Dislike {
+  transform: rotate(180deg);
+}
+
+.Button {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  color: rgba($color: $fontAlt, $alpha: 0.6);
+  font-weight: normal;
+  fill: rgba($color: $fontAlt, $alpha: 0.6);
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $mainFontColor;
+    fill: $fontAlt;
+  }
+}

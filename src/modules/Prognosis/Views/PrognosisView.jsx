@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
@@ -18,6 +18,28 @@ const cardsArray = [
       'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
     img: './assets/img/prognosis-card.jpg',
     category: 'EUR/USD',
+    like: 345,
+    dislike: 0,
+  },
+  {
+    date: '27 июня',
+    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
+    excerpt:
+      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
+    img: './assets/img/prognosis-card.jpg',
+    category: 'EUR/RUB',
+    like: 1,
+    dislike: 0,
+  },
+  {
+    date: '27 июня',
+    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
+    excerpt:
+      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
+    img: './assets/img/prognosis-card.jpg',
+    category: 'EUR/JPY',
+    like: 0,
+    dislike: 1,
   },
 ];
 const imgPath = './assets/img/';
@@ -40,33 +62,74 @@ const banner = [
   },
 ];
 
+const categories = [
+  'Все',
+  'EUR/USD',
+  'EUR/RUB',
+  'usd/jpy',
+  'USD/CHF',
+  'USD/CAD',
+  'Серебро',
+  'Золото',
+  'Нефть',
+];
+
 const PrognosisView = () => {
+  const [cardsCategory, setCardsCategory] = useState('Все');
+  console.log(cardsCategory);
+
+  const RenderButtons = () =>
+    categories.map((item) => (
+      <Button
+        key={item}
+        type="button"
+        variant="chip"
+        cls={cardsCategory === item ? 'is-active' : null}
+        text={item}
+        onClick={() => setCardsCategory(item)}
+      />
+    ));
+
   return (
     <div className={s.Wrapper}>
       <main>
         <ScrollContainer className={s.CardsControls}>
-          <Button type="button" variant="chip" cls="is-active" text="Все" />
-          <Button type="button" variant="chip" text="EUR/USD" />
-          <Button type="button" variant="chip" text="EUR/RUB" />
-          <Button type="button" variant="chip" text="usd/jpy" />
-          <Button type="button" variant="chip" text="USD/CHF" />
-          <Button type="button" variant="chip" text="USD/CAD" />
-          <Button type="button" variant="chip" text="Серебро" />
-          <Button type="button" variant="chip" text="Золото" />
-          <Button type="button" variant="chip" text="Нефть" />
+          <RenderButtons />
         </ScrollContainer>
         <div className={s.Cards}>
-          {cardsArray.map((card) => (
-            <PrognosisCard
-              key={card.category}
-              category={card.category}
-              date={card.date}
-              title={card.title}
-              img={card.img}
-              alt={card.title}
-              excerpt={card.excerpt}
-            />
-          ))}
+          {cardsArray.map((card) => {
+            if (cardsCategory === 'Все') {
+              return (
+                <PrognosisCard
+                  key={card.category}
+                  category={card.category}
+                  date={card.date}
+                  title={card.title}
+                  img={card.img}
+                  alt={card.title}
+                  excerpt={card.excerpt}
+                  like={card.like}
+                  dislike={card.dislike}
+                />
+              );
+            }
+            if (cardsCategory === card.category) {
+              return (
+                <PrognosisCard
+                  key={card.category}
+                  category={card.category}
+                  date={card.date}
+                  title={card.title}
+                  img={card.img}
+                  alt={card.title}
+                  excerpt={card.excerpt}
+                  like={card.like}
+                  dislike={card.dislike}
+                />
+              );
+            }
+            return null;
+          })}
         </div>
       </main>
       <aside>
