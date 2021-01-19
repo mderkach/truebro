@@ -3,8 +3,7 @@ import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
 import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
-import Date from '~cmp/Date/Date';
+import DateTime from '~cmp/DateTime/DateTime';
 import Rating from '~cmp/Rating/Rating';
 import Likes from '~cmp/Likes/Likes';
 // styles
@@ -24,7 +23,7 @@ const CommentItem = observer((props) => {
     <div className={Comment}>
       <div className={styles.CommentItemHead}>
         <p className="h3 medium">Name</p>
-        <Date />
+        <DateTime date="27 июня 18:02" />
       </div>
       {rating && <Rating rating={rating} />}
       <p className="text-regular">

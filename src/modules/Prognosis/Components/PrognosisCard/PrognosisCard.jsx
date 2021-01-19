@@ -1,7 +1,7 @@
 import React from 'react';
 // components
 import Card from '~cmp/Card/Card';
-import Date from '~cmp/Date/Date';
+import DateTime from '~cmp/DateTime/DateTime';
 import Likes from '~cmp/Likes/Likes';
 // styles
 import styles from './PrognosisCard.local';
@@ -12,7 +12,7 @@ const CardHeader = ({ category, date }) => (
       <span className="inherit">прогноз </span>
       {category}
     </p>
-    <Date date={date} />
+    <DateTime date={date} />
   </div>
 );
 

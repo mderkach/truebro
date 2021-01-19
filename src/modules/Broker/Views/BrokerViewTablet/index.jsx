@@ -9,7 +9,7 @@ import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
 import Card from '~cmp/Card/Card';
 import Picture from '~cmp/Picture/Picture';
-import Date from '~cmp/Date/Date';
+import DateTime from '~cmp/DateTime/DateTime';
 import Status from '../../Components/Status/Status';
 import Button from '~cmp/Button/Button';
 // styles
@@ -75,12 +75,12 @@ const BrokerViewTablet = () => {
         <h2 className={H2}>Новости Альпари</h2>
         <div className={styles.PageBlockGrid}>
           <Card
-            head={<Date />}
+            head={<DateTime date="27 июня 18:02" />}
             title="«Валентин Катасонов: что такое криптовалюты?»"
             excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
           />
           <Card
-            head={<Date />}
+            head={<DateTime date="27 июня 18:02" />}
             title="«Валентин Катасонов: что такое криптовалюты?»"
             excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
           />
@@ -90,12 +90,12 @@ const BrokerViewTablet = () => {
         <h2 className={H2}>Семинары и вебинары Альпари </h2>
         <div className={styles.PageBlockGrid}>
           <Card
-            head={<Date />}
+            head={<DateTime date="27 июня 18:02" />}
             title={`Вебинар "Базовый курс"`}
             excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
           />
           <Card
-            head={<Date />}
+            head={<DateTime date="27 июня 18:02" />}
             title={`Вебинар "Базовый курс"`}
             excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
           />

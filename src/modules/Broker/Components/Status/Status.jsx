@@ -1,6 +1,6 @@
 import React from 'react';
 import Icon from '~cmp/Icon/Icon';
-import Date from '~cmp/Date/Date';
+import DateTime from '~cmp/DateTime/DateTime';
 
 import styles from './Status.local';
 
@@ -13,7 +13,7 @@ const Status = (props) => {
         <Icon fill={color} name="list-dot-icon" />
         <p className="text-regular">{text}</p>
       </div>
-      <Date date={date} />
+      <DateTime date={date} />
     </div>
   );
 };

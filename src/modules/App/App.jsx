@@ -14,6 +14,7 @@ const Rating = lazy(() => import('~v/Rating/Rating'));
 const Compare = lazy(() => import('~v/Compare/Compare'));
 const Broker = lazy(() => import('~v/Broker/Broker'));
 const Prognosis = lazy(() => import('~v/Prognosis/Prognosis'));
+const Forecast = lazy(() => import('~v/Forecast/Forecast'));
 
 const NavMenu = [
   {
@@ -23,7 +24,7 @@ const NavMenu = [
   },
   {
     label: 'Котировки',
-    path: '/cotirovki',
+    path: '/forecast',
     exact: true,
   },
   {
@@ -86,6 +87,16 @@ const routes = [
     render: (props) => (
       <Suspense fallback={<div>Загрузка...</div>}>
         <Prognosis {...props} />
+      </Suspense>
+    ),
+  },
+  {
+    key: 'forecast',
+    path: '/forecast',
+    exact: true,
+    render: (props) => (
+      <Suspense fallback={<div>Загрузка...</div>}>
+        <Forecast {...props} />
       </Suspense>
     ),
   },

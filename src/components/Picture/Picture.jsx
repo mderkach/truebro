@@ -3,7 +3,7 @@ import React from 'react';
 import styles from './Picture.local';
 
 const Picture = (props) => {
-  const { cls, alt, srcset, src, media, ...rest } = props;
+  const { cls, alt = '', srcset, src, media, ...rest } = props;
 
   const picname = (path) => path.substring(path.lastIndexOf('/') + 1, path.lastIndexOf('.'));
   const pathName = (path) => path.substring(0, path.lastIndexOf('/') + 1);
@@ -19,7 +19,7 @@ const Picture = (props) => {
           <img
             className={styles.Img}
             src={`${pathName(src || srcset)}${picname(src || srcset)}.webp`}
-            alt={alt || ''}
+            alt={alt}
           />
         </>
       )}
@@ -32,11 +32,7 @@ const Picture = (props) => {
               media={s.media}
             />
           ))}
-          <img
-            className={styles.Img}
-            src={`${pathName(src)}${picname(src)}.webp`}
-            alt={alt || ''}
-          />
+          <img className={styles.Img} src={`${pathName(src)}${picname(src)}.webp`} alt={alt} />
         </>
       )}
     </picture>

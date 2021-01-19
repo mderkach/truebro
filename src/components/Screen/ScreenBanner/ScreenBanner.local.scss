@@ -6,6 +6,10 @@
 
   &Outer {
     max-width: rem(1145);
+
+    &[class~='fluid'] {
+      max-width: 100%;
+    }
   }
 
   [class~='h1'] + [class~='text-regular'] {
