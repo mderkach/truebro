@@ -4,6 +4,7 @@ import Comments from '~m/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
+import CommentsControls from '../../Components/CommentsControls/CommentsControls';
 import TableSimple from '~cmp/Table/TableSimple/TableSimple';
 import Tabs from '~cmp/Tabs/Tabs';
 import List from '~cmp/List/List';
@@ -135,6 +136,7 @@ const BrokerViewDesktop = () => {
       <div className={styles.AreaMain}>
         <h2 className={H2}>Отзывы о компании Альпари</h2>
         <div className={styles.PageBlock}>
+          <CommentsControls action={Store.showModal} />
           <Comments />
         </div>
       </div>

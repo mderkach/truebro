@@ -6,13 +6,14 @@ import Button from '~cmp/Button/Button';
 import DateTime from '~cmp/DateTime/DateTime';
 import Rating from '~cmp/Rating/Rating';
 import Likes from '~cmp/Likes/Likes';
+import Answer from '~m/Comments/Components/Answer/Answer';
 // styles
-import styles from './CommentsItem.local';
+import styles from './Item.local';
 
 const classes = classNames.bind(styles);
 
-const CommentItem = observer((props) => {
-  const { nested, rating } = props;
+const Item = observer((props) => {
+  const { nested, rating, id } = props;
 
   const Comment = classes({
     CommentItem: true,
@@ -41,8 +42,9 @@ const CommentItem = observer((props) => {
         <Button variant="tretiary" cls={styles.Reply} text="Ответить" />
         <Likes />
       </div>
+      <Answer id={id} />
     </div>
   );
 });
 
-export default CommentItem;
+export default Item;

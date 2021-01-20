@@ -1,0 +1,21 @@
+@use 'src/scss/utils/vars' as *;
+@use 'src/scss/utils/mixins' as *;
+
+.Answer {
+  display: grid;
+  grid-template-columns: 1fr rem(80) rem(180);
+  gap: rem(24) rem(32);
+  padding-top: rem(20);
+}
+
+.Field {
+  grid-column: 1/-1;
+}
+
+.Public {
+  grid-column: 3 / -1;
+}
+
+.Decline {
+  grid-column: 2 / 2;
+}
