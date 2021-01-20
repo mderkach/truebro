@@ -107,19 +107,17 @@ const App = observer(() => {
 
   return (
     <Router history={history}>
-      <div>
-        <Header nav={NavMenu} socials={NavSocials} />
-        <div className="compensate-header" />
-        <Switch>
-          {routes.map((route) => {
-            return (
-              <Route key={route.key} path={route.path} exact={route.exact} render={route.render} />
-            );
-          })}
-        </Switch>
-        <Footer nav={NavMenu} socials={NavSocials} />
-        <Modal />
-      </div>
+      <Header nav={NavMenu} socials={NavSocials} />
+      <div className="compensate-header" />
+      <Switch>
+        {routes.map((route) => {
+          return (
+            <Route key={route.key} path={route.path} exact={route.exact} render={route.render} />
+          );
+        })}
+      </Switch>
+      <Footer nav={NavMenu} socials={NavSocials} />
+      <Modal />
     </Router>
   );
 });
