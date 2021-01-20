@@ -17,6 +17,10 @@
   width: 100%;
 }
 
+.Main {
+  grid-column: 1 / 2;
+}
+
 .Article,
 .Aside {
   display: grid;
@@ -82,5 +86,23 @@
     margin: 0 rem(10);
     fill: #3f4756;
     transition: all 0.3s ease;
+  }
+}
+
+.Comments {
+  display: flex;
+  flex-wrap: wrap;
+  grid-column: 1 / 2;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: rem(64 - 20);
+
+  &After {
+    display: flex;
+    flex-wrap: wrap;
+    grid-column: 1 / 2;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: rem(64);
   }
 }

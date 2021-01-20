@@ -3,6 +3,7 @@
 
 .Answer {
   display: grid;
+  flex: 1 0 100%;
   grid-template-columns: 1fr rem(80) rem(180);
   gap: rem(24) rem(32);
   padding-top: rem(20);

@@ -1,6 +1,7 @@
 import React from 'react';
 // modules
 import Comments from '~m/Comments/Comments';
+import Answer from '~m/Comments/Components/Answer/Answer';
 // components
 import Button from '~cmp/Button/Button';
 import Icon from '~cmp/Icon/Icon';
@@ -33,7 +34,7 @@ const banner = [
 const ForecastView = () => {
   return (
     <div className={s.PageGrid}>
-      <main>
+      <main className={s.Main}>
         <article className={s.Article}>
           <Likes like={345} dislike={2} />
           <header>
@@ -120,7 +121,16 @@ const ForecastView = () => {
         <PrognosisQuotes />
         <Picture cls={s.Picture} src={banner[0].src} media={banner} />
       </aside>
-      <Comments />
+      <div className={s.Comments}>
+        <h2 className="h2 medium">Комментарии</h2>
+        <Button variant="tertiary" text="Комментировать" />
+        <Answer id="new-top" />
+      </div>
+      <Comments className={s.Main} />
+      <div className={s.CommentsAfter}>
+        <Button variant="tertiary" text="Комментировать" />
+        <Answer id="new-bottom" />
+      </div>
     </div>
   );
 };
