@@ -10,6 +10,7 @@ import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '~m/Broker
 import styles from '~m/Broker/Broker.local';
 // utils
 import { H1 } from '~m/Broker/Utils/Classes';
+import Store from '../../utils/Store';
 
 const links = [
   {
@@ -22,7 +23,9 @@ const links = [
   },
 ];
 
-const Broker = observer(() => {
+const Broker = observer(({ name }) => {
+  Store.brokerName = name;
+
   const isDesktop = useMediaQuery({
     query: '(min-width: 1680px)',
   });

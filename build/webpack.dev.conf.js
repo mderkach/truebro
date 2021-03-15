@@ -20,6 +20,10 @@ const devWebpackConfig = merge(BaseWebpackConfig, {
     watchOptions: {
       poll: true,
     },
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+    }
   },
   plugins: [
     new BrowserSyncPlugin(

@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 // modules
 import Comments from '~m/Comments/Comments';
 // components
@@ -21,7 +22,8 @@ import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData'
 // store
 import Store from '/src/utils/Store';
 
-const BrokerViewDesktop = () => {
+const BrokerViewDesktop = observer(() => {
+  Store.fetchBroker();
   return (
     <>
       <BrokerTopBar className={(styles.AreaMain, styles.AreaFluid)} />
@@ -187,6 +189,6 @@ const BrokerViewDesktop = () => {
       </div>
     </>
   );
-};
+});
 
 export default BrokerViewDesktop;

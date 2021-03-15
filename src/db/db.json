@@ -463,5 +463,6 @@
         }
       ]
     }
-  ]
+  ],
+  "broker": [{"name":"Alpary","brand":"http://test32.softmg.ru/wp-content/uploads/2021/03/u0415u0432u0440u043eu0441u043eu044eu0437-GDPR.png","age":"20","forNovice":false,"claim":"231231","positive":"231qweqwe","comfort":"523123","deposit":"102$","bonus":"8024%","recognizability":"624","loyality":true,"partnership":true,"shoulder":"10002","type":"ECN","paymentSystems":"382","mobile":"Android, IOS","support":true,"spread":true,"pairs":"62","cfd":"489","trustmanagment":"trustManagment"},{"name":"Alpary","brand":"http://test32.softmg.ru/wp-content/uploads/2021/03/u0415u0432u0440u043eu0441u043eu044eu0437-GDPR.png","age":"34","forNovice":true,"claim":"u041eu0431u0440u0430u0431u043eu0442u043au0430 u043fu0440u0435u0442u0435u043du0437u0438u0439","positive":"23","comfort":"5","deposit":"10$","bonus":"80%","recognizability":"6","loyality":true,"partnership":true,"shoulder":"1000","type":"ECN","paymentSystems":"38","mobile":"Android, IOS","support":true,"spread":true,"pairs":"6","cfd":"89","trustmanagment":"trustManagment"}]
 }

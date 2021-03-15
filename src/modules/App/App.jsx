@@ -74,21 +74,30 @@ const routes = [
     key: 'broker',
     path: '/broker/:name?',
     exact: false,
-    render: (props) => (
-      <Suspense fallback={<div>Загрузка...</div>}>
-        <Broker {...props} />
-      </Suspense>
-    ),
+    render: (props) => {
+      const {
+        match: {
+          params: { name },
+        },
+      } = props;
+      return (
+        <Suspense fallback={<div>Загрузка...</div>}>
+          <Broker {...props} name={name} />
+        </Suspense>
+      );
+    },
   },
   {
     key: 'prognosis',
     path: '/prognosis',
     exact: true,
-    render: (props) => (
-      <Suspense fallback={<div>Загрузка...</div>}>
-        <Prognosis {...props} />
-      </Suspense>
-    ),
+    render: (props) => {
+      return (
+        <Suspense fallback={<div>Загрузка...</div>}>
+          <Prognosis {...props} />
+        </Suspense>
+      );
+    },
   },
   {
     key: 'forecast',

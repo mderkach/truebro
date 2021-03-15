@@ -1,4 +1,5 @@
 /* eslint-disable camelcase */
+import axios from 'axios';
 import { observable, makeAutoObservable, action } from 'mobx';
 
 import API from './API';
@@ -24,6 +25,10 @@ class StoreProto {
   @observable isModalShowed = false;
 
   @observable modalVariant = 'pretension';
+
+  @observable broker = null;
+
+  @observable brokerName = null;
 
   @action toggleTableLoading = (bool) => {
     if (bool) this.tableLoading = bool;
@@ -66,6 +71,16 @@ class StoreProto {
   @action showModal = (variant = 'pretension') => {
     this.isModalShowed = !this.isModalShowed;
     this.modalVariant = variant;
+  };
+
+  @action fetchBroker = () => {
+    console.log(this.brokerName);
+    API.post('broker', this.brokerName)
+      .then((r) => {
+        this.broker = null;
+        this.broker = r.data;
+      })
+      .catch((e) => console.debug(e));
   };
 }
 

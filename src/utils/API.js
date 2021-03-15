@@ -3,6 +3,9 @@ import axios from 'axios';
 export default axios.create({
   baseURL: process.env.BASE_URI, // урл апи, создайте .env и пересоберите фронт (npm run build)
   responseType: 'json',
+  headers: {
+    'Content-Type': 'text/plain',
+  },
 });
 
 // пример .env
