@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 // components
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
-import Picture from '~cmp/Picture/Picture';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
+import Picture from '/src/components/Picture/Picture';
 // styles
 import styles from './Card.local';
 

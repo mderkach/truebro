@@ -4,21 +4,21 @@ import Comments from '~m/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
-import TableSimple from '~cmp/Table/TableSimple/TableSimple';
-import Tabs from '~cmp/Tabs/Tabs';
-import List from '~cmp/List/List';
-import Card from '~cmp/Card/Card';
-import Picture from '~cmp/Picture/Picture';
-import DateTime from '~cmp/DateTime/DateTime';
+import TableSimple from '/src/components/Table/TableSimple/TableSimple';
+import Tabs from '/src/components/Tabs/Tabs';
+import List from '/src/components/List/List';
+import Card from '/src/components/Card/Card';
+import Picture from '/src/components/Picture/Picture';
+import DateTime from '/src/components/DateTime/DateTime';
 import Status from '../../Components/Status/Status';
-import Button from '~cmp/Button/Button';
+import Button from '/src/components/Button/Button';
 // styles
 import styles from '../../Broker.local';
 // utils
 import { H2, GridBlock, classes } from '../../Utils/Classes';
 import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
 // store
-import Store from '~u/Store';
+import Store from '/src/utils/Store';
 
 const BrokerViewTablet = () => {
   return (

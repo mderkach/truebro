@@ -2,10 +2,10 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
-import Button from '~cmp/Button/Button';
-import DateTime from '~cmp/DateTime/DateTime';
-import Rating from '~cmp/Rating/Rating';
-import Likes from '~cmp/Likes/Likes';
+import Button from '/src/components/Button/Button';
+import DateTime from '/src/components/DateTime/DateTime';
+import Rating from '/src/components/Rating/Rating';
+import Likes from '/src/components/Likes/Likes';
 import Answer from '~m/Comments/Components/Answer/Answer';
 // styles
 import styles from './Item.local';

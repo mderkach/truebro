@@ -4,7 +4,7 @@ import { observer } from 'mobx-react';
 import ScrollContainer from 'react-indiana-drag-scroll';
 import classNames from 'classnames/bind';
 // components
-import Button from '~cmp/Button/Button';
+import Button from '/src/components/Button/Button';
 // styles
 import styles from './Tabs.local';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
-import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
+import InputCheckbox from '/src/components/Input/InputCheckbox/InputCheckbox';
 // styles
 import styles from './FilterItem.local';
 

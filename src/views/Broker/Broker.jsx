@@ -2,8 +2,8 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
 // components
-import Wrapper from '~cmp/Wrapper/Wrapper';
-import Breadcrumbs from '~cmp/Breadcrumbs/Breadcrumbs';
+import Wrapper from '/src/components/Wrapper/Wrapper';
+import Breadcrumbs from '/src/components/Breadcrumbs/Breadcrumbs';
 // views
 import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '~m/Broker/Views';
 // styles

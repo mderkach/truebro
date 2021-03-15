@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Icon from '~cmp/Icon/Icon';
+import Icon from '/src/components/Icon/Icon';
 
 import styles from './List.local';
 

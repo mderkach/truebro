@@ -1,4 +1,4 @@
-import Store from '~u/Store';
+import Store from '/src/utils/Store';
 
 const checkedAlreadyChecked = (item, arr) => {
   if (arr && arr.length > 0 && arr.includes(item)) return true;

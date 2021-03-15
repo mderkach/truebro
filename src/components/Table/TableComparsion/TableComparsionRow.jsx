@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Icon from '~cmp/Icon/Icon';
+import Icon from '/src/components/Icon/Icon';
 
 const Column = (props) => {
   const { row, col } = props;

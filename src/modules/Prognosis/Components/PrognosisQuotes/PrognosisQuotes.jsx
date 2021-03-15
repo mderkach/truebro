@@ -2,8 +2,8 @@ import React from 'react';
 import classNames from 'classnames/bind';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './PrognosisQuotes.local';
 

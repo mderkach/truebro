@@ -3,10 +3,10 @@ import React from 'react';
 import Comments from '~m/Comments/Comments';
 import Answer from '~m/Comments/Components/Answer/Answer';
 // components
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
-import Likes from '~cmp/Likes/Likes';
-import Picture from '~cmp/Picture/Picture';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
+import Likes from '/src/components/Likes/Likes';
+import Picture from '/src/components/Picture/Picture';
 import PrognosisQuotes from '~m/Prognosis/Components/PrognosisQuotes/PrognosisQuotes';
 // styles
 import s from './Forecast.local.scss';

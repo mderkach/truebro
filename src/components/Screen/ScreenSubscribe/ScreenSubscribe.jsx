@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 // components
-import Button from '~cmp/Button/Button';
-import InputField from '~cmp/Input/InputField/InputField';
+import Button from '/src/components/Button/Button';
+import InputField from '/src/components/Input/InputField/InputField';
 // styles
 import styles from './ScreenSubscribe.local';
 

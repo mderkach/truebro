@@ -1,10 +1,10 @@
 import React, { useState, createRef } from 'react';
 import classNames from 'classnames/bind';
 // eslint-disable-next-line no-unused-vars
-import API from '~u/API';
+import API from '/src/utils/API';
 // components
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './InputSearch.local';
 

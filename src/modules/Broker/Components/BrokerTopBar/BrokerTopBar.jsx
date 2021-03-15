@@ -3,9 +3,9 @@ import React from 'react';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
-import Picture from '~cmp/Picture/Picture';
-import Icon from '~cmp/Icon/Icon';
-import Button from '~cmp/Button/Button';
+import Picture from '/src/components/Picture/Picture';
+import Icon from '/src/components/Icon/Icon';
+import Button from '/src/components/Button/Button';
 // styles
 import styles from './BrokerTopBar.local';
 

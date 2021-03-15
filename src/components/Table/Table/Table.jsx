@@ -2,17 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
 // components
-import TableHeader from '~cmp/Table/TableHeader/TableHeader';
-import TableRow from '~cmp/Table/TableRow/TableRow';
-import TableLoaderPlaceholder from '~cmp/Table/TableLoaderPlaceHolder';
-import Filter from '~cmp/Filter/Filter/Filter';
-import Button from '~cmp/Button/Button';
+import TableHeader from '/src/components/Table/TableHeader/TableHeader';
+import TableRow from '/src/components/Table/TableRow/TableRow';
+import TableLoaderPlaceholder from '/src/components/Table/TableLoaderPlaceholder';
+import Filter from '/src/components/Filter/Filter/Filter';
+import Button from '/src/components/Button/Button';
 // utils
-import Store from '~u/Store';
+import Store from '/src/utils/Store';
 // eslint-disable-next-line no-unused-vars
-import API from '~u/API';
+import API from '/src/utils/API';
 
-import './table.scss';
+import './Table.scss';
 
 const headers = [
   {

@@ -177,6 +177,7 @@ module.exports = {
       '~cmp': `${PATHS.src}/components`,
       '~m': `${PATHS.src}/modules`,
     },
+    modules: ['node_modules', PATHS.src],
     extensions: ['.js', '.jsx', '.mjs', '.es6', '.scss'],
   },
   plugins: plugins,

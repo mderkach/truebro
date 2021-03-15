@@ -4,16 +4,16 @@ import { useMediaQuery } from 'react-responsive';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
-import FilterItem from '~cmp/Filter/FilterItem';
-import FilterComparsion from '~cmp/Filter/FilterComparsion/FilterComparsion';
+import FilterItem from '/src/components/Filter/FilterItem';
+import FilterComparsion from '/src/components/Filter/FilterComparsion/FilterComparsion';
 import TableComparsionRow from './TableComparsionRow';
-import TableLoaderPlaceholder from '~cmp/Table/TableLoaderPlaceHolder';
-import Icon from '~cmp/Icon/Icon';
+import TableLoaderPlaceholder from '/src/components/Table/TableLoaderPlaceholder';
+import Icon from '/src/components/Icon/Icon';
 // utils
-import Store from '~u/Store';
+import Store from '/src/utils/Store';
 // eslint-disable-next-line no-unused-vars
-import API from '~u/API';
-import './tableComparsion.scss';
+import API from '/src/utils/API';
+import './TableComparsion.scss';
 
 const rows = [
   {

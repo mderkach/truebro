@@ -3,13 +3,13 @@ import { useHistory } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
-import useScrollLock from '~u/useScrollLock';
-import useToggleHidden from '~u/useToggleHidden';
+import useScrollLock from '/src/utils/useScrollLock';
+import useToggleHidden from '/src/utils/useToggleHidden';
 // components
-import Picture from '~cmp/Picture/Picture';
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
-import FilterItem from '~cmp/Filter/FilterItem';
+import Picture from '/src/components/Picture/Picture';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
+import FilterItem from '/src/components/Filter/FilterItem';
 // styles
 import styles from './Filter.local';
 

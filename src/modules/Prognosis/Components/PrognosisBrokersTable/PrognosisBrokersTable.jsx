@@ -1,11 +1,11 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 // components
-import Picture from '~cmp/Picture/Picture';
-import Button from '~cmp/Button/Button';
-import Icon from '~cmp/Icon/Icon';
+import Picture from '/src/components/Picture/Picture';
+import Button from '/src/components/Button/Button';
+import Icon from '/src/components/Icon/Icon';
 // utils
-import useToggleHidden from '~u/useToggleHidden';
+import useToggleHidden from '/src/utils/useToggleHidden';
 // styles
 import s from './PrognosisBrokersTable.local';
 

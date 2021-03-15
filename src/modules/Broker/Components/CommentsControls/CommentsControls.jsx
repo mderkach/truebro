@@ -1,7 +1,7 @@
 import React from 'react';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
-import Button from '~cmp/Button/Button';
+import Button from '/src/components/Button/Button';
 // styles
 import styles from './CommentsControls.local';
 

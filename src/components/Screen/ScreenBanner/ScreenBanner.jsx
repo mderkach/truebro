@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import Wrapper from '~cmp/Wrapper/Wrapper';
+import Wrapper from '/src/components/Wrapper/Wrapper';
 
 import styles from './ScreenBanner.local';
 

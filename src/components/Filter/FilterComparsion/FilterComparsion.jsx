@@ -1,14 +1,14 @@
 import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
-import useToggleHidden from '~u/useToggleHidden';
+import useToggleHidden from '/src/utils/useToggleHidden';
 // components
-import FilterItem from '~cmp/Filter/FilterItem';
-import Picture from '~cmp/Picture/Picture';
-import Icon from '~cmp/Icon/Icon';
+import FilterItem from '/src/components/Filter/FilterItem';
+import Picture from '/src/components/Picture/Picture';
+import Icon from '/src/components/Icon/Icon';
 import styles from './FilterComparsion.local';
 // utils
-import Store from '~u/Store';
-import { checkedAlreadyChecked, setCompare } from '~u/functions';
+import Store from '/src/utils/Store';
+import { checkedAlreadyChecked, setCompare } from '/src/utils/functions';
 
 const FilterComparsion = observer((props) => {
   const { items } = props;

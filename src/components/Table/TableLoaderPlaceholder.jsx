@@ -1,7 +1,7 @@
 import React from 'react';
 // components
-import Icon from '~cmp/Icon/Icon';
-import Button from '~cmp/Button/Button';
+import Icon from '/src/components/Icon/Icon';
+import Button from '/src/components/Button/Button';
 // styles
 import styles from './TableLoaderPlaceholder.local';
 

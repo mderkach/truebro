@@ -1,6 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import Icon from '~cmp/Icon/Icon';
+import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './Rating.local';
 

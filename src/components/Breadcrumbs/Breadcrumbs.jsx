@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames/bind';
 // components
-import Wrapper from '~cmp/Wrapper/Wrapper';
+import Wrapper from '/src/components/Wrapper/Wrapper';
 // styles
 import styles from './Breadcrumbs.local';
 

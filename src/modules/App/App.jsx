@@ -8,7 +8,7 @@ import './App.scss';
 // components
 import Header from '~m/Header/Header';
 import Footer from '~m/Footer/Footer';
-import Modal from '~cmp/Modal/Modal';
+import Modal from '/src/components/Modal/Modal';
 // routes
 const Rating = lazy(() => import('~v/Rating/Rating'));
 const Compare = lazy(() => import('~v/Compare/Compare'));

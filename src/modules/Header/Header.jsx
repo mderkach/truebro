@@ -2,13 +2,13 @@ import React, { createRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
-import Wrapper from '~cmp/Wrapper/Wrapper';
-import Icon from '~cmp/Icon/Icon';
-import Button from '~cmp/Button/Button';
-import InputSearch from '~cmp/Input/InputSearch/InputSearch';
+import Wrapper from '/src/components/Wrapper/Wrapper';
+import Icon from '/src/components/Icon/Icon';
+import Button from '/src/components/Button/Button';
+import InputSearch from '/src/components/Input/InputSearch/InputSearch';
 // utils
 // styles
-import styles from './header.local';
+import styles from './Header.local';
 
 const HeaderDesktop = (props) => {
   const { nav, socials, ToggleMenu } = props;

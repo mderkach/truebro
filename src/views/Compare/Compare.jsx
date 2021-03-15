@@ -1,11 +1,11 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 // components
-import ScreenBanner from '~cmp/Screen/ScreenBanner/ScreenBanner';
-import ScreenBroker from '~cmp/Screen/ScreenBroker/ScreenBroker';
-import Breadcrumbs from '~cmp/Breadcrumbs/Breadcrumbs';
-import Wrapper from '~cmp/Wrapper/Wrapper';
-import TableComparsion from '~cmp/Table/TableComparsion/TableComparsion';
+import ScreenBanner from '/src/components/Screen/ScreenBanner/ScreenBanner';
+import ScreenBroker from '/src/components/Screen/ScreenBroker/ScreenBroker';
+import Breadcrumbs from '/src/components/Breadcrumbs/Breadcrumbs';
+import Wrapper from '/src/components/Wrapper/Wrapper';
+import TableComparsion from '/src/components/Table/TableComparsion/TableComparsion';
 
 const links = [
   {

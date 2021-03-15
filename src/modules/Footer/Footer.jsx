@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 // components
-import Wrapper from '~cmp/Wrapper/Wrapper';
-import Icon from '~cmp/Icon/Icon';
+import Wrapper from '/src/components/Wrapper/Wrapper';
+import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './Footer.local';
 

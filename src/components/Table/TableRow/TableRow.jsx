@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 // components
-import Picture from '~cmp/Picture/Picture';
-import Icon from '~cmp/Icon/Icon';
-import InputCheckbox from '~cmp/Input/InputCheckbox/InputCheckbox';
+import Picture from '/src/components/Picture/Picture';
+import Icon from '/src/components/Icon/Icon';
+import InputCheckbox from '/src/components/Input/InputCheckbox/InputCheckbox';
 // utils
-import Store from '~u/Store';
-import { checkedAlreadyChecked, setCompare } from '~u/functions';
+import Store from '/src/utils/Store';
+import { checkedAlreadyChecked, setCompare } from '/src/utils/functions';
 import './TableRow.scss';
 
 const TableRow = (props) => {

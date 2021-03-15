@@ -5,10 +5,10 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
 import PrognosisQuotes from '../Components/PrognosisQuotes/PrognosisQuotes';
 import PrognosisBrokersTable from '../Components/PrognosisBrokersTable/PrognosisBrokersTable';
-import Button from '~cmp/Button/Button';
-import Picture from '~cmp/Picture/Picture';
-import ScreenSubscribe from '~cmp/Screen/ScreenSubscribe/ScreenSubscribe';
-import Wrapper from '~cmp/Wrapper/Wrapper';
+import Button from '/src/components/Button/Button';
+import Picture from '/src/components/Picture/Picture';
+import ScreenSubscribe from '/src/components/Screen/ScreenSubscribe/ScreenSubscribe';
+import Wrapper from '/src/components/Wrapper/Wrapper';
 // styles
 import s from './PrognosisViews.local';
 

@@ -2,10 +2,10 @@ import React from 'react';
 import { useMediaQuery } from 'react-responsive';
 // utils
 import classNames from 'classnames/bind';
-import useToggleHidden from '~u/useToggleHidden';
+import useToggleHidden from '/src/utils/useToggleHidden';
 // components
-import Picture from '~cmp/Picture/Picture';
-import Icon from '~cmp/Icon/Icon';
+import Picture from '/src/components/Picture/Picture';
+import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './BrokerPaymentSystems.local';
 

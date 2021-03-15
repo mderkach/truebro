@@ -1,9 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 // components
-import Wrapper from '~cmp/Wrapper/Wrapper';
-import Icon from '~cmp/Icon/Icon';
-import ScreenSubscribe from '~cmp/Screen/ScreenSubscribe/ScreenSubscribe';
+import Wrapper from '/src/components/Wrapper/Wrapper';
+import Icon from '/src/components/Icon/Icon';
+import ScreenSubscribe from '/src/components/Screen/ScreenSubscribe/ScreenSubscribe';
 // styles
 import styles from './ScreenBroker.local';
 

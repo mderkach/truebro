@@ -4,15 +4,15 @@ import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 import { disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 // components
-import Icon from '~cmp/Icon/Icon';
-import InputField from '~cmp/Input/InputField/InputField';
-import InputTextArea from '~cmp/Input/InputTextArea/InputTextArea';
-import Button from '~cmp/Button/Button';
-import Rating from '~cmp/Rating/Rating';
+import Icon from '/src/components/Icon/Icon';
+import InputField from '/src/components/Input/InputField/InputField';
+import InputTextArea from '/src/components/Input/InputTextarea/InputTextarea';
+import Button from '/src/components/Button/Button';
+import Rating from '/src/components/Rating/Rating';
 // styles
 import styles from './Modal.local';
 // store
-import Store from '~u/Store';
+import Store from '/src/utils/Store';
 
 const classes = classNames.bind(styles);
 
