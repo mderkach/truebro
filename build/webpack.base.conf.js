@@ -74,16 +74,16 @@ module.exports = {
             },
           },
           // '@svgr/webpack',
-          {
-            loader: 'svgo-loader',
-            options: {
-              plugins: [
-                { removeTitle: true },
-                { convertColors: { shorthex: false } },
-                { convertPathData: false },
-              ],
-            },
-          },
+          // {
+          //   loader: 'svgo-loader',
+          //   options: {
+          //     plugins: [
+          //       { removeTitle: true },
+          //       { convertColors: { shorthex: false } },
+          //       { convertPathData: false },
+          //     ],
+          //   },
+          // },
           'svg-transform-loader',
         ],
       },
