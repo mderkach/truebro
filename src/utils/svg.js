@@ -4,7 +4,8 @@ const requireAll = function (r) {
   r.keys().forEach(r);
 };
 
-requireAll(require.context('../assets/svg/', true, /\.svg$/));
+requireAll(require.context('../assets/svg/', true, /\.(svg)$/));
+requireAll(require.context('../assets/img/', true, /\.(png|jpg|webp)$/));
 if (process.env.NODE_ENV !== 'production') {
   console.log(`svg sprite ready in current mode: ${process.env.NODE_ENV}`);
 }

@@ -36,8 +36,8 @@ const plugins = [
   // copy assets to dist
   new CopyWebpackPlugin({
     patterns: [
-      { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
-      { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
+      // { from: `${PATHS.src}/${PATHS.assets}img`, to: `${PATHS.assets}img` },
+      // { from: `${PATHS.src}/${PATHS.assets}fonts`, to: `${PATHS.assets}fonts` },
       { from: `${PATHS.src}/static`, to: '' },
     ],
   }),
@@ -50,18 +50,26 @@ module.exports = {
   externals: {
     paths: PATHS,
   },
-  entry: `${PATHS.src}/main.js`,
+  entry: { app: `${PATHS.src}/main.js` },
   output: {
     filename: `${PATHS.assets}js/[name].js`,
     path: PATHS.dist,
     publicPath: '',
+    clean: true,
+    assetModuleFilename: (module) => {
+      const filename = module.filename.replace('src/', '');
+      return filename;
+    },
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
-        loader: 'babel-loader',
-        exclude: '/node_modules/',
+        test: /\.jsx?$/,
+        loader: 'esbuild-loader',
+        options: {
+          loader: 'tsx',
+          target: 'es2015',
+        },
       },
       {
         test: /\.svg(\?.*)?$/,
@@ -73,38 +81,31 @@ module.exports = {
               publicPath: `${PATHS.assets}img/svg/`,
             },
           },
-          // '@svgr/webpack',
-          // {
-          //   loader: 'svgo-loader',
-          //   options: {
-          //     plugins: [
-          //       { removeTitle: true },
-          //       { convertColors: { shorthex: false } },
-          //       { convertPathData: false },
-          //     ],
-          //   },
-          // },
           'svg-transform-loader',
         ],
       },
       {
-        test: /\.(gif|png|jpe?g)$/i,
+        test: /\.(webp|gif|png|jpe?g)$/i,
+        type: 'asset/resource',
         use: [
-          'file-loader',
           {
             loader: 'image-webpack-loader',
             options: {
               mozjpeg: {
+                enabled: true,
                 progressive: true,
-                quality: 65,
+                quality: [80, 90],
               },
               // optipng.enabled: false will disable optipng
               optipng: {
-                enabled: false,
+                enabled: true,
+                optimizationLevel: 7,
               },
               pngquant: {
-                quality: [0.65, 0.9],
-                speed: 4,
+                quality: [0.85, 0.95],
+                speed: 1,
+                verbose: true,
+                enabled: true
               },
               gifsicle: {
                 interlaced: false,
@@ -112,6 +113,7 @@ module.exports = {
               // the webp option will enable WEBP
               webp: {
                 quality: 75,
+                enabled: true
               },
             },
           },
@@ -119,12 +121,12 @@ module.exports = {
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file-loader',
-        options: {
-          name: 'fonts/[name].[ext]',
-          outputPath: `./${PATHS.assets}`,
-          publicPath: isProd() ? '../' : './assets/',
-        },
+        type: 'asset/resource',
+        // options: {
+        //   name: 'fonts/[name].[ext]',
+        //   outputPath: `./${PATHS.assets}`,
+        //   publicPath: isProd() ? '../' : './assets/',
+        // },
       },
       {
         test: /\.(sa|sc|c)ss$/,

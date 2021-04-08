@@ -25,6 +25,8 @@ package-lock.json
 *.rar
 stats.json
 
+
+*.webp
 # Special
 Thumbs.db
 Desktop.ini
