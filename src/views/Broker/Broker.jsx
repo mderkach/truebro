@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
 // components
 import Wrapper from '/src/components/Wrapper/Wrapper';
 import Breadcrumbs from '/src/components/Breadcrumbs/Breadcrumbs';
+import Loader from '/src/components/Loader/Loader';
 // views
 import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '~m/Broker/Views';
 // styles
 import styles from '~m/Broker/Broker.local';
 // utils
 import { H1 } from '~m/Broker/Utils/Classes';
+import Store from '~m/Broker/Utils/BrokerStore';
 
 const links = [
   {
@@ -22,7 +24,7 @@ const links = [
   },
 ];
 
-const Broker = observer(() => {
+const Broker = observer((props) => {
   const isDesktop = useMediaQuery({
     query: '(min-width: 1680px)',
   });
@@ -35,16 +37,38 @@ const Broker = observer(() => {
     query: '(max-width: 1365px)',
   });
 
+  const retryHandler = () => {
+    Store.fetchBroker();
+  };
+
+  useEffect(() => {
+    Store.setCurrentBroker(props.match.params.name);
+    if (Store.Broker && !Store.brokerLoaded) {
+      Store.fetchBroker();
+    }
+  }, [props.match.params.name, Store.Broker, Store.brokerLoaded]);
+
   return (
     <>
       <Breadcrumbs links={links} />
+      {!Store.Broker && !Store.isError && <Loader text="Загрузка..." icon="loading-icon" />}
+      {!Store.Broker && Store.isError && (
+        <Loader
+          text="Произошла ошибка! Попробуйте снова"
+          action={retryHandler}
+          actionText="Повторить"
+          icon="loading-icon"
+        />
+      )}
       <div className={styles.PageWrapper}>
-        <Wrapper extClass={styles.PageContainer}>
-          <h1 className={H1}>Форекс брокер Альпари (Alpari)</h1>
-          {isDesktop && <BrokerViewDesktop />}
-          {isLaptop && <BrokerViewLaptop />}
-          {isTabletOrMobile && <BrokerViewTablet />}
-        </Wrapper>
+        {Store.Broker && (
+          <Wrapper extClass={styles.PageContainer}>
+            <h1 className={H1}>{`Форекс брокер ${Store.Broker}`}</h1>
+            {isDesktop && <BrokerViewDesktop />}
+            {isLaptop && <BrokerViewLaptop />}
+            {isTabletOrMobile && <BrokerViewTablet />}
+          </Wrapper>
+        )}
       </div>
     </>
   );

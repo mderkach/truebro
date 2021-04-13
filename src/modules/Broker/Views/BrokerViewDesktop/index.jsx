@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 // modules
 import Comments from '~m/Comments/Comments';
 // components
@@ -17,24 +18,27 @@ import Button from '/src/components/Button/Button';
 import styles from '../../Broker.local';
 // utils
 import { H2, GridBlock, classes } from '../../Utils/Classes';
-import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
+import { specials } from '../../Utils/DevData';
 // store
 import Store from '/src/utils/Store';
+import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
 
 const BrokerViewDesktop = () => {
   return (
     <>
       <BrokerTopBar className={(styles.AreaMain, styles.AreaFluid)} />
       <div className={classes(styles.PageBlock, styles.AreaAside, styles.AreaDoubleRow)}>
-        <TableSimple heading="Основная информация" rows={mainInfo} />
+        <TableSimple heading="Основная информация" rows={BrokerStore.mainInfo} />
       </div>
       <div className={classes(styles.PageBlock, styles.AreaMain, styles.AreaDoubleRow)}>
         <h2 className={classes(H2, styles.mt0)}>Торговые условия</h2>
-        <Tabs>
-          {tabs.map((tab) => (
-            <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
-          ))}
-        </Tabs>
+        {BrokerStore.tabsInfo && (
+          <Tabs>
+            {BrokerStore.tabsInfo.map((tab) => (
+              <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
+            ))}
+          </Tabs>
+        )}
       </div>
       <div className={classes(styles.PageBlock, styles.AreaAside)}>
         <List heading="Особые характеристики" rows={specials} />
@@ -68,10 +72,10 @@ const BrokerViewDesktop = () => {
         </div>
       </div>
       <div className={styles.AreaAside}>
-        <BrokerPaymentSystems items={payments} />
+        {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
       </div>
       <div className={classes(styles.AreaAside, styles.AreaBanner)}>
-        <Picture cls={styles.AreaAbsolute} src={banner[0].src} media={banner} />
+        {BrokerStore.banner && <Picture cls={styles.AreaAbsolute} src={BrokerStore.banner[0].src} media={BrokerStore.banner} />}
       </div>
       <div className={styles.AreaMain}>
         <h2 className={H2}>Новости Альпари</h2>
@@ -189,4 +193,4 @@ const BrokerViewDesktop = () => {
   );
 };
 
-export default BrokerViewDesktop;
+export default observer(BrokerViewDesktop);

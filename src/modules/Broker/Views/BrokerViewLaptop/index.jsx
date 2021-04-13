@@ -19,6 +19,7 @@ import { H2, classes } from '../../Utils/Classes';
 import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
 // store
 import Store from '/src/utils/Store';
+import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
 
 const BrokerViewLaptop = () => {
   return (
@@ -27,11 +28,13 @@ const BrokerViewLaptop = () => {
       <main className={styles.AreaMain}>
         <div className={styles.PageBlock}>
           <h2 className={classes(H2, styles.mt0)}>Торговые условия</h2>
-          <Tabs>
-            {tabs.map((tab) => (
-              <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
-            ))}
-          </Tabs>
+          {BrokerStore.tabsInfo && (
+            <Tabs>
+              {BrokerStore.tabsInfo.map((tab) => (
+                <TableSimple key={tab.alias} alias={tab.alias} rows={tab.content} />
+              ))}
+            </Tabs>
+          )}
         </div>
         <div className={styles.PageBlock}>
           <h2 className={H2}>О компании</h2>
@@ -152,16 +155,16 @@ const BrokerViewLaptop = () => {
       </main>
       <aside className={styles.AreaAside}>
         <div className={styles.PageBlock}>
-          <TableSimple heading="Основная информация" rows={mainInfo} />
+          <TableSimple heading="Основная информация" rows={BrokerStore.mainInfo} />
         </div>
         <div className={styles.PageBlock}>
           <List heading="Особые характеристики" rows={specials} />
         </div>
         <div className={styles.PageBlock}>
-          <BrokerPaymentSystems items={payments} />
+          {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
         </div>
         <div className={styles.PageBlock}>
-          <Picture cls={styles.AreaAbsolute} src={banner[0].src} media={banner} />
+          {BrokerStore.banner && <Picture cls={styles.AreaAbsolute} src={BrokerStore.banner[0].src} media={BrokerStore.banner} />}
         </div>
       </aside>
     </>

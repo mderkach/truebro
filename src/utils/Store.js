@@ -25,6 +25,12 @@ class StoreProto {
 
   @observable modalVariant = 'pretension';
 
+  @observable staticBlock = {
+    image: null,
+    text: null,
+    title: null,
+  }
+
   @action toggleTableLoading = (bool) => {
     if (bool) this.tableLoading = bool;
     else this.tableLoading = !this.tableLoading;
@@ -38,10 +44,12 @@ class StoreProto {
     this.toggleFetchError(false);
     const table = () => API.get('/table');
     const filter = () => API.get('/filter');
-    Promise.all([table(), filter()])
+    const staticBlock = () => API.get('/staticBlock');
+    Promise.all([table(), filter(), staticBlock()])
       .then((res) => {
         this.tableRows = res[0].data;
         this.filter = res[1].data;
+        this.staticBlock = res[2].data; //mobx stirct mode warn FIXME
         this.toggleTableLoading();
       })
       .catch((err) => {
@@ -49,6 +57,12 @@ class StoreProto {
         this.toggleTableLoading(false);
         console.log(err);
       });
+  }
+
+  @action fetchStaticBlock() {
+    API.get('/staticBlock').then((res) => {
+      this.staticBlock = res.data;
+    })
   }
 
   @action updateRows(data) {

@@ -4,7 +4,7 @@ import { useMediaQuery } from 'react-responsive';
 // components
 import TableHeader from '/src/components/Table/TableHeader/TableHeader';
 import TableRow from '/src/components/Table/TableRow/TableRow';
-import TableLoaderPlaceholder from '/src/components/Table/TableLoaderPlaceholder';
+import Loader from '/src/components/Loader/Loader';
 import Filter from '/src/components/Filter/Filter/Filter';
 import Button from '/src/components/Button/Button';
 // utils
@@ -220,9 +220,9 @@ const Table = observer(() => {
 
   return (
     <>
-      {Store.tableLoading && <TableLoaderPlaceholder text="Загрузка" icon="loading-icon" />}
+      {Store.tableLoading && <Loader text="Загрузка" icon="loading-icon" />}
       {!Store.tableLoading && Store.fetchFailed && (
-        <TableLoaderPlaceholder
+        <Loader
           text="Произошла ошибка! Попробуйте снова"
           action={retryFetch}
           actionText="Повторить"

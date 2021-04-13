@@ -5,22 +5,28 @@ import ScreenBanner from '~cmp/Screen/ScreenBanner/ScreenBanner';
 import ScreenBroker from '~cmp/Screen/ScreenBroker/ScreenBroker';
 import Wrapper from '~cmp/Wrapper/Wrapper';
 import Table from '~cmp/Table/Table/Table';
+// store
+import Store from '/src/utils/Store';
 
-const Rating = observer(() => (
-  <>
-    <ScreenBanner
-      title="Лучшие брокеры тут"
-      descr="Рейтинг основанный на множестве характеристик, этот рейтинг Форекс брокеров поможет найти лучшие условия исходя из анализа спредов, максимального кредитного плеча и минимального депозита. Также были учтены независимые отзывы и оценки посетителей"
-    />
-    <Wrapper>
-      <Table />
-    </Wrapper>
-    <ScreenBroker
-      title="Как найти надежного брокера?"
-      descr="Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера. Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное внимание. Будьте внимательны в выборе брокера, Вы вкладываете собственные деньги и они должны работать на Вас!"
-      svg="brand-big"
-    />
-  </>
-));
+const Rating = observer(() => {
+  return (
+    <>
+      <ScreenBanner
+        title="Лучшие брокеры тут"
+        descr="Рейтинг основанный на множестве характеристик, этот рейтинг Форекс брокеров поможет найти лучшие условия исходя из анализа спредов, максимального кредитного плеча и минимального депозита. Также были учтены независимые отзывы и оценки посетителей"
+      />
+      <Wrapper>
+        <Table />
+      </Wrapper>
+      {!Object.entries(Store.staticBlock).some(([key, value]) => value === null || undefined) && (
+        <ScreenBroker
+          title={Store.staticBlock.title}
+          descr={Store.staticBlock.text}
+          svg={Store.staticBlock.image}
+        />
+      )}
+    </>
+  );
+});
 
 export default Rating;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 import { useMediaQuery } from 'react-responsive';
 // utils
 import classNames from 'classnames/bind';
@@ -112,4 +113,4 @@ const BrokerPaymentSystems = (props) => {
   );
 };
 
-export default BrokerPaymentSystems;
+export default observer(BrokerPaymentSystems);

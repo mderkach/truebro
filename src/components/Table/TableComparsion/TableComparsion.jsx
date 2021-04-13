@@ -7,7 +7,7 @@ import ScrollContainer from 'react-indiana-drag-scroll';
 import FilterItem from '/src/components/Filter/FilterItem';
 import FilterComparsion from '/src/components/Filter/FilterComparsion/FilterComparsion';
 import TableComparsionRow from './TableComparsionRow';
-import TableLoaderPlaceholder from '/src/components/Table/TableLoaderPlaceholder';
+import Loader from '/src/components/Loader/Loader';
 import Icon from '/src/components/Icon/Icon';
 // utils
 import Store from '/src/utils/Store';
@@ -144,7 +144,7 @@ const TableComparsion = observer(() => {
   return (
     <>
       {!Store.fetchFailed && !Store.tableLoading && Store.tableRows.length === 0 && (
-        <TableLoaderPlaceholder
+        <Loader
           style={{
             marginTop: '24px',
           }}
@@ -155,7 +155,7 @@ const TableComparsion = observer(() => {
         />
       )}
       {Store.fetchFailed && !Store.tableLoading && (
-        <TableLoaderPlaceholder
+        <Loader
           text="Произошла ошибка! Попробуйте снова"
           action={Store.fetchData()}
           actionText="Повторить"
@@ -163,14 +163,14 @@ const TableComparsion = observer(() => {
         />
       )}
       {!Store.fetchFailed && Store.tableLoading && (
-        <TableLoaderPlaceholder text="Загрузка..." icon="loading-icon" />
+        <Loader text="Загрузка..." icon="loading-icon" />
       )}
       {!Store.tableLoading && Store.tableRows.length > 0 && (
         <main className="table__comparsion-outer">
           <div className="table__comparsion">
             <ScrollContainer className="table__comparsion-body">
               {Store.compared.length === 0 && (
-                <TableLoaderPlaceholder
+                <Loader
                   style={{
                     marginTop: 24,
                   }}

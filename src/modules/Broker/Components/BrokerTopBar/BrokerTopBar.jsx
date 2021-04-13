@@ -8,6 +8,8 @@ import Icon from '/src/components/Icon/Icon';
 import Button from '/src/components/Button/Button';
 // styles
 import styles from './BrokerTopBar.local';
+import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
+
 
 const classes = classNames.bind(styles);
 
@@ -30,27 +32,29 @@ const Contacts = classes({
 const BrokerTopBar = (props) => {
   const { className, ...rest } = props;
 
+  if (!BrokerStore.headerInfo || Object.entries(BrokerStore.headerInfo).some(([key, value]) => value === null || undefined)) return null;
+
   return (
     <div className={classes(styles.TopBar, className)} {...rest}>
-      <Picture cls={styles.Logo} src="/assets/img/alpari.png" />
+      <Picture cls={styles.Logo} src={BrokerStore.headerInfo.brand} />
       <div className={styles.Cell}>
         <p className={CellHeader}>Рейтинг</p>
         <div className={styles.CellBody}>
-          <p className={CellDescr}>4.13</p>
+          <p className={CellDescr}>{BrokerStore.headerInfo.raiting}</p>
           <Icon cls={styles.CellIcon} name="star-icon" />
         </div>
       </div>
       <div className={styles.Cell}>
         <p className={CellHeader}>Отзывы</p>
         <div className={styles.CellBody}>
-          <p className={CellDescr}>178</p>
+          <p className={CellDescr}>{BrokerStore.headerInfo.reviewsNumber}</p>
           <Icon cls={styles.CellIcon} name="baloon-icon" />
         </div>
       </div>
       <div className={styles.Cell}>
         <p className={CellHeader}>Обработка претензий</p>
         <div className={styles.CellBody}>
-          <p className={CellDescr}>65%</p>
+          <p className={CellDescr}>{BrokerStore.headerInfo.claim}</p>
           <Icon cls={styles.CellIcon} name="rating-middle-icon" />
         </div>
       </div>
