@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
 // modules
 import Comments from '~m/Comments/Comments';
@@ -41,44 +41,35 @@ const BrokerViewDesktop = () => {
         )}
       </div>
       <div className={classes(styles.PageBlock, styles.AreaAside)}>
-        <List heading="Особые характеристики" rows={specials} />
+        {BrokerStore.specials && (
+          <List heading="Особые характеристики" rows={BrokerStore.specials} />
+        )}
       </div>
       <div className={classes(styles.AreaMain, styles.AreaDoubleRow)}>
-        <h2 className={H2}>О компании</h2>
-        <div className={classes(styles.PageBlockText, styles.PageBlock)}>
-          <p className="text-regular">
-            Компания Alpari - российский Форекс брокер, предоставляющий качественные брокерские
-            услуги с 1998 года. За время своего существования компания заслужила всеобщее признание
-            и массу положительных отзывов от своих клиентов, которые вы сможете почитать в разделе
-            отзывы об Альпари. Кроме всего прочего Альпари вполне обоснованно считается одним из
-            главных инициаторов создания НАФД (ЦРФИН), ведущей отечественной ассоциации форекс
-            дилеров.
-          </p>
-          <p className="text-regular">
-            Компания предлагает 2 метода котирования: стандартный и ECN. Стандартный метод
-            котирования подразумевает вывод на рынок только совокупной позиции по всем счетам, при
-            этом клиринг осуществляется внутри компании. Для счетов ECN все ордера клиентов
-            автоматически выводятся на внешний рынок. Плюсом счета ECN является отсутствие реквот, а
-            минусом – наличие комиссии.
-          </p>
-          <p className="text-regular">
-            Следует отметить, что Альпари имеет три международные лицензии авторитетных финансовых
-            регуляторов. Данная брокерская компания признана лучшим брокером по версии агентства
-            «Интерфакс». Более детально с основными событиями из жизни рассматриваемого брокера Вы
-            можете ознакомиться на этой странице. Alpari постоянно находится в процессе развития и
-            стремится предложить своим клиентам максимально выгодные условия для действительно
-            успешной торговли с большой прибылью.
-          </p>
-        </div>
+        {BrokerStore.text &&
+          BrokerStore.text.map((item) => (
+            <Fragment key={item.header}>
+              <h2 className={H2}>{item.header}</h2>
+              <div className={classes(styles.PageBlockText, styles.PageBlock)}>
+                <p className="text-regular">{item.description}</p>
+              </div>
+            </Fragment>
+          ))}
       </div>
       <div className={styles.AreaAside}>
         {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
       </div>
       <div className={classes(styles.AreaAside, styles.AreaBanner)}>
-        {BrokerStore.banner && <Picture cls={styles.AreaAbsolute} src={BrokerStore.banner[0].src} media={BrokerStore.banner} />}
+        {BrokerStore.banner && (
+          <Picture
+            cls={styles.AreaAbsolute}
+            src={BrokerStore.banner[0].src}
+            media={BrokerStore.banner}
+          />
+        )}
       </div>
       <div className={styles.AreaMain}>
-        <h2 className={H2}>Новости Альпари</h2>
+        <h2 className={H2}>Новости {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
           <Card
             head={<DateTime date="27 июня 18:02" />}
@@ -98,7 +89,7 @@ const BrokerViewDesktop = () => {
         </div>
       </div>
       <div className={styles.AreaMain}>
-        <h2 className={H2}>Семинары и вебинары Альпари </h2>
+        <h2 className={H2}>Семинары и вебинары {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
           <Card
             head={<DateTime date="27 июня 18:02" />}
@@ -118,7 +109,7 @@ const BrokerViewDesktop = () => {
         </div>
       </div>
       <div className={styles.AreaMain}>
-        <h2 className={H2}>Бонусы, акции, конкурсы Альпари </h2>
+        <h2 className={H2}>Бонусы, акции, конкурсы {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
           <Card
             head="Конкурсы"
@@ -138,7 +129,7 @@ const BrokerViewDesktop = () => {
         </div>
       </div>
       <div className={styles.AreaMain}>
-        <h2 className={H2}>Отзывы о компании Альпари</h2>
+        <h2 className={H2}>Отзывы о компании {BrokerStore.Broker}</h2>
         <div className={styles.PageBlock}>
           <CommentsControls action={Store.showModal} />
           <Comments />

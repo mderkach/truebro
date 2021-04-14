@@ -27,6 +27,8 @@ class StoreProto {
 
   @observable pay = null;
 
+  @observable specials = null;
+
   @action setCurrentBroker = (name) => {
     this.Broker = name;
   };
@@ -40,6 +42,7 @@ class StoreProto {
     const text = () => API.get(`/brokerText?broker=${this.Broker}`);
     const banner = () => API.get(`/bannerImg`);
     const pay = () => API.get(`/brokerPaymentSystem?broker=${this.Broker}`);
+    const specials = () => API.get(`/brokerCharacteristics?broker=${this.Broker}`);
 
     Promise.all([
       headerInfo(),
@@ -48,6 +51,7 @@ class StoreProto {
       text(),
       banner(),
       pay(),
+      specials(),
     ])
       .then((res) => {
         this.headerInfo = res[0].data;
@@ -56,6 +60,7 @@ class StoreProto {
         this.text = res[3].data;
         this.banner = res[4].data;
         this.pay = res[5].data;
+        this.specials = res[6].data;
 
         this.brokerLoaded = true;
       })
