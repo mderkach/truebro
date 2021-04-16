@@ -6,7 +6,7 @@ import Button from '/src/components/Button/Button';
 import DateTime from '/src/components/DateTime/DateTime';
 import Rating from '/src/components/Rating/Rating';
 import Likes from '/src/components/Likes/Likes';
-import Answer from '~m/Comments/Components/Answer/Answer';
+import Answer from '/src/modules/Comments/Components/Answer/Answer';
 // styles
 import styles from './Item.local';
 

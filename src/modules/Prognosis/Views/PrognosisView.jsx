@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
+import { toJS } from 'mobx';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
@@ -11,95 +12,49 @@ import ScreenSubscribe from '/src/components/Screen/ScreenSubscribe/ScreenSubscr
 import Wrapper from '/src/components/Wrapper/Wrapper';
 // styles
 import s from './PrognosisViews.local';
-
-const cardsArray = [
-  {
-    date: '27 июня',
-    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
-    excerpt:
-      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
-    img: './assets/img/prognosis-card.jpg',
-    category: 'EUR/USD',
-    like: 345,
-    dislike: 0,
-  },
-  {
-    date: '27 июня',
-    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
-    excerpt:
-      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
-    img: './assets/img/prognosis-card.jpg',
-    category: 'EUR/RUB',
-    like: 1,
-    dislike: 0,
-  },
-  {
-    date: '27 июня',
-    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
-    excerpt:
-      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
-    img: './assets/img/prognosis-card.jpg',
-    category: 'EUR/JPY',
-    like: 0,
-    dislike: 1,
-  },
-  {
-    date: '27 июня',
-    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
-    excerpt:
-      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
-    img: './assets/img/prognosis-card.jpg',
-    category: 'USD/CHF',
-    like: 0,
-    dislike: 1,
-  },
-  {
-    date: '27 июня',
-    title: 'EUR/USD прогноз Евро Доллар на 14 ноября 2019',
-    excerpt:
-      'В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы).',
-    img: './assets/img/prognosis-card.jpg',
-    category: 'USD/CAD',
-    like: 0,
-    dislike: 1,
-  },
-];
-const imgPath = './assets/img/';
-const banner = [
-  {
-    src: `${imgPath}banner-big.jpg`,
-    media: '(min-width: 1680px)',
-  },
-  {
-    src: `${imgPath}banner-medium.jpg`,
-    media: '(min-width: 1366px) and (max-width: 1679px)',
-  },
-  {
-    src: `${imgPath}banner-small.jpg`,
-    media: '(min-width: 767px) and (max-width: 1365px)',
-  },
-  {
-    src: `${imgPath}banner-medium.jpg`,
-    media: '(max-width: 767px)',
-  },
-];
-
-const categories = [
-  'Все',
-  'EUR/USD',
-  'EUR/RUB',
-  'USD/JPY',
-  'USD/CHF',
-  'USD/CAD',
-  'Серебро',
-  'Золото',
-  'Нефть',
-];
+// store
+import Store from '../Utils/Store';
+import MainStore from '/src/utils/Store';
 
 const tabs = ['Прогнозы форекс', 'Крипто прогнозы'];
 
+const RenderButtons = memo(
+  ({ arr, category, setter }) =>
+    arr.length > 0 &&
+    arr.map((item) => (
+      <Button
+        key={item}
+        type="button"
+        variant="chip"
+        cls={category === item ? 'is-active' : null}
+        text={item}
+        onClick={() => setter(item)}
+      />
+    )),
+);
+
+const Cards = ({ array, category }) => {
+  const cardsArray = Object.entries(array);
+  const targetCardsProto = cardsArray.filter(([key, cards]) => key === category);
+  const target = Object.values(targetCardsProto[0][1]);
+
+  return target.map((card) => (
+    <PrognosisCard
+      key={card.id}
+      category={category}
+      date={card.date}
+      title={card.title}
+      img={card.image}
+      alt={card.title}
+      excerpt={card.text}
+      like={card.like}
+      dislike={card.dislike}
+    />
+  ));
+};
+
 const PrognosisView = () => {
-  const [cardsCategory, setCardsCategory] = useState(categories[0]);
+  const [cardsCategory, setCardsCategory] = useState(Store.categories[0]);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
   const RenderTabsBtn = () =>
@@ -114,18 +69,6 @@ const PrognosisView = () => {
       />
     ));
 
-  const RenderButtons = () =>
-    categories.map((item) => (
-      <Button
-        key={item}
-        type="button"
-        variant="chip"
-        cls={cardsCategory === item ? 'is-active' : null}
-        text={item}
-        onClick={() => setCardsCategory(item)}
-      />
-    ));
-
   return (
     <div className={s.Wrapper}>
       <main className={s.AreaMain}>
@@ -134,42 +77,10 @@ const PrognosisView = () => {
         </div>
         <div className={classNames(s.Tab, activeTab === tabs[0] ? 'is-active' : null)}>
           <ScrollContainer className={s.CardsControls}>
-            <RenderButtons />
+            <RenderButtons arr={Store.categories} category={cardsCategory} setter={setCardsCategory} />
           </ScrollContainer>
           <div className={s.Cards}>
-            {cardsArray.map((card) => {
-              if (cardsCategory === categories[0]) {
-                return (
-                  <PrognosisCard
-                    key={card.category}
-                    category={card.category}
-                    date={card.date}
-                    title={card.title}
-                    img={card.img}
-                    alt={card.title}
-                    excerpt={card.excerpt}
-                    like={card.like}
-                    dislike={card.dislike}
-                  />
-                );
-              }
-              if (cardsCategory === card.category) {
-                return (
-                  <PrognosisCard
-                    key={card.category}
-                    category={card.category}
-                    date={card.date}
-                    title={card.title}
-                    img={card.img}
-                    alt={card.title}
-                    excerpt={card.excerpt}
-                    like={card.like}
-                    dislike={card.dislike}
-                  />
-                );
-              }
-              return null;
-            })}
+            <Cards array={Store.cards} category={cardsCategory} />
           </div>
         </div>
         <div className={classNames(s.Tab, activeTab === tabs[1] ? 'is-active' : null)}>
@@ -178,7 +89,7 @@ const PrognosisView = () => {
       </main>
       <aside className={s.AreaAside}>
         <PrognosisQuotes />
-        <Picture src={banner[0].src} media={banner} />
+        {MainStore.banner && <Picture src={MainStore.banner[0].src} media={MainStore.banner} />}
         <PrognosisBrokersTable />
       </aside>
       <Wrapper extClass={s.AreaSecondary}>

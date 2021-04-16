@@ -1,6 +1,6 @@
 import React from 'react';
 // modules
-import Comments from '~m/Comments/Comments';
+import Comments from '/src/modules/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
@@ -148,11 +148,11 @@ const BrokerViewLaptop = () => {
           {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
         </div>
         <div className={styles.PageBlock}>
-          {BrokerStore.banner && (
+          {Store.banner && (
             <Picture
               cls={styles.AreaAbsolute}
-              src={BrokerStore.banner[0].src}
-              media={BrokerStore.banner}
+              src={Store.banner[0].src}
+              media={Store.banner}
             />
           )}
         </div>

@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import '/src/utils/svg';
 // components
-import App from '~m/App/App';
+import App from '/src/modules/App/App';
 
 ReactDOM.render(
   <>

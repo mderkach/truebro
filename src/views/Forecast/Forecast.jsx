@@ -3,7 +3,7 @@ import { observer } from 'mobx-react';
 // components
 import ScreenBanner from '/src/components/Screen/ScreenBanner/ScreenBanner';
 import Wrapper from '/src/components/Wrapper/Wrapper';
-import ForecastView from '~m/Forecast/Views/Forecast';
+import ForecastView from '/src/modules/Forecast/Views/Forecast';
 
 const Forecast = observer(() => (
   <>

@@ -25,6 +25,8 @@ class StoreProto {
 
   @observable modalVariant = 'pretension';
 
+  @observable banner = null;
+
   @observable staticBlock = {
     image: null,
     text: null,
@@ -81,6 +83,10 @@ class StoreProto {
     this.isModalShowed = !this.isModalShowed;
     this.modalVariant = variant;
   };
+
+  @action fetchBanner = () => {
+   API.get(`/bannerImg`).then(({data}) => this.banner = data)
+  }
 }
 
 const Store = new StoreProto();

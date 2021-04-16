@@ -6,8 +6,8 @@ import { observer } from 'mobx-react';
 // app styles always before imported components
 import './App.scss';
 // components
-import Header from '~m/Header/Header';
-import Footer from '~m/Footer/Footer';
+import Header from '/src/modules/Header/Header';
+import Footer from '/src/modules/Footer/Footer';
 import Modal from '/src/components/Modal/Modal';
 // routes
 const Rating = lazy(() => import('~v/Rating/Rating'));

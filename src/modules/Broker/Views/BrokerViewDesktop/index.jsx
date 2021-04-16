@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { observer } from 'mobx-react';
 // modules
-import Comments from '~m/Comments/Comments';
+import Comments from '/src/modules/Comments/Comments';
 // components
 import BrokerTopBar from '../../Components/BrokerTopBar/BrokerTopBar';
 import BrokerPaymentSystems from '../../Components/BrokerPaymentSystems/BrokerPaymentSystems';
@@ -59,11 +59,11 @@ const BrokerViewDesktop = () => {
         {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
       </div>
       <div className={classes(styles.AreaAside, styles.AreaBanner)}>
-        {BrokerStore.banner && (
+        {Store.banner && (
           <Picture
             cls={styles.AreaAbsolute}
-            src={BrokerStore.banner[0].src}
-            media={BrokerStore.banner}
+            src={Store.banner[0].src}
+            media={Store.banner}
           />
         )}
       </div>

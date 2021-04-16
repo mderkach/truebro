@@ -6,12 +6,13 @@ import Wrapper from '/src/components/Wrapper/Wrapper';
 import Breadcrumbs from '/src/components/Breadcrumbs/Breadcrumbs';
 import Loader from '/src/components/Loader/Loader';
 // views
-import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '~m/Broker/Views';
+import { BrokerViewDesktop, BrokerViewLaptop, BrokerViewTablet } from '/src/modules/Broker/Views';
 // styles
-import styles from '~m/Broker/Broker.local';
+import styles from '/src/modules/Broker/Broker.local';
 // utils
-import { H1 } from '~m/Broker/Utils/Classes';
-import Store from '~m/Broker/Utils/BrokerStore';
+import { H1 } from '/src/modules/Broker/Utils/Classes';
+import Store from '/src/modules/Broker/Utils/BrokerStore';
+import MainStore from '/src/utils/Store';
 
 const links = [
   {
@@ -42,6 +43,7 @@ const Broker = observer(({ name }) => {
   const retryHandler = () => {
     fetchBroker();
     fetchBrokerAdditional();
+    MainStore.fetchBanner();
   };
 
   useEffect(() => {
@@ -49,15 +51,18 @@ const Broker = observer(({ name }) => {
       setCurrentBroker(name);
       fetchBroker();
       fetchBrokerAdditional();
+      MainStore.fetchBanner();
     }
     if (Store.Broker && !Store.brokerLoaded) {
       fetchBroker();
       fetchBrokerAdditional();
+      MainStore.fetchBanner();
     }
     if (Store.Broker !== name) {
       setCurrentBroker(name);
       fetchBroker();
       fetchBrokerAdditional();
+      MainStore.fetchBanner();
     }
   }, [name]);
 

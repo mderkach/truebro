@@ -23,8 +23,6 @@ class StoreProto {
 
   @observable text = null;
 
-  @observable banner = null;
-
   @observable pay = null;
 
   @observable specials = null;
@@ -50,19 +48,17 @@ class StoreProto {
     const mainInfo = () => API.get(`/brokerMainInfo?broker=${this.Broker}`);
     const tabsInfo = () => API.get(`/brokerTabsInfo?broker=${this.Broker}`);
     const text = () => API.get(`/brokerText?broker=${this.Broker}`);
-    const banner = () => API.get(`/bannerImg`);
     const pay = () => API.get(`/brokerPaymentSystem?broker=${this.Broker}`);
     const specials = () => API.get(`/brokerCharacteristics?broker=${this.Broker}`);
 
-    Promise.all([headerInfo(), mainInfo(), tabsInfo(), text(), banner(), pay(), specials()])
+    Promise.all([headerInfo(), mainInfo(), tabsInfo(), text(), pay(), specials()])
       .then((res) => {
         this.headerInfo = res[0].data;
         this.mainInfo = res[1].data;
         this.tabsInfo = res[2].data;
         this.text = res[3].data;
-        this.banner = res[4].data;
-        this.pay = res[5].data;
-        this.specials = res[6].data;
+        this.pay = res[4].data;
+        this.specials = res[5].data;
 
         this.brokerLoaded = true;
       })
@@ -113,7 +109,6 @@ class StoreProto {
       });
     API.get(`/brokerReview?broker=${this.Broker}`)
       .then(({ data }) => {
-        console.debug(data)
         this.reviews = data;
       })
       .catch((err) => {

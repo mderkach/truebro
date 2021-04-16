@@ -1,13 +1,13 @@
 import React from 'react';
 // modules
-import Comments from '~m/Comments/Comments';
-import Answer from '~m/Comments/Components/Answer/Answer';
+import Comments from '/src/modules/Comments/Comments';
+import Answer from '/src/modules/Comments/Components/Answer/Answer';
 // components
 import Button from '/src/components/Button/Button';
 import Icon from '/src/components/Icon/Icon';
 import Likes from '/src/components/Likes/Likes';
 import Picture from '/src/components/Picture/Picture';
-import PrognosisQuotes from '~m/Prognosis/Components/PrognosisQuotes/PrognosisQuotes';
+import PrognosisQuotes from '/src/modules/Prognosis/Components/PrognosisQuotes/PrognosisQuotes';
 // styles
 import s from './Forecast.local.scss';
 
