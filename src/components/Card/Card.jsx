@@ -10,7 +10,7 @@ import styles from './Card.local';
 const classes = classNames.bind(styles);
 
 const Card = (props) => {
-  const { head, title, excerpt, variant, type = 'simple', img, alt, children } = props;
+  const { head, title, excerpt, variant, type = 'simple', img, alt, link, children } = props;
 
   const WrapperClass = classes({
     Card: true,
@@ -24,7 +24,7 @@ const Card = (props) => {
       <h3 className="h3 medium">{title}</h3>
       <p className="text-regular">{excerpt}</p>
       {type === 'simple' && (
-        <Button type="router" cls={styles.CardLink} text="Подробнее" to="/">
+        <Button type="router" cls={styles.CardLink} text="Подробнее" to={link}>
           <Icon cls={styles.CardIcon} name="chevron-right-icon" />
         </Button>
       )}

@@ -16,7 +16,6 @@ import Button from '/src/components/Button/Button';
 import styles from '../../Broker.local';
 // utils
 import { H2, classes } from '../../Utils/Classes';
-import { mainInfo, tabs, specials, banner, payments } from '../../Utils/DevData';
 // store
 import Store from '/src/utils/Store';
 import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
@@ -37,80 +36,64 @@ const BrokerViewLaptop = () => {
           )}
         </div>
         <div className={styles.PageBlock}>
-          <h2 className={H2}>О компании</h2>
-          <div className={styles.PageBlockText}>
-            <p className="text-regular">
-              Компания Alpari - российский Форекс брокер, предоставляющий качественные брокерские
-              услуги с 1998 года. За время своего существования компания заслужила всеобщее
-              признание и массу положительных отзывов от своих клиентов, которые вы сможете почитать
-              в разделе отзывы об Альпари. Кроме всего прочего Альпари вполне обоснованно считается
-              одним из главных инициаторов создания НАФД (ЦРФИН), ведущей отечественной ассоциации
-              форекс дилеров.
-            </p>
-            <p className="text-regular">
-              Компания предлагает 2 метода котирования: стандартный и ECN. Стандартный метод
-              котирования подразумевает вывод на рынок только совокупной позиции по всем счетам, при
-              этом клиринг осуществляется внутри компании. Для счетов ECN все ордера клиентов
-              автоматически выводятся на внешний рынок. Плюсом счета ECN является отсутствие реквот,
-              а минусом – наличие комиссии.
-            </p>
-            <p className="text-regular">
-              Следует отметить, что Альпари имеет три международные лицензии авторитетных финансовых
-              регуляторов. Данная брокерская компания признана лучшим брокером по версии агентства
-              «Интерфакс». Более детально с основными событиями из жизни рассматриваемого брокера Вы
-              можете ознакомиться на этой странице. Alpari постоянно находится в процессе развития и
-              стремится предложить своим клиентам максимально выгодные условия для действительно
-              успешной торговли с большой прибылью.
-            </p>
-          </div>
+          {BrokerStore.text &&
+            BrokerStore.text.map((item) => (
+              <Fragment key={item.header}>
+                <h2 className={H2}>{item.header}</h2>
+                <div className={classes(styles.PageBlockText, styles.PageBlock)}>
+                  <p className="text-regular">{item.description}</p>
+                </div>
+              </Fragment>
+            ))}
         </div>
         <div className={styles.PageBlock}>
-          <h2 className={H2}>Новости Альпари</h2>
+          <h2 className={H2}>Новости {BrokerStore.Broker}</h2>
           <div className={styles.PageBlockGrid}>
-            <Card
-              head={<DateTime date="27 июня 18:02" />}
-              title="«Валентин Катасонов: что такое криптовалюты?»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            />
-            <Card
-              head={<DateTime date="27 июня 18:02" />}
-              title="«Валентин Катасонов: что такое криптовалюты?»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            />
+            {BrokerStore.news &&
+              BrokerStore.news.map((item, index) => {
+                if (index <= 1)
+                  return (
+                    <Card
+                      head={<DateTime date={item.date} />}
+                      title={item.title}
+                      excerpt={item.text}
+                      link={item.url}
+                    />
+                  );
+              })}
           </div>
         </div>
         <div className={styles.PageBlock}>
-          <h2 className={H2}>Семинары и вебинары Альпари </h2>
+          <h2 className={H2}>Семинары и вебинары {BrokerStore.Broker}</h2>
           <div className={styles.PageBlockGrid}>
-            <Card
-              head={<DateTime date="27 июня 18:02" />}
-              title={`Вебинар "Базовый курс"`}
-              excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
-            />
-            <Card
-              head={<DateTime date="27 июня 18:02" />}
-              title={`Вебинар "Базовый курс"`}
-              excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
-            />
+            {BrokerStore.webinar &&
+              BrokerStore.webinar.map((item, index) => {
+                if (index <= 1)
+                  return (
+                    <Card
+                      head={<DateTime date={item.date} />}
+                      title={item.title}
+                      excerpt={item.text}
+                      link={item.url}
+                    />
+                  );
+              })}
           </div>
         </div>
         <div className={styles.PageBlock}>
-          <h2 className={H2}>Бонусы, акции, конкурсы Альпари </h2>
+          <h2 className={H2}>Бонусы, акции, конкурсы {BrokerStore.Broker}</h2>
           <div className={styles.PageBlockGrid}>
-            <Card
-              head="Конкурсы"
-              title="Конкурс «Formula FX»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            />
-            <Card
-              head="Конкурсы"
-              title="Конкурс «Formula FX»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            />
+            {BrokerStore.bonus &&
+              BrokerStore.bonus.map((item, index) => {
+                if (index <= 2)
+                  return (
+                    <Card head={item.type} title={item.title} excerpt={item.text} link={item.url} />
+                  );
+              })}
           </div>
         </div>
         <div className={styles.PageBlock}>
-          <h2 className={H2}>Отзывы о компании Альпари</h2>
+          <h2 className={H2}>Отзывы о компании {BrokerStore.Broker}</h2>
           <Comments />
         </div>
         <div>
@@ -138,18 +121,19 @@ const BrokerViewLaptop = () => {
             />
           </div>
           <div className={styles.PageBlockGrid}>
-            <Card
-              head={<Status color="#2ACC50" text="Решена" />}
-              title="Конкурс «Formula FX»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-              variant="outlined"
-            />
-            <Card
-              head={<Status color="#EED346" text="На рассмотрении" />}
-              title="Конкурс «Formula FX»"
-              excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-              variant="outlined"
-            />
+            {BrokerStore.claim &&
+              BrokerStore.claim.map((item, index) => {
+                if (index <= 1)
+                  return (
+                    <Card
+                      head={<Status color={item.color} text={item.status} />}
+                      title={item.title}
+                      excerpt={item.text}
+                      link={item.url}
+                      variant="outlined"
+                    />
+                  );
+              })}
           </div>
         </div>
       </main>
@@ -158,13 +142,19 @@ const BrokerViewLaptop = () => {
           <TableSimple heading="Основная информация" rows={BrokerStore.mainInfo} />
         </div>
         <div className={styles.PageBlock}>
-          <List heading="Особые характеристики" rows={specials} />
+          <List heading="Особые характеристики" rows={BrokerStore.specials} />
         </div>
         <div className={styles.PageBlock}>
           {BrokerStore.pay && <BrokerPaymentSystems items={BrokerStore.pay} />}
         </div>
         <div className={styles.PageBlock}>
-          {BrokerStore.banner && <Picture cls={styles.AreaAbsolute} src={BrokerStore.banner[0].src} media={BrokerStore.banner} />}
+          {BrokerStore.banner && (
+            <Picture
+              cls={styles.AreaAbsolute}
+              src={BrokerStore.banner[0].src}
+              media={BrokerStore.banner}
+            />
+          )}
         </div>
       </aside>
     </>

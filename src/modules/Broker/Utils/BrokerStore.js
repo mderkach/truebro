@@ -29,6 +29,14 @@ class StoreProto {
 
   @observable specials = null;
 
+  @observable news = null;
+
+  @observable webinar = null;
+
+  @observable bonus = null;
+
+  @observable claim = null;
+
   @action setCurrentBroker = (name) => {
     this.Broker = name;
   };
@@ -44,15 +52,7 @@ class StoreProto {
     const pay = () => API.get(`/brokerPaymentSystem?broker=${this.Broker}`);
     const specials = () => API.get(`/brokerCharacteristics?broker=${this.Broker}`);
 
-    Promise.all([
-      headerInfo(),
-      mainInfo(),
-      tabsInfo(),
-      text(),
-      banner(),
-      pay(),
-      specials(),
-    ])
+    Promise.all([headerInfo(), mainInfo(), tabsInfo(), text(), banner(), pay(), specials()])
       .then((res) => {
         this.headerInfo = res[0].data;
         this.mainInfo = res[1].data;
@@ -66,6 +66,47 @@ class StoreProto {
       })
       .catch((err) => {
         this.isError = true;
+        console.error(err);
+      });
+  };
+
+  @action fetchBrokerAdditional = () => {
+    API.get(`/brokerBonus?broker=${this.Broker}`)
+      .then(({ data }) => {
+        this.bonus = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    API.get(`/brokerWebinar?broker=${this.Broker}`)
+      .then(({ data }) => {
+        this.webinar = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    API.get(`/brokerNew?broker=${this.Broker}`)
+      .then(({ data }) => {
+        this.news = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    API.get(`/brokerClaim?broker=${this.Broker}`)
+      .then(({ data }) => {
+        data.forEach(item => {
+          if (item.status === 'Решена') {
+            return item.color = '#2ACC50'
+          }
+          if (item.status === 'На рассмотрении') {
+            return item.color = '#EED346';
+          }
+
+          return item.color = '#FF724B';
+        })
+        this.claim = data;
+      })
+      .catch((err) => {
         console.error(err);
       });
   };

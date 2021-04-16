@@ -76,7 +76,7 @@ const routes = [
     exact: false,
     render: (props) => (
       <Suspense fallback={<div>Загрузка...</div>}>
-        <Broker {...props} />
+        <Broker name={props.match.params.name} />
       </Suspense>
     ),
   },

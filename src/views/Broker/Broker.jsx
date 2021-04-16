@@ -24,7 +24,9 @@ const links = [
   },
 ];
 
-const Broker = observer((props) => {
+const Broker = observer(({ name }) => {
+  const { fetchBroker, fetchBrokerAdditional, setCurrentBroker } = Store;
+
   const isDesktop = useMediaQuery({
     query: '(min-width: 1680px)',
   });
@@ -38,15 +40,26 @@ const Broker = observer((props) => {
   });
 
   const retryHandler = () => {
-    Store.fetchBroker();
+    fetchBroker();
+    fetchBrokerAdditional();
   };
 
   useEffect(() => {
-    Store.setCurrentBroker(props.match.params.name);
-    if (Store.Broker && !Store.brokerLoaded) {
-      Store.fetchBroker();
+    if (!Store.brokerLoaded) {
+      setCurrentBroker(name);
+      fetchBroker();
+      fetchBrokerAdditional();
     }
-  }, [props.match.params.name, Store.Broker, Store.brokerLoaded]);
+    if (Store.Broker && !Store.brokerLoaded) {
+      fetchBroker();
+      fetchBrokerAdditional();
+    }
+    if (Store.Broker !== name) {
+      setCurrentBroker(name);
+      fetchBroker();
+      fetchBrokerAdditional();
+    }
+  }, [name]);
 
   return (
     <>

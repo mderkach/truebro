@@ -18,7 +18,6 @@ import Button from '/src/components/Button/Button';
 import styles from '../../Broker.local';
 // utils
 import { H2, GridBlock, classes } from '../../Utils/Classes';
-import { specials } from '../../Utils/DevData';
 // store
 import Store from '/src/utils/Store';
 import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
@@ -71,61 +70,47 @@ const BrokerViewDesktop = () => {
       <div className={styles.AreaMain}>
         <h2 className={H2}>Новости {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title="«Валентин Катасонов: что такое криптовалюты?»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title="«Валентин Катасонов: что такое криптовалюты?»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title="«Валентин Катасонов: что такое криптовалюты?»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
+          {BrokerStore.news &&
+            BrokerStore.news.map((item, index) => {
+              if (index <= 2)
+                return (
+                  <Card
+                    head={<DateTime date={item.date} />}
+                    title={item.title}
+                    excerpt={item.text}
+                    link={item.url}
+                  />
+                );
+            })}
         </div>
       </div>
       <div className={styles.AreaMain}>
         <h2 className={H2}>Семинары и вебинары {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title={`Вебинар "Базовый курс"`}
-            excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
-          />
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title={`Вебинар "Базовый курс"`}
-            excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
-          />
-          <Card
-            head={<DateTime date="27 июня 18:02" />}
-            title={`Вебинар "Базовый курс"`}
-            excerpt=" В базовом курсе излагается история и причины появления биржевых инструментов (валюты, ценные бумаги, товары, фьючерсы)."
-          />
+          {BrokerStore.webinar &&
+            BrokerStore.webinar.map((item, index) => {
+              if (index <= 2)
+                return (
+                  <Card
+                    head={<DateTime date={item.date} />}
+                    title={item.title}
+                    excerpt={item.text}
+                    link={item.url}
+                  />
+                );
+            })}
         </div>
       </div>
       <div className={styles.AreaMain}>
         <h2 className={H2}>Бонусы, акции, конкурсы {BrokerStore.Broker}</h2>
         <div className={GridBlock}>
-          <Card
-            head="Конкурсы"
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
-          <Card
-            head="Конкурсы"
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
-          <Card
-            head="Конкурсы"
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-          />
+          {BrokerStore.bonus &&
+            BrokerStore.bonus.map((item, index) => {
+              if (index <= 2)
+                return (
+                  <Card head={item.type} title={item.title} excerpt={item.text} link={item.url} />
+                );
+            })}
         </div>
       </div>
       <div className={styles.AreaMain}>
@@ -160,24 +145,19 @@ const BrokerViewDesktop = () => {
           />
         </div>
         <div className={styles.PageBlockGrid}>
-          <Card
-            head={<Status color="#2ACC50" text="Решена" />}
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            variant="outlined"
-          />
-          <Card
-            head={<Status color="#EED346" text="На рассмотрении" />}
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            variant="outlined"
-          />
-          <Card
-            head={<Status color="#FF724B" text="Отклонена" />}
-            title="Конкурс «Formula FX»"
-            excerpt="27 октября 2019 года страны Европы перейдут на зимнее время, а 3 ноября 2019 года переход на зимнее время будет осуществлен в США. В связи с этим"
-            variant="outlined"
-          />
+          {BrokerStore.claim &&
+            BrokerStore.claim.map((item, index) => {
+              if (index <= 2)
+                return (
+                  <Card
+                    head={<Status color={item.color} text={item.status} />}
+                    title={item.title}
+                    excerpt={item.text}
+                    link={item.url}
+                    variant="outlined"
+                  />
+                );
+            })}
         </div>
       </div>
     </>
