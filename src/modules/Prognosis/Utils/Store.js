@@ -17,6 +17,8 @@ class StoreProto {
 
   @observable cards = [];
 
+  @observable brokers = null;
+
   @action fetchPrognosis = () => {
     API.get('/prognosis')
       .then(({ data }) => {
@@ -31,6 +33,10 @@ class StoreProto {
         this.isError = true;
         console.error(err);
       });
+  }
+
+  @action fetchBest = () => {
+    API.get('/bestForexBrokers').then(({data}) => this.brokers = data)
   }
 }
 
