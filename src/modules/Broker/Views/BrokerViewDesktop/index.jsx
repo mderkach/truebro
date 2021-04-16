@@ -117,7 +117,7 @@ const BrokerViewDesktop = () => {
         <h2 className={H2}>Отзывы о компании {BrokerStore.Broker}</h2>
         <div className={styles.PageBlock}>
           <CommentsControls action={Store.showModal} />
-          <Comments />
+          <Comments data={BrokerStore.reviews} />
         </div>
       </div>
       <div className={styles.AreaMain}>

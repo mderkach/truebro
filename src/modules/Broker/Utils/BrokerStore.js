@@ -37,6 +37,8 @@ class StoreProto {
 
   @observable claim = null;
 
+  @observable reviews = null;
+
   @action setCurrentBroker = (name) => {
     this.Broker = name;
   };
@@ -94,17 +96,25 @@ class StoreProto {
       });
     API.get(`/brokerClaim?broker=${this.Broker}`)
       .then(({ data }) => {
-        data.forEach(item => {
+        data.forEach((item) => {
           if (item.status === 'Решена') {
-            return item.color = '#2ACC50'
+            return (item.color = '#2ACC50');
           }
           if (item.status === 'На рассмотрении') {
-            return item.color = '#EED346';
+            return (item.color = '#EED346');
           }
 
-          return item.color = '#FF724B';
-        })
+          return (item.color = '#FF724B');
+        });
         this.claim = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    API.get(`/brokerReview?broker=${this.Broker}`)
+      .then(({ data }) => {
+        console.debug(data)
+        this.reviews = data;
       })
       .catch((err) => {
         console.error(err);

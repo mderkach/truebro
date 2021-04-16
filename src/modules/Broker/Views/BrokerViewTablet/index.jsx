@@ -112,7 +112,7 @@ const BrokerViewTablet = () => {
       </div>
       <div className={styles.PageBlock}>
         <h2 className={H2}>Отзывы о компании {BrokerStore.Broker}</h2>
-        <Comments />
+        <Comments data={BrokerStore.reviews} />
       </div>
       <div>
         <h2 className={H2}>Претензии</h2>
