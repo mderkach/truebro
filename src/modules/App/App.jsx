@@ -1,6 +1,6 @@
 /* eslint-disable react/display-name */
 // core
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import { observer } from 'mobx-react';
 // app styles always before imported components
@@ -15,7 +15,8 @@ const Compare = lazy(() => import('~v/Compare/Compare'));
 const Broker = lazy(() => import('~v/Broker/Broker'));
 const Prognosis = lazy(() => import('~v/Prognosis/Prognosis'));
 const Forecast = lazy(() => import('~v/Forecast/Forecast'));
-
+// store
+import MainStore from '/src/utils/Store';
 const NavMenu = [
   {
     label: 'Рейтинг брокеров',
@@ -104,6 +105,11 @@ const routes = [
 
 const App = observer(() => {
   const history = useHistory();
+  const { fetchFooter } = MainStore;
+
+  useEffect(() => {
+    if (!MainStore.footer) fetchFooter();
+  }, [MainStore.footer])
 
   return (
     <Router history={history}>
@@ -116,7 +122,7 @@ const App = observer(() => {
           );
         })}
       </Switch>
-      <Footer nav={NavMenu} socials={NavSocials} />
+      <Footer nav={NavMenu} socials={NavSocials} text={MainStore.footer || ''} />
       <Modal />
     </Router>
   );

@@ -27,6 +27,8 @@ class StoreProto {
 
   @observable banner = null;
 
+  @observable footer = null;
+
   @observable staticBlock = {
     image: null,
     text: null,
@@ -86,6 +88,10 @@ class StoreProto {
 
   @action fetchBanner = () => {
    API.get(`/bannerImg`).then(({data}) => this.banner = data)
+  }
+
+  @action fetchFooter = () => {
+    API.get('/footer').then(({data}) => this.footer = data.text)
   }
 }
 

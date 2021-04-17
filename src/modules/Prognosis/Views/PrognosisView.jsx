@@ -1,6 +1,5 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import classNames from 'classnames/bind';
-import { toJS } from 'mobx';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
 import PrognosisCard from '../Components/PrognosisCard/PrognosisCard';
@@ -53,31 +52,44 @@ const Cards = ({ array, category }) => {
   ));
 };
 
+const TextBlock = ({ text, header, type }) => {
+  return (
+    <>
+      {type === 0 ? <h2 className="h2 bold">{header}</h2> : <h3 className="h3 medium">{header}</h3>}
+      <p className="text-regular">{text}</p>
+    </>
+  );
+};
+
+const RenderTabsBtn = ({tabs, active, setter}) =>
+  tabs.map((item) => (
+    <Button
+      type="button"
+      variant="tertiary"
+      cls={classNames(s.TabButton, active === item ? 'is-active' : null)}
+      text={item}
+      key={item}
+      onClick={() => setter(item)}
+    />
+  ));
+
 const PrognosisView = () => {
   const [cardsCategory, setCardsCategory] = useState(Store.categories[0]);
   const [activeTab, setActiveTab] = useState(tabs[0]);
-
-  const RenderTabsBtn = () =>
-    tabs.map((item) => (
-      <Button
-        type="button"
-        variant="tertiary"
-        cls={classNames(s.TabButton, activeTab === item ? 'is-active' : null)}
-        text={item}
-        key={item}
-        onClick={() => setActiveTab(item)}
-      />
-    ));
 
   return (
     <div className={s.Wrapper}>
       <main className={s.AreaMain}>
         <div className={s.TabButtonWrapper}>
-          <RenderTabsBtn />
+          <RenderTabsBtn tabs={tabs} active={activeTab} setter={setActiveTab} />
         </div>
         <div className={classNames(s.Tab, activeTab === tabs[0] ? 'is-active' : null)}>
           <ScrollContainer className={s.CardsControls}>
-            <RenderButtons arr={Store.categories} category={cardsCategory} setter={setCardsCategory} />
+            <RenderButtons
+              arr={Store.categories}
+              category={cardsCategory}
+              setter={setCardsCategory}
+            />
           </ScrollContainer>
           <div className={s.Cards}>
             <Cards array={Store.cards} category={cardsCategory} />
@@ -97,33 +109,10 @@ const PrognosisView = () => {
           <ScreenSubscribe action="" />
         </div>
         <div className={s.Info}>
-          <h2 className="h2 bold">FOREX прогноз EUR/USD</h2>
-          <p className="text-regular">
-            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
-            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
-            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
-            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
-            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
-            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
-          </p>
-          <h3 className="h3 medium">Форекс прогноз Евро Доллар (EUR/USD) на завтра</h3>
-          <p className="text-regular">
-            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
-            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
-            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
-            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
-            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
-            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
-          </p>
-          <h3 className="h3 medium">EUR USD прогноз онлайн</h3>
-          <p className="text-regular">
-            Выбор надежного брокера Форекс - это наиболее важный этап в работе любого трейдера.
-            Важно чтобы компания заботилась об интересах своего клиента. Представленный выше рейтинг
-            брокеров Форекс РФ подскажет Вам чьи услуги пользователи ценят больше. Именно качество
-            услуг, предлагаемых выбранной компанией, в конечном счете влияет на то, достигнете ли Вы
-            успеха в валютном трейдинге. Учитывая, что рынок Форекс в 2019 году в России только
-            начинает законодательно регулироваться, этому вопросу стоит уделить особо пристальное
-          </p>
+          {Store.text &&
+            Store.text.map((item) => (
+              <TextBlock key={item.header} text={item.text} header={item.header} type={item.type} />
+            ))}
         </div>
       </Wrapper>
     </div>

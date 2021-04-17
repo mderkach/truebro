@@ -27,13 +27,9 @@ const PrognosisBrokersTable = observer(() => {
   };
 
   useEffect(() => {
-    console.debug('in');
     if (!Store.brokers) {
-      console.debug('call');
       Store.fetchBest();
     }
-
-    console.debug(Store.brokers);
   }, [Store.brokers]);
 
   if (!Store.brokers) return null
