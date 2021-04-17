@@ -93,11 +93,11 @@ const routes = [
   },
   {
     key: 'forecast',
-    path: '/forecast',
+    path: '/forecast/:id?',
     exact: true,
     render: (props) => (
       <Suspense fallback={<div>Загрузка...</div>}>
-        <Forecast {...props} />
+        <Forecast id={props.match.params.id} {...props} />
       </Suspense>
     ),
   },
