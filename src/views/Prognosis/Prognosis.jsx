@@ -10,16 +10,20 @@ import Store from '/src/modules/Prognosis/Utils/Store';
 import MainStore from '/src/utils/Store';
 
 const Prognosis = observer(() => {
-  const { fetchPrognosis } = Store;
+  const { fetchPrognosis, fetchPrognosisText } = Store;
 
   const retryHandler = () => {
     fetchPrognosis();
+    fetchPrognosisText();
     if (!MainStore.banner) MainStore.fetchBanner();
+    if (!MainStore.quotes) MainStore.fetchQuotes();
   };
 
   useEffect(() => {
     fetchPrognosis();
+    fetchPrognosisText();
     if (!MainStore.banner) MainStore.fetchBanner();
+    if (!MainStore.quotes) MainStore.fetchQuotes();
   }, []);
 
   return (

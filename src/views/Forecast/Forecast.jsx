@@ -23,6 +23,7 @@ const Forecast = observer((props) => {
       fetchForecast('/forecast');
     }
     if (!MainStore.banner) MainStore.fetchBanner();
+    if (!MainStore.quotes) MainStore.fetchQuotes();
   };
 
   useEffect(() => {
@@ -40,6 +41,7 @@ const Forecast = observer((props) => {
     }
 
     if (!MainStore.banner) MainStore.fetchBanner();
+    if (!MainStore.quotes) MainStore.fetchQuotes();
   }, [id]);
 
   return (

@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react';
+import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -73,7 +74,7 @@ const RenderTabsBtn = ({tabs, active, setter}) =>
     />
   ));
 
-const PrognosisView = () => {
+const PrognosisView = observer(() => {
   const [cardsCategory, setCardsCategory] = useState(Store.categories[0]);
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
@@ -117,6 +118,6 @@ const PrognosisView = () => {
       </Wrapper>
     </div>
   );
-};
+});
 
 export default PrognosisView;

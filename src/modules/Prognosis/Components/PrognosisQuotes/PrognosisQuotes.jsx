@@ -1,4 +1,5 @@
-import React, { memo, useState } from 'react';
+import React, { useState } from 'react';
+import { observer } from 'mobx-react';
 import classNames from 'classnames/bind';
 // components
 import ScrollContainer from 'react-indiana-drag-scroll';
@@ -7,11 +8,11 @@ import Icon from '/src/components/Icon/Icon';
 // styles
 import styles from './PrognosisQuotes.local';
 // store
-import Store from '/src/modules/Prognosis/Utils/Store';
+import Store from '/src/utils/Store';
 
 const classes = classNames.bind(styles);
 
-const RenderButtons = memo(
+const RenderButtons = observer(
   ({ arr, category, setter }) =>
     arr.length > 0 &&
     arr.map((item) => (
@@ -26,7 +27,8 @@ const RenderButtons = memo(
     )),
 );
 
-const RenderRow = memo(({ items, category, upClass, downClass }) => {
+const RenderRow = observer(({ items, category, upClass, downClass }) => {
+  if (!items) return null;
   const targets = items.filter((item) => item.broker === category);
 
   if (targets.length > 0)
@@ -62,8 +64,11 @@ const RenderRow = memo(({ items, category, upClass, downClass }) => {
   );
 });
 
-const PrognosisQuotes = () => {
-  const [quotesCategory, setQuotesCategory] = useState(Store.quotesCategories[0]);
+const PrognosisQuotes = observer(() => {
+  const [quotesCategory, setQuotesCategory] = useState(null);
+  if (Store.quotesCategories.length > 0 && !quotesCategory) {
+    setQuotesCategory(Store.quotesCategories[0])
+  }
 
   const QuotesHeaders = classes({
     'text-small': true,
@@ -107,6 +112,6 @@ const PrognosisQuotes = () => {
       </div>
     </section>
   );
-};
+});
 
 export default PrognosisQuotes;

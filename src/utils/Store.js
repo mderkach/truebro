@@ -35,6 +35,12 @@ class StoreProto {
     title: null,
   }
 
+  @observable text = null;
+
+  @observable quotesCategories = [];
+
+  @observable quotes = null;
+
   @action toggleTableLoading = (bool) => {
     if (bool) this.tableLoading = bool;
     else this.tableLoading = !this.tableLoading;
@@ -93,6 +99,23 @@ class StoreProto {
   @action fetchFooter = () => {
     API.get('/footer').then(({data}) => this.footer = data.text)
   }
+
+
+  @action fetchQuotes = () => {
+    API.get('/kotirovka')
+      .then(({ data }) => {
+        data.forEach((item) => {
+          if (!this.quotesCategories.includes(item.broker)) {
+            this.quotesCategories.push(item.broker);
+          }
+        });
+        this.quotes = data;
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
 }
 
 const Store = new StoreProto();
