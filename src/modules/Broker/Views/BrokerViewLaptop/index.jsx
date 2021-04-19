@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { observer } from 'mobx-react';
 // modules
 import Comments from '/src/modules/Comments/Comments';
 // components
@@ -20,7 +21,7 @@ import { H2, classes } from '../../Utils/Classes';
 import Store from '/src/utils/Store';
 import BrokerStore from '/src/modules/Broker/Utils/BrokerStore';
 
-const BrokerViewLaptop = () => {
+const BrokerViewLaptop = observer(() => {
   return (
     <>
       <BrokerTopBar className={(styles.AreaMain, styles.AreaFluid)} />
@@ -159,6 +160,6 @@ const BrokerViewLaptop = () => {
       </aside>
     </>
   );
-};
+});
 
 export default BrokerViewLaptop;
